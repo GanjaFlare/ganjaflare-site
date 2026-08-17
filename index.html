@@ -31,7 +31,7 @@
       overflow-x: hidden;
     }
 
-    /* 動的背景キャンバス */
+    /* 背景パーティクル＆浮遊コインのキャンバス */
     #particles-js {
       position: fixed;
       top: 0; left: 0;
@@ -161,43 +161,51 @@
 
     .ganjacat-frame img {
       width: 100%;
-      height: auto;
+      height auto;
       display: block;
     }
 
-    /* --- 浮遊オブジェクト（コイン＆大麻リーフ） --- */
-    .float-obj {
-      position: absolute;
+    /* 画面全体を広範囲にゆったり移動するコインアニメーション */
+    .moving-coin-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       pointer-events: none;
-      z-index: 5;
-      animation: floatRotate 8s ease-in-out infinite;
+      z-index: 2;
+      overflow: hidden;
     }
 
-    /* コイン浮遊 */
-    .float-coin {
-      width: 65px;
-      filter: drop-shadow(0 0 12px rgba(57, 255, 20, 0.6));
+    .drift-coin {
+      position: absolute;
+      filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.5));
+      opacity: 0.75;
+      animation: driftAround 18s ease-in-out infinite alternate;
     }
 
-    /* 大麻リーフ浮遊 (SVG) */
-    .float-leaf {
-      width: 80px;
-      opacity: 0.45;
-      filter: drop-shadow(0 0 10px var(--poison-green));
-    }
+    /* 各コインの初期位置・サイズ・移動速度のバリエーション */
+    .coin-1 { top: 10%; left: 5%; width: 55px; animation-duration: 22s; }
+    .coin-2 { top: 35%; right: 8%; width: 70px; animation-duration: 17s; animation-delay: -3s; }
+    .coin-3 { top: 65%; left: 12%; width: 60px; animation-duration: 25s; animation-delay: -7s; }
+    .coin-4 { top: 80%; right: 15%; width: 50px; animation-duration: 19s; animation-delay: -2s; }
+    .coin-5 { top: 20%; right: 35%; width: 65px; animation-duration: 28s; animation-delay: -10s; }
+    .coin-6 { top: 50%; left: 40%; width: 45px; animation-duration: 20s; animation-delay: -5s; }
 
-    /* 個別配置＆速度のばらつき */
-    .pos-1 { top: -20px; left: -40px; animation-duration: 6s; }
-    .pos-2 { top: 40%; right: -50px; animation-duration: 9s; animation-direction: reverse; }
-    .pos-3 { bottom: -30px; left: 10%; animation-duration: 7s; }
-    .pos-4 { top: -15px; right: 20px; animation-duration: 8.5s; }
-    .pos-5 { bottom: 10px; right: -30px; animation-duration: 11s; animation-direction: reverse; }
-
-    /* 浮遊＆回転キーフレーム */
-    @keyframes floatRotate {
-      0% { transform: translateY(0px) rotate(0deg) scale(1); }
-      50% { transform: translateY(-18px) rotate(15deg) scale(1.08); }
-      100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    @keyframes driftAround {
+      0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+      25% {
+        transform: translate(120px, -80px) rotate(90deg) scale(1.1);
+      }
+      50% {
+        transform: translate(-90px, 140px) rotate(180deg) scale(0.9);
+      }
+      75% {
+        transform: translate(150px, 60px) rotate(270deg) scale(1.05);
+      }
+      100% {
+        transform: translate(-100px, -120px) rotate(360deg) scale(1);
+      }
     }
 
     @keyframes floatAnim {
@@ -251,8 +259,7 @@
         gap: 12px;
       }
       .nav-menu.active { display: flex; }
-      .float-coin { width: 45px; }
-      .float-leaf { width: 55px; }
+      .drift-coin { width: 40px !important; }
     }
   </style>
 </head>
@@ -260,6 +267,16 @@
 
   <!-- 背景粒子キャンバス -->
   <div id="particles-js"></div>
+
+  <!-- 画面全体を大きな軌道で漂う$GANJAコイン群 -->
+  <div class="moving-coin-container">
+    <img src="images/ganjagold.png" class="drift-coin coin-1" alt="Gold Coin">
+    <img src="images/ganjagreen.png" class="drift-coin coin-2" alt="Green Coin">
+    <img src="images/ganjapurple.png" class="drift-coin coin-3" alt="Purple Coin">
+    <img src="images/ganjared.png" class="drift-coin coin-4" alt="Red Coin">
+    <img src="images/ganjablue.png" class="drift-coin coin-5" alt="Blue Coin">
+    <img src="images/ganjasilver.png" class="drift-coin coin-6" alt="Silver Coin">
+  </div>
 
   <!-- 上部ナビゲーション -->
   <header>
@@ -285,10 +302,6 @@
   <main>
     <!-- 1. HOME -->
     <section id="home">
-      <!-- 浮遊ゴールドコイン & 大麻リーフ -->
-      <img src="images/ganjagold.png" class="float-obj float-coin pos-1" alt="Gold Coin">
-      <svg class="float-obj float-leaf pos-2" viewBox="0 0 24 24" fill="var(--poison-green)"><path d="M12,2C12,2 9,7 9,11 C9,14 11,16 12,16 C13,16 15,14 15,11 C15,7 12,2 12,2 Z M6,8 C6,8 5,12 7,15 C8.5,17 11,17 11,17 C11,17 8,13 6,8 Z M18,8 C18,8 20,13 18,15 C16.5,17 14,17 14,17 C14,17 17,13 18,8 Z M12,17 L12,22"/></svg>
-      
       <div class="card" style="border-color: var(--poison-green);">
         <div class="hero-grid">
           <div>
@@ -307,7 +320,6 @@
 
     <!-- 2. DEX / チャート -->
     <section id="dex">
-      <img src="images/ganjagreen.png" class="float-obj float-coin pos-4" alt="Green Coin">
       <h2 class="sec-title">DEX / チャート</h2>
       <div class="card">
         <p>BlazeSwap および SparkDEX にてトレードが可能です。</p>
@@ -318,7 +330,6 @@
 
     <!-- 3. 流動性提供 -->
     <section id="liquidity">
-      <svg class="float-obj float-leaf pos-3" viewBox="0 0 24 24" fill="var(--toxic-purple)"><path d="M12,2C12,2 9,7 9,11 C9,14 11,16 12,16 C13,16 15,14 15,11 C15,7 12,2 12,2 Z M6,8 C6,8 5,12 7,15 C8.5,17 11,17 11,17 C11,17 8,13 6,8 Z M18,8 C18,8 20,13 18,15 C16.5,17 14,17 14,17 C14,17 17,13 18,8 Z M12,17 L12,22"/></svg>
       <h2 class="sec-title">流動性提供</h2>
       <div class="card">
         <p>DEXへの流動性提供（LP）を行うことで、エコシステムの安定化と取引手数料報酬を獲得できます。</p>
@@ -327,7 +338,6 @@
 
     <!-- 4. NFT v1 -->
     <section id="nft">
-      <img src="images/ganjapurple.png" class="float-obj float-coin pos-2" alt="Purple Coin">
       <h2 class="sec-title">NFT v1</h2>
       <div class="card">
         <p>GanjaFlareの文化を象徴する公式NFTコレクション。ホルダー向け特典やエアドロップ企画を展開中。</p>
@@ -344,7 +354,6 @@
 
     <!-- 6. GANJA CAT RUN -->
     <section id="game">
-      <img src="images/ganjared.png" class="float-obj float-coin pos-5" alt="Red Coin">
       <h2 class="sec-title">GANJA CAT RUN</h2>
       <div class="card">
         <p>公式アクションゲーム「GanjaCatRun」！プレイしてハイスコアを目指そう。</p>
@@ -353,7 +362,6 @@
 
     <!-- 7. GIVEAWAY -->
     <section id="giveaway">
-      <svg class="float-obj float-leaf pos-1" viewBox="0 0 24 24" fill="var(--toxic-pink)"><path d="M12,2C12,2 9,7 9,11 C9,14 11,16 12,16 C13,16 15,14 15,11 C15,7 12,2 12,2 Z M6,8 C6,8 5,12 7,15 C8.5,17 11,17 11,17 C11,17 8,13 6,8 Z M18,8 C18,8 20,13 18,15 C16.5,17 14,17 14,17 C14,17 17,13 18,8 Z M12,17 L12,22"/></svg>
       <h2 class="sec-title">GIVEAWAY</h2>
       <div class="card">
         <p>X（旧Twitter）などを通じた隔週Giveawayやエアドロップイベントの告知エリア。</p>
@@ -370,7 +378,6 @@
 
     <!-- 9. トークノミクス -->
     <section id="tokenomics">
-      <img src="images/ganjablue.png" class="float-obj float-coin pos-3" alt="Blue Coin">
       <h2 class="sec-title">トークノミクス</h2>
       <div class="card">
         <p>チェーン: Flare Network | シンボル: $GANJA</p>
@@ -415,10 +422,10 @@
       });
     });
 
-    // 背景粒子（数を増やし、光りを強調）
+    // 背景粒子（光る粒子）
     particlesJS("particles-js", {
       "particles": {
-        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+        "number": { "value": 55, "density": { "enable": true, "value_area": 800 } },
         "color": { "value": ["#39ff14", "#bd00ff", "#ff007f", "#ccff00"] },
         "shape": { "type": "circle" },
         "opacity": { "value": 0.6, "random": true },
