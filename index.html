@@ -2,36 +2,51 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>GanjaFlare - Flare's Freedom Energy</title>
+  
+  <!-- 洗練されたPlus Jakarta Sansフォント & アイコン -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <!-- 背景パーティクル用ライブラリ -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
   <style>
     :root {
-      --bg-color: #08030c;
-      --panel-bg: rgba(18, 9, 28, 0.88);
-      --border-color: #4a1d6d;
-      --poison-green: #39ff14;
-      --toxic-purple: #bd00ff;
-      --toxic-pink: #ff007f;
-      --caution-yellow: #ccff00;
-      --text-color: #d8cbeb;
+      --bg-color: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.55);
+      --border-emerald: rgba(52, 211, 153, 0.3);
+      --emerald-green: #34d399;
+      --emerald-dark: #059669;
+      --purple-accent: #bd00ff;
+      --pink-accent: #ff007f;
+      --text-main: #f8fafc;
+      --text-sub: #cbd5e1;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: 'Courier New', monospace, sans-serif;
-      line-height: 1.6;
+      color: var(--text-main);
+      min-height: 100vh;
       position: relative;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* 背景パーティクル＆浮遊コインのキャンバス */
+    /* 背景パーティクルキャンバス */
     #particles-js {
       position: fixed;
       top: 0; left: 0;
@@ -40,132 +55,7 @@
       pointer-events: none;
     }
 
-    /* 上部固定ナビ */
-    header {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      background: rgba(8, 3, 12, 0.94);
-      border-bottom: 2px solid var(--toxic-purple);
-      z-index: 1000;
-      box-shadow: 0 2px 20px rgba(189, 0, 255, 0.4);
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--poison-green);
-      text-shadow: 0 0 10px var(--toxic-purple), 0 0 5px var(--poison-green);
-      text-decoration: none;
-      letter-spacing: 2px;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 10px;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-menu a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: bold;
-      padding: 6px 10px;
-      border: 1px solid var(--border-color);
-      background: rgba(0,0,0,0.6);
-      transition: all 0.3s;
-    }
-
-    .nav-menu a:hover {
-      color: #fff;
-      border-color: var(--toxic-pink);
-      background: var(--toxic-purple);
-      box-shadow: 0 0 15px var(--toxic-pink);
-    }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--poison-green);
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* メインコンテンツ */
-    main {
-      position: relative;
-      z-index: 10;
-      max-width: 1000px;
-      margin: 90px auto 40px;
-      padding: 0 20px;
-    }
-
-    section {
-      padding: 50px 0;
-      border-bottom: 1px dashed var(--border-color);
-      position: relative;
-    }
-
-    .sec-title {
-      font-size: 1.8rem;
-      color: var(--poison-green);
-      text-shadow: 2px 2px 0px var(--toxic-purple), 0 0 12px var(--poison-green);
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .card {
-      background: var(--panel-bg);
-      border: 2px solid var(--border-color);
-      border-left: 4px solid var(--toxic-purple);
-      padding: 25px;
-      margin-bottom: 20px;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.9), 0 8px 25px rgba(0,0,0,0.8);
-      backdrop-filter: blur(5px);
-      position: relative;
-    }
-
-    /* HEROエリア */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr; }
-    }
-
-    .ganjacat-frame {
-      position: relative;
-      border: 3px solid var(--toxic-purple);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 25px var(--toxic-purple), inset 0 0 15px rgba(57, 255, 20, 0.5);
-      background: #000;
-      animation: floatAnim 4s ease-in-out infinite;
-    }
-
-    .ganjacat-frame img {
-      width: 100%;
-      height auto;
-      display: block;
-    }
-
-    /* 画面全体を広範囲にゆったり移動するコインアニメーション */
+    /* 画面全体を大きな軌道で漂う$GANJAコイン＆GanjaCatロケット群 */
     .moving-coin-container {
       position: fixed;
       top: 0; left: 0;
@@ -177,12 +67,22 @@
 
     .drift-coin {
       position: absolute;
-      filter: drop-shadow(0 0 10px rgba(57, 255, 20, 0.5));
-      opacity: 0.75;
+      filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.4));
+      opacity: 0.8;
       animation: driftAround 18s ease-in-out infinite alternate;
     }
 
-    /* 各コインの初期位置・サイズ・移動速度のバリエーション */
+    /* ロケットGanjaCat専用の浮遊スタイリング */
+    .drift-cat {
+      position: absolute;
+      top: 45%;
+      left: 60%;
+      width: 130px;
+      filter: drop-shadow(0 0 15px rgba(255, 0, 127, 0.5));
+      opacity: 0.9;
+      animation: driftCatAnim 22s ease-in-out infinite alternate;
+    }
+
     .coin-1 { top: 10%; left: 5%; width: 55px; animation-duration: 22s; }
     .coin-2 { top: 35%; right: 8%; width: 70px; animation-duration: 17s; animation-delay: -3s; }
     .coin-3 { top: 65%; left: 12%; width: 60px; animation-duration: 25s; animation-delay: -7s; }
@@ -191,59 +91,207 @@
     .coin-6 { top: 50%; left: 40%; width: 45px; animation-duration: 20s; animation-delay: -5s; }
 
     @keyframes driftAround {
-      0% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-      }
-      25% {
-        transform: translate(120px, -80px) rotate(90deg) scale(1.1);
-      }
-      50% {
-        transform: translate(-90px, 140px) rotate(180deg) scale(0.9);
-      }
-      75% {
-        transform: translate(150px, 60px) rotate(270deg) scale(1.05);
-      }
-      100% {
-        transform: translate(-100px, -120px) rotate(360deg) scale(1);
-      }
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      25% { transform: translate(120px, -80px) rotate(90deg) scale(1.1); }
+      50% { transform: translate(-90px, 140px) rotate(180deg) scale(0.9); }
+      75% { transform: translate(150px, 60px) rotate(270deg) scale(1.05); }
+      100% { transform: translate(-100px, -120px) rotate(360deg) scale(1); }
+    }
+
+    /* ロケット猫用の豪快な漂流アニメーション */
+    @keyframes driftCatAnim {
+      0% { transform: translate(0, 0) rotate(-5deg) scale(1); }
+      33% { transform: translate(-180px, -120px) rotate(10deg) scale(1.15); }
+      66% { transform: translate(120px, -200px) rotate(-15deg) scale(0.95); }
+      100% { transform: translate(-80px, 100px) rotate(5deg) scale(1.05); }
+    }
+
+    /* 上部固定ナビ */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border-emerald);
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--emerald-green);
+      text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+      text-decoration: none;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: rgba(30, 41, 59, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #ffffff;
+      border-color: var(--emerald-green);
+      background: rgba(52, 211, 153, 0.15);
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--emerald-green);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* メインコンテンツ */
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 100px auto 50px;
+      padding: 0 16px;
+    }
+
+    section {
+      padding: 30px 0;
+      position: relative;
+    }
+
+    .sec-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--emerald-green);
+      text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hub-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border-emerald);
+      border-top: 4px solid var(--emerald-green);
+      border-radius: 24px;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.12);
+      padding: 28px 24px;
+      margin-bottom: 24px;
+    }
+
+    /* HOME ヒーローグリッド */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    /* GanjaFlare ロゴ画像フレーム */
+    .ganja-logo-frame {
+      position: relative;
+      border: 2px solid var(--border-emerald);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      animation: floatAnim 4s ease-in-out infinite;
+    }
+
+    .ganja-logo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     @keyframes floatAnim {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
+      50% { transform: translateY(-10px); }
     }
 
-    /* ネオンボタン */
-    .btn-neon {
-      display: inline-block;
-      padding: 10px 22px;
-      color: #000;
-      background: var(--poison-green);
-      font-weight: bold;
-      text-decoration: none;
+    /* グラデーションボタン */
+    .btn-mint-style {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: #ffffff;
       border: none;
-      box-shadow: 0 0 15px var(--poison-green);
-      transition: all 0.3s;
+      border-radius: 14px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
       margin-top: 10px;
-      margin-right: 10px;
+      margin-right: 8px;
     }
 
-    .btn-neon:hover {
-      background: var(--toxic-pink);
-      color: #fff;
-      box-shadow: 0 0 25px var(--toxic-pink);
-      transform: scale(1.05);
+    .btn-mint-style:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+    }
+
+    .btn-mint-style.yellow {
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+    }
+    .btn-mint-style.yellow:hover {
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
     }
 
     .code-box {
-      background: #050208;
-      color: var(--poison-green);
-      padding: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      color: var(--emerald-green);
+      padding: 12px 16px;
       font-size: 0.85rem;
+      font-weight: 700;
       word-break: break-all;
-      border: 1px solid var(--toxic-purple);
-      margin: 10px 0;
-      box-shadow: inset 0 0 10px rgba(189,0,255,0.4);
+      border: 1px solid var(--border-emerald);
+      border-radius: 12px;
+      margin: 12px 0;
+      box-shadow: inset 0 0 8px rgba(52, 211, 153, 0.2);
     }
 
     @media (max-width: 768px) {
@@ -253,13 +301,14 @@
         flex-direction: column;
         position: absolute;
         top: 100%; left: 0; width: 100%;
-        background: rgba(8, 3, 12, 0.98);
-        border-bottom: 2px solid var(--toxic-purple);
+        background: rgba(15, 23, 42, 0.96);
+        border-bottom: 1px solid var(--border-emerald);
         padding: 20px;
-        gap: 12px;
+        gap: 10px;
       }
       .nav-menu.active { display: flex; }
-      .drift-coin { width: 40px !important; }
+      .drift-coin { width: 42px !important; }
+      .drift-cat { width: 85px !important; }
     }
   </style>
 </head>
@@ -268,7 +317,7 @@
   <!-- 背景粒子キャンバス -->
   <div id="particles-js"></div>
 
-  <!-- 画面全体を大きな軌道で漂う$GANJAコイン群 -->
+  <!-- 画面全体を漂う$GANJAコイン＆GanjaCatロケット -->
   <div class="moving-coin-container">
     <img src="images/ganjagold.png" class="drift-coin coin-1" alt="Gold Coin">
     <img src="images/ganjagreen.png" class="drift-coin coin-2" alt="Green Coin">
@@ -276,13 +325,17 @@
     <img src="images/ganjared.png" class="drift-coin coin-4" alt="Red Coin">
     <img src="images/ganjablue.png" class="drift-coin coin-5" alt="Blue Coin">
     <img src="images/ganjasilver.png" class="drift-coin coin-6" alt="Silver Coin">
+    <!-- 浮遊するロケットGanjaCat -->
+    <img src="images/ganjacat01.png" class="drift-cat" alt="GanjaCat Rocket">
   </div>
 
-  <!-- 上部ナビゲーション -->
+  <!-- 上部固定ナビゲーション -->
   <header>
     <div class="nav-container">
-      <a href="#home" class="logo">GANJAFLARE</a>
-      <button class="hamburger" id="hamburger">☰</button>
+      <a href="#home" class="logo">
+        <i class="fa-solid fa-cannabis"></i> GANJAFLARE
+      </a>
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home">HOME</a></li>
         <li><a href="#dex">DEX/チャート</a></li>
@@ -302,17 +355,24 @@
   <main>
     <!-- 1. HOME -->
     <section id="home">
-      <div class="card" style="border-color: var(--poison-green);">
+      <div class="hub-card">
         <div class="hero-grid">
           <div>
-            <h1 style="font-size: 2rem; color: var(--poison-green); text-shadow: 0 0 15px var(--poison-green);">TRANSFER GATE</h1>
-            <p style="margin: 15px 0; color: var(--toxic-pink); font-weight: bold;">Flare's Freedom Energy — Spirit × Community × Power</p>
-            <p style="margin-bottom: 20px; font-size: 0.9rem;">$GANJA は、Flare Network 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。</p>
-            <a href="#dex" class="btn-neon">First BUY</a>
-            <a href="#dex" class="btn-neon" style="background: var(--caution-yellow); box-shadow: 0 0 12px var(--caution-yellow);">Repeat BUY</a>
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
+              TRANSFER GATE
+            </h1>
+            <p style="margin: 12px 0; color: #f472b6; font-weight: 700; font-size: 0.95rem;">
+              Flare's Freedom Energy — Spirit × Community × Power
+            </p>
+            <p style="margin-bottom: 18px; font-size: 0.88rem; color: var(--text-sub);">
+              $GANJA は、Flare Network 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。
+            </p>
+            <a href="#dex" class="btn-mint-style"><i class="fa-solid fa-cart-shopping"></i> First BUY</a>
+            <a href="#dex" class="btn-mint-style yellow"><i class="fa-solid fa-rotate-right"></i> Repeat BUY</a>
           </div>
-          <div class="ganjacat-frame">
-            <img src="images/ganjacat.png" alt="GanjaCat Art">
+          <!-- メイン画像: GanjaFlareロゴ -->
+          <div class="ganja-logo-frame">
+            <img src="images/Ganjalogo.png" alt="GanjaFlare Official Logo">
           </div>
         </div>
       </div>
@@ -320,89 +380,91 @@
 
     <!-- 2. DEX / チャート -->
     <section id="dex">
-      <h2 class="sec-title">DEX / チャート</h2>
-      <div class="card">
-        <p>BlazeSwap および SparkDEX にてトレードが可能です。</p>
-        <a href="https://blazeswap.xyz" target="_blank" class="btn-neon">BlazeSwap で取引</a>
-        <a href="https://sparkdex.ai" target="_blank" class="btn-neon">SparkDEX で取引</a>
+      <div class="sec-title"><i class="fa-solid fa-chart-line"></i> DEX / チャート</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub); margin-bottom: 12px;">BlazeSwap および SparkDEX にてトレードが可能です。</p>
+        <a href="https://blazeswap.xyz" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap で取引</a>
+        <a href="https://sparkdex.ai" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX で取引</a>
       </div>
     </section>
 
     <!-- 3. 流動性提供 -->
     <section id="liquidity">
-      <h2 class="sec-title">流動性提供</h2>
-      <div class="card">
-        <p>DEXへの流動性提供（LP）を行うことで、エコシステムの安定化と取引手数料報酬を獲得できます。</p>
+      <div class="sec-title"><i class="fa-solid fa-droplet"></i> 流動性提供</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">DEXへの流動性提供（LP）を行うことで、エコシステムの安定化と取引手数料報酬を獲得できます。</p>
       </div>
     </section>
 
     <!-- 4. NFT v1 -->
     <section id="nft">
-      <h2 class="sec-title">NFT v1</h2>
-      <div class="card">
-        <p>GanjaFlareの文化を象徴する公式NFTコレクション。ホルダー向け特典やエアドロップ企画を展開中。</p>
+      <div class="sec-title"><i class="fa-solid fa-gem"></i> NFT v1</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">GanjaFlareの文化を象徴する公式NFTコレクション。ホルダー向け特典やエアドロップ企画を展開中。</p>
       </div>
     </section>
 
     <!-- 5. デイリーロト -->
     <section id="lotto">
-      <h2 class="sec-title">デイリーロト</h2>
-      <div class="card">
-        <p>毎日開催！ブラウザから気軽に参加して賞金を狙えるデイリーロトシステムです。</p>
+      <div class="sec-title"><i class="fa-solid fa-ticket"></i> デイリーロト</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">毎日開催！ブラウザから気軽に参加して賞金を狙えるデイリーロトシステムです。</p>
       </div>
     </section>
 
     <!-- 6. GANJA CAT RUN -->
     <section id="game">
-      <h2 class="sec-title">GANJA CAT RUN</h2>
-      <div class="card">
-        <p>公式アクションゲーム「GanjaCatRun」！プレイしてハイスコアを目指そう。</p>
+      <div class="sec-title"><i class="fa-solid fa-gamepad"></i> GANJA CAT RUN</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">公式アクションゲーム「GanjaCatRun」！プレイしてハイスコアを目指そう。</p>
       </div>
     </section>
 
     <!-- 7. GIVEAWAY -->
     <section id="giveaway">
-      <h2 class="sec-title">GIVEAWAY</h2>
-      <div class="card">
-        <p>X（旧Twitter）などを通じた隔週Giveawayやエアドロップイベントの告知エリア。</p>
+      <div class="sec-title"><i class="fa-solid fa-gift"></i> GIVEAWAY</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">X（旧Twitter）などを通じた隔週Giveawayやエアドロップイベントの告知エリア。</p>
       </div>
     </section>
 
     <!-- 8. チーム -->
     <section id="team">
-      <h2 class="sec-title">チーム</h2>
-      <div class="card">
-        <p>GanjaFlareを支えるコミュニティチームとコアメンバーの紹介。</p>
+      <div class="sec-title"><i class="fa-solid fa-users"></i> チーム</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">GanjaFlareを支えるコミュニティチームとコアメンバーの紹介。</p>
       </div>
     </section>
 
     <!-- 9. トークノミクス -->
     <section id="tokenomics">
-      <h2 class="sec-title">トークノミクス</h2>
-      <div class="card">
-        <p>チェーン: Flare Network | シンボル: $GANJA</p>
-        <p>総供給枚数: 42,000,000 $GANJA</p>
-        <p>コントラクトアドレス:</p>
-        <div class="code-box">0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7</div>
-        <p>毎月1回、総供給量の0.5%（777,777 $GANJA）を定期BURN実行中！</p>
+      <div class="sec-title"><i class="fa-solid fa-coins"></i> トークノミクス</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">チェーン: <strong>Flare Network</strong> | シンボル: <strong>$GANJA</strong></p>
+        <p style="color: var(--text-sub); margin-top: 6px;">総供給枚数: <strong>42,000,000 $GANJA</strong></p>
+        <p style="color: var(--text-sub); margin-top: 12px;">コントラクトアドレス:</p>
+        <div class="code-box"><i class="fa-solid fa-copy" style="margin-right: 6px;"></i>0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7</div>
+        <p style="color: var(--emerald-green); font-weight: 700; margin-top: 8px;">
+          <i class="fa-solid fa-fire"></i> 毎月1回、総供給量の0.5%（777,777 $GANJA）を定期BURN実行中！
+        </p>
       </div>
     </section>
 
     <!-- 10. 免責事項 -->
     <section id="disclaimer">
-      <h2 class="sec-title">免責事項</h2>
-      <div class="card">
-        <p style="font-size: 0.85rem; color: #a0a0a0;">
-          Important Disclaimer & Request: $GANJA は文化とコミュニティ精神のシンボルであり、投資商品ではありません。日本の法律および規制を遵守し、健全な運用を行っています。
+      <div class="sec-title"><i class="fa-solid fa-shield-halved"></i> 免責事項</div>
+      <div class="hub-card">
+        <p style="font-size: 0.82rem; color: #94a3b8; line-height: 1.5;">
+          <strong>Important Disclaimer & Request:</strong> $GANJA は文化とコミュニティ精神のシンボルであり、投資商品ではありません。日本の法律および規制を遵守し、健全な運用を行っています。
         </p>
       </div>
     </section>
 
     <!-- 11. SPECIAL THANKS -->
     <section id="thanks">
-      <h2 class="sec-title">SPECIAL THANKS</h2>
-      <div class="card">
-        <p>GanjaFlareを応援してくれるフレンドプロジェクト＆パートナーの皆様。</p>
+      <div class="sec-title"><i class="fa-solid fa-heart"></i> SPECIAL THANKS</div>
+      <div class="hub-card">
+        <p style="color: var(--text-sub);">GanjaFlareを応援してくれるフレンドプロジェクト＆パートナーの皆様。</p>
       </div>
     </section>
   </main>
@@ -422,24 +484,24 @@
       });
     });
 
-    // 背景粒子（光る粒子）
+    // 背景粒子設定
     particlesJS("particles-js", {
       "particles": {
-        "number": { "value": 55, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": ["#39ff14", "#bd00ff", "#ff007f", "#ccff00"] },
+        "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#34d399", "#10b981", "#3b82f6", "#a855f7"] },
         "shape": { "type": "circle" },
-        "opacity": { "value": 0.6, "random": true },
-        "size": { "value": 5, "random": true },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 4, "random": true },
         "line_linked": {
           "enable": true,
-          "distance": 140,
-          "color": "#bd00ff",
-          "opacity": 0.35,
+          "distance": 130,
+          "color": "#34d399",
+          "opacity": 0.25,
           "width": 1
         },
         "move": {
           "enable": true,
-          "speed": 2,
+          "speed": 1.8,
           "direction": "none",
           "random": true,
           "straight": false,
@@ -454,7 +516,7 @@
           "onclick": { "enable": true, "mode": "push" }
         },
         "modes": {
-          "grab": { "distance": 160, "line_linked": { "opacity": 0.8 } }
+          "grab": { "distance": 150, "line_linked": { "opacity": 0.7 } }
         }
       },
       "retina_detect": true
