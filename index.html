@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GanjaFlare - Flare's Freedom Energy</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- 背景パーティクル用ライブラリ -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
     :root {
-      --bg-color: #0d0614; /* 毒々しいディープパープル */
-      --panel-bg: rgba(22, 11, 33, 0.92);
+      --bg-color: #08030c;
+      --panel-bg: rgba(18, 9, 28, 0.85);
       --border-color: #4a1d6d;
       --poison-green: #39ff14;
       --toxic-purple: #bd00ff;
@@ -25,26 +27,28 @@
       color: var(--text-color);
       font-family: 'Courier New', monospace, sans-serif;
       line-height: 1.6;
-      /* 背景画像 + サイケデリックマーブルグラデーション合成 */
-      background-image: 
-        linear-gradient(rgba(13, 6, 20, 0.88), rgba(13, 6, 20, 0.88)),
-        radial-gradient(circle at 20% 20%, rgba(189, 0, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 0, 127, 0.15) 0%, transparent 50%),
-        url('images/bg-pattern.png'); /* ※画像がない場合は自動的にグラデーションのみ適用されます */
-      background-size: cover, 100% 100%, 100% 100%, cover;
-      background-position: center;
-      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 動的背景キャンバス */
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none;
     }
 
     /* 上部固定ナビ */
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      background: rgba(13, 6, 20, 0.96);
+      background: rgba(8, 3, 12, 0.92);
       border-bottom: 2px solid var(--toxic-purple);
       z-index: 1000;
-      box-shadow: 0 2px 15px rgba(189, 0, 255, 0.3);
-      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 20px rgba(189, 0, 255, 0.4);
+      backdrop-filter: blur(10px);
     }
 
     .nav-container {
@@ -65,7 +69,6 @@
       letter-spacing: 2px;
     }
 
-    /* ナビゲーションメニュー */
     .nav-menu {
       display: flex;
       gap: 10px;
@@ -80,15 +83,15 @@
       font-weight: bold;
       padding: 6px 10px;
       border: 1px solid var(--border-color);
-      background: rgba(0,0,0,0.5);
-      transition: all 0.2s;
+      background: rgba(0,0,0,0.6);
+      transition: all 0.3s;
     }
 
     .nav-menu a:hover {
       color: #fff;
       border-color: var(--toxic-pink);
       background: var(--toxic-purple);
-      box-shadow: 0 0 12px var(--toxic-pink);
+      box-shadow: 0 0 15px var(--toxic-pink);
     }
 
     .hamburger {
@@ -100,8 +103,10 @@
       cursor: pointer;
     }
 
-    /* レイアウト容器 */
+    /* メインコンテンツレイアウト */
     main {
+      position: relative;
+      z-index: 10;
       max-width: 1000px;
       margin: 90px auto 40px;
       padding: 0 20px;
@@ -110,27 +115,30 @@
     section {
       padding: 50px 0;
       border-bottom: 1px dashed var(--border-color);
+      position: relative;
     }
 
     .sec-title {
       font-size: 1.8rem;
       color: var(--poison-green);
-      text-shadow: 2px 2px 0px var(--toxic-purple), 0 0 10px var(--poison-green);
+      text-shadow: 2px 2px 0px var(--toxic-purple), 0 0 12px var(--poison-green);
       margin-bottom: 20px;
       letter-spacing: 1px;
     }
 
-    /* 荒廃したパネル風カード */
+    /* パネル風カード */
     .card {
       background: var(--panel-bg);
       border: 2px solid var(--border-color);
       border-left: 4px solid var(--toxic-purple);
       padding: 25px;
       margin-bottom: 20px;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.7);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.9), 0 8px 25px rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+      position: relative;
     }
 
-    /* HOMEトップ用のヒーローカードレイアウト */
+    /* HOMEヒーローエリア */
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -139,19 +147,18 @@
     }
 
     @media (max-width: 768px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero-grid { grid-template-columns: 1fr; }
     }
 
-    /* GanjaCat 画像装飾（ネオン額縁枠） */
+    /* GanjaCat 画像 ＆ 浮遊アニメーション */
     .ganjacat-frame {
       position: relative;
       border: 3px solid var(--toxic-purple);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0 20px var(--toxic-purple), inset 0 0 10px rgba(57, 255, 20, 0.5);
+      box-shadow: 0 0 25px var(--toxic-purple), inset 0 0 15px rgba(57, 255, 20, 0.5);
       background: #000;
+      animation: floatAnim 4s ease-in-out infinite;
     }
 
     .ganjacat-frame img {
@@ -161,11 +168,33 @@
       transition: transform 0.3s ease;
     }
 
-    .ganjacat-frame:hover img {
-      transform: scale(1.03);
+    /* 浮遊オブジェクト（背景の毒々しいアイコン等） */
+    .floating-leaf {
+      position: absolute;
+      width: 60px;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 2;
+      filter: drop-shadow(0 0 8px var(--poison-green));
+      animation: rotateFloat 8s linear infinite;
     }
 
-    /* ネオン＆毒々しいボタン */
+    .leaf-1 { top: 10%; right: -30px; animation-duration: 9s; }
+    .leaf-2 { bottom: 15%; left: -40px; animation-duration: 12s; animation-direction: reverse; }
+
+    /* アニメーション定義 */
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    @keyframes rotateFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+      100% { transform: translateY(0px) rotate(360deg); }
+    }
+
+    /* ネオンボタン */
     .btn-neon {
       display: inline-block;
       padding: 10px 22px;
@@ -175,7 +204,7 @@
       text-decoration: none;
       border: none;
       box-shadow: 0 0 15px var(--poison-green);
-      transition: all 0.2s;
+      transition: all 0.3s;
       margin-top: 10px;
       margin-right: 10px;
     }
@@ -183,7 +212,8 @@
     .btn-neon:hover {
       background: var(--toxic-pink);
       color: #fff;
-      box-shadow: 0 0 20px var(--toxic-pink);
+      box-shadow: 0 0 25px var(--toxic-pink);
+      transform: scale(1.05);
     }
 
     .code-box {
@@ -194,10 +224,10 @@
       word-break: break-all;
       border: 1px solid var(--toxic-purple);
       margin: 10px 0;
-      box-shadow: inset 0 0 8px rgba(189,0,255,0.3);
+      box-shadow: inset 0 0 10px rgba(189,0,255,0.4);
     }
 
-    /* レスポンシブメニュー（スマホ用） */
+    /* レスポンシブメニュー */
     @media (max-width: 768px) {
       .hamburger { display: block; }
       .nav-menu {
@@ -205,7 +235,7 @@
         flex-direction: column;
         position: absolute;
         top: 100%; left: 0; width: 100%;
-        background: rgba(13, 6, 20, 0.98);
+        background: rgba(8, 3, 12, 0.98);
         border-bottom: 2px solid var(--toxic-purple);
         padding: 20px;
         gap: 12px;
@@ -215,6 +245,9 @@
   </style>
 </head>
 <body>
+
+  <!-- 背景動的パーティクルキャンバス -->
+  <div id="particles-js"></div>
 
   <!-- 上部ナビゲーション -->
   <header>
@@ -240,9 +273,11 @@
   <main>
     <!-- 1. HOME -->
     <section id="home">
+      <!-- 浮遊葉っぱオブジェ -->
+      <svg class="floating-leaf leaf-1" viewBox="0 0 24 24" fill="var(--poison-green)"><path d="M12,2C12,2 9,7 9,11 C9,14 11,16 12,16 C13,16 15,14 15,11 C15,7 12,2 12,2 Z M6,8 C6,8 5,12 7,15 C8.5,17 11,17 11,17 C11,17 8,13 6,8 Z M18,8 C18,8 20,13 18,15 C16.5,17 14,17 14,17 C14,17 17,13 18,8 Z M12,17 L12,22"/></svg>
+      
       <div class="card" style="border-color: var(--poison-green);">
         <div class="hero-grid">
-          <!-- 左側: キャッチコピー＆ボタン -->
           <div>
             <h1 style="font-size: 2rem; color: var(--poison-green); text-shadow: 0 0 15px var(--poison-green);">TRANSFER GATE</h1>
             <p style="margin: 15px 0; color: var(--toxic-pink); font-weight: bold;">Flare's Freedom Energy — Spirit × Community × Power</p>
@@ -250,9 +285,8 @@
             <a href="#dex" class="btn-neon">First BUY</a>
             <a href="#dex" class="btn-neon" style="background: var(--caution-yellow); box-shadow: 0 0 12px var(--caution-yellow);">Repeat BUY</a>
           </div>
-          <!-- 右側: GanjaCat イラスト -->
           <div class="ganjacat-frame">
-            <img src="images/ganjacat.png" alt="GanjaCat Art" onerror="this.src='https://via.placeholder.com/500x500/160b21/39ff14?text=GanjaCat+Art'">
+            <img src="images/ganjacat.png" alt="GanjaCat Art">
           </div>
         </div>
       </div>
@@ -302,6 +336,8 @@
 
     <!-- 7. GIVEAWAY -->
     <section id="giveaway">
+      <!-- 浮遊葉っぱオブジェ -->
+      <svg class="floating-leaf leaf-2" viewBox="0 0 24 24" fill="var(--toxic-pink)"><path d="M12,2C12,2 9,7 9,11 C9,14 11,16 12,16 C13,16 15,14 15,11 C15,7 12,2 12,2 Z M6,8 C6,8 5,12 7,15 C8.5,17 11,17 11,17 C11,17 8,13 6,8 Z M18,8 C18,8 20,13 18,15 C16.5,17 14,17 14,17 C14,17 17,13 18,8 Z M12,17 L12,22"/></svg>
       <h2 class="sec-title">GIVEAWAY</h2>
       <div class="card">
         <p>X（旧Twitter）などを通じた隔週Giveawayやエアドロップイベントの告知エリア。</p>
@@ -360,6 +396,44 @@
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
       });
+    });
+
+    // 背景浮遊パーティクルの初期化設定
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 45, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#39ff14", "#bd00ff", "#ff007f"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 4, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 130,
+          "color": "#4a1d6d",
+          "opacity": 0.3,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.5,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } }
+        }
+      },
+      "retina_detect": true
     });
   </script>
 </body>
