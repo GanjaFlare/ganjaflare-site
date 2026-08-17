@@ -1,181 +1,218 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GanjaFlare - Flare's Freedom Energy</title>
-<style>
-  :root {
-    --bg-color: #0d0614; /* 毒々しいディープパープル */
-    --panel-bg: rgba(22, 11, 33, 0.92);
-    --border-color: #4a1d6d;
-    --poison-green: #39ff14;
-    --toxic-purple: #bd00ff;
-    --toxic-pink: #ff007f;
-    --caution-yellow: #ccff00;
-    --text-color: #d8cbeb;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Courier New', monospace, sans-serif;
-    line-height: 1.6;
-    /* サイケデリック＆荒廃したマーブル感 */
-    background-image: 
-      radial-gradient(circle at 20% 20%, rgba(189, 0, 255, 0.15) 0%, transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(255, 0, 127, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 50% 50%, rgba(57, 255, 20, 0.08) 0%, transparent 60%),
-      linear-gradient(rgba(74, 29, 109, 0.1) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 20px 20px;
-    background-attachment: fixed;
-  }
-
-  /* 上部固定ナビ */
-  header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    background: rgba(13, 6, 20, 0.96);
-    border-bottom: 2px solid var(--toxic-purple);
-    z-index: 1000;
-    box-shadow: 0 2px 15px rgba(189, 0, 255, 0.3);
-  }
-
-  .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--poison-green);
-    text-shadow: 0 0 10px var(--toxic-purple), 0 0 5px var(--poison-green);
-    text-decoration: none;
-    letter-spacing: 2px;
-  }
-
-  /* ナビゲーション */
-  .nav-menu {
-    display: flex;
-    gap: 12px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-menu a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: bold;
-    padding: 6px 10px;
-    border: 1px solid var(--border-color);
-    background: rgba(0,0,0,0.4);
-    transition: all 0.2s;
-  }
-
-  .nav-menu a:hover {
-    color: #fff;
-    border-color: var(--toxic-pink);
-    background: var(--toxic-purple);
-    box-shadow: 0 0 12px var(--toxic-pink);
-  }
-
-  .hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--poison-green);
-    font-size: 1.8rem;
-    cursor: pointer;
-  }
-
-  /* レイアウト */
-  main {
-    max-width: 1000px;
-    margin: 90px auto 40px;
-    padding: 0 20px;
-  }
-
-  section {
-    padding: 50px 0;
-    border-bottom: 1px dashed var(--border-color);
-  }
-
-  .sec-title {
-    font-size: 1.8rem;
-    color: var(--poison-green);
-    text-shadow: 2px 2px 0px var(--toxic-purple), 0 0 10px var(--poison-green);
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-  }
-
-  /* 荒廃したパネル風カード */
-  .card {
-    background: var(--panel-bg);
-    border: 2px solid var(--border-color);
-    border-left: 4px solid var(--toxic-purple);
-    padding: 25px;
-    margin-bottom: 20px;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.7);
-    position: relative;
-  }
-
-  /* ネオン＆毒々しいボタン */
-  .btn-neon {
-    display: inline-block;
-    padding: 10px 24px;
-    color: #000;
-    background: var(--poison-green);
-    font-weight: bold;
-    text-decoration: none;
-    border: none;
-    box-shadow: 0 0 15px var(--poison-green);
-    transition: all 0.2s;
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-
-  .btn-neon:hover {
-    background: var(--toxic-pink);
-    color: #fff;
-    box-shadow: 0 0 20px var(--toxic-pink);
-  }
-
-  .code-box {
-    background: #050208;
-    color: var(--poison-green);
-    padding: 12px;
-    font-size: 0.85rem;
-    word-break: break-all;
-    border: 1px solid var(--toxic-purple);
-    margin: 10px 0;
-    box-shadow: inset 0 0 8px rgba(189,0,255,0.3);
-  }
-
-  @media (max-width: 768px) {
-    .hamburger { display: block; }
-    .nav-menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 100%; left: 0; width: 100%;
-      background: rgba(13, 6, 20, 0.98);
-      border-bottom: 2px solid var(--toxic-purple);
-      padding: 20px;
-      gap: 15px;
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    :root {
+      --bg-color: #0d0614; /* 毒々しいディープパープル */
+      --panel-bg: rgba(22, 11, 33, 0.92);
+      --border-color: #4a1d6d;
+      --poison-green: #39ff14;
+      --toxic-purple: #bd00ff;
+      --toxic-pink: #ff007f;
+      --caution-yellow: #ccff00;
+      --text-color: #d8cbeb;
     }
-    .nav-menu.active { display: flex; }
-  }
-</style>
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Courier New', monospace, sans-serif;
+      line-height: 1.6;
+      /* 背景画像 + サイケデリックマーブルグラデーション合成 */
+      background-image: 
+        linear-gradient(rgba(13, 6, 20, 0.88), rgba(13, 6, 20, 0.88)),
+        radial-gradient(circle at 20% 20%, rgba(189, 0, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 127, 0.15) 0%, transparent 50%),
+        url('images/bg-pattern.png'); /* ※画像がない場合は自動的にグラデーションのみ適用されます */
+      background-size: cover, 100% 100%, 100% 100%, cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* 上部固定ナビ */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(13, 6, 20, 0.96);
+      border-bottom: 2px solid var(--toxic-purple);
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(189, 0, 255, 0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--poison-green);
+      text-shadow: 0 0 10px var(--toxic-purple), 0 0 5px var(--poison-green);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    /* ナビゲーションメニュー */
+    .nav-menu {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: bold;
+      padding: 6px 10px;
+      border: 1px solid var(--border-color);
+      background: rgba(0,0,0,0.5);
+      transition: all 0.2s;
+    }
+
+    .nav-menu a:hover {
+      color: #fff;
+      border-color: var(--toxic-pink);
+      background: var(--toxic-purple);
+      box-shadow: 0 0 12px var(--toxic-pink);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--poison-green);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* レイアウト容器 */
+    main {
+      max-width: 1000px;
+      margin: 90px auto 40px;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 50px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .sec-title {
+      font-size: 1.8rem;
+      color: var(--poison-green);
+      text-shadow: 2px 2px 0px var(--toxic-purple), 0 0 10px var(--poison-green);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    /* 荒廃したパネル風カード */
+    .card {
+      background: var(--panel-bg);
+      border: 2px solid var(--border-color);
+      border-left: 4px solid var(--toxic-purple);
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.7);
+    }
+
+    /* HOMEトップ用のヒーローカードレイアウト */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* GanjaCat 画像装飾（ネオン額縁枠） */
+    .ganjacat-frame {
+      position: relative;
+      border: 3px solid var(--toxic-purple);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 20px var(--toxic-purple), inset 0 0 10px rgba(57, 255, 20, 0.5);
+      background: #000;
+    }
+
+    .ganjacat-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .ganjacat-frame:hover img {
+      transform: scale(1.03);
+    }
+
+    /* ネオン＆毒々しいボタン */
+    .btn-neon {
+      display: inline-block;
+      padding: 10px 22px;
+      color: #000;
+      background: var(--poison-green);
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 0 15px var(--poison-green);
+      transition: all 0.2s;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .btn-neon:hover {
+      background: var(--toxic-pink);
+      color: #fff;
+      box-shadow: 0 0 20px var(--toxic-pink);
+    }
+
+    .code-box {
+      background: #050208;
+      color: var(--poison-green);
+      padding: 12px;
+      font-size: 0.85rem;
+      word-break: break-all;
+      border: 1px solid var(--toxic-purple);
+      margin: 10px 0;
+      box-shadow: inset 0 0 8px rgba(189,0,255,0.3);
+    }
+
+    /* レスポンシブメニュー（スマホ用） */
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: rgba(13, 6, 20, 0.98);
+        border-bottom: 2px solid var(--toxic-purple);
+        padding: 20px;
+        gap: 12px;
+      }
+      .nav-menu.active { display: flex; }
+    }
+  </style>
 </head>
 <body>
 
@@ -203,15 +240,21 @@
   <main>
     <!-- 1. HOME -->
     <section id="home">
-      <div class="card" style="text-align: center; border-color: var(--neon-green);">
-        <h1 style="font-size: 2.2rem; color: var(--neon-green); text-shadow: 0 0 15px var(--neon-green);">TRANSFER GATE</h1>
-        <p style="margin: 15px 0;">Flare's Freedom Energy — Spirit × Community × Power</p>
-        <a href="#dex" class="btn-neon">First BUY</a>
-        <a href="#dex" class="btn-neon" style="background: var(--caution-yellow); box-shadow: 0 0 12px var(--caution-yellow);">Repeat BUY</a>
-      </div>
-      <div class="card">
-        <h3>GanjaFlare について</h3>
-        <p>$GANJA は、Flare Network 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。</p>
+      <div class="card" style="border-color: var(--poison-green);">
+        <div class="hero-grid">
+          <!-- 左側: キャッチコピー＆ボタン -->
+          <div>
+            <h1 style="font-size: 2rem; color: var(--poison-green); text-shadow: 0 0 15px var(--poison-green);">TRANSFER GATE</h1>
+            <p style="margin: 15px 0; color: var(--toxic-pink); font-weight: bold;">Flare's Freedom Energy — Spirit × Community × Power</p>
+            <p style="margin-bottom: 20px; font-size: 0.9rem;">$GANJA は、Flare Network 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。</p>
+            <a href="#dex" class="btn-neon">First BUY</a>
+            <a href="#dex" class="btn-neon" style="background: var(--caution-yellow); box-shadow: 0 0 12px var(--caution-yellow);">Repeat BUY</a>
+          </div>
+          <!-- 右側: GanjaCat イラスト -->
+          <div class="ganjacat-frame">
+            <img src="images/ganjacat.jpg" alt="GanjaCat Art" onerror="this.src='https://via.placeholder.com/500x500/160b21/39ff14?text=GanjaCat+Art'">
+          </div>
+        </div>
       </div>
     </section>
 
@@ -305,7 +348,7 @@
   </main>
 
   <script>
-    // スマホ用ハンバーガーメニューの開閉処理
+    // ハンバーガーメニュー開閉
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -313,7 +356,6 @@
       navMenu.classList.toggle('active');
     });
 
-    // メニュークリック時にメニューを閉じる（スマホ時）
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
