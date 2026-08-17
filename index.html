@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GanjaFlare - Flare's Freedom Energy</title>
+<style>
+  :root {
+    --bg-color: #0d0614; /* 毒々しいディープパープル */
+    --panel-bg: rgba(22, 11, 33, 0.92);
+    --border-color: #4a1d6d;
+    --poison-green: #39ff14;
+    --toxic-purple: #bd00ff;
+    --toxic-pink: #ff007f;
+    --caution-yellow: #ccff00;
+    --text-color: #d8cbeb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Courier New', monospace, sans-serif;
+    line-height: 1.6;
+    /* サイケデリック＆荒廃したマーブル感 */
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(189, 0, 255, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(255, 0, 127, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(57, 255, 20, 0.08) 0%, transparent 60%),
+      linear-gradient(rgba(74, 29, 109, 0.1) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 20px 20px;
+    background-attachment: fixed;
+  }
+
+  /* 上部固定ナビ */
+  header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background: rgba(13, 6, 20, 0.96);
+    border-bottom: 2px solid var(--toxic-purple);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(189, 0, 255, 0.3);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--poison-green);
+    text-shadow: 0 0 10px var(--toxic-purple), 0 0 5px var(--poison-green);
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+
+  /* ナビゲーション */
+  .nav-menu {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    background: rgba(0,0,0,0.4);
+    transition: all 0.2s;
+  }
+
+  .nav-menu a:hover {
+    color: #fff;
+    border-color: var(--toxic-pink);
+    background: var(--toxic-purple);
+    box-shadow: 0 0 12px var(--toxic-pink);
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--poison-green);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  /* レイアウト */
+  main {
+    max-width: 1000px;
+    margin: 90px auto 40px;
+    padding: 0 20px;
+  }
+
+  section {
+    padding: 50px 0;
+    border-bottom: 1px dashed var(--border-color);
+  }
+
+  .sec-title {
+    font-size: 1.8rem;
+    color: var(--poison-green);
+    text-shadow: 2px 2px 0px var(--toxic-purple), 0 0 10px var(--poison-green);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  /* 荒廃したパネル風カード */
+  .card {
+    background: var(--panel-bg);
+    border: 2px solid var(--border-color);
+    border-left: 4px solid var(--toxic-purple);
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 5px 15px rgba(0,0,0,0.7);
+    position: relative;
+  }
+
+  /* ネオン＆毒々しいボタン */
+  .btn-neon {
+    display: inline-block;
+    padding: 10px 24px;
+    color: #000;
+    background: var(--poison-green);
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 0 15px var(--poison-green);
+    transition: all 0.2s;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .btn-neon:hover {
+    background: var(--toxic-pink);
+    color: #fff;
+    box-shadow: 0 0 20px var(--toxic-pink);
+  }
+
+  .code-box {
+    background: #050208;
+    color: var(--poison-green);
+    padding: 12px;
+    font-size: 0.85rem;
+    word-break: break-all;
+    border: 1px solid var(--toxic-purple);
+    margin: 10px 0;
+    box-shadow: inset 0 0 8px rgba(189,0,255,0.3);
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; left: 0; width: 100%;
+      background: rgba(13, 6, 20, 0.98);
+      border-bottom: 2px solid var(--toxic-purple);
+      padding: 20px;
+      gap: 15px;
+    }
+    .nav-menu.active { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- 上部ナビゲーション -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="logo">GANJAFLARE</a>
+      <button class="hamburger" id="hamburger">☰</button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#dex">DEX/チャート</a></li>
+        <li><a href="#liquidity">流動性提供</a></li>
+        <li><a href="#nft">NFT v1</a></li>
+        <li><a href="#lotto">デイリーロト</a></li>
+        <li><a href="#game">GANJA CAT RUN</a></li>
+        <li><a href="#giveaway">GIVEAWAY</a></li>
+        <li><a href="#team">チーム</a></li>
+        <li><a href="#tokenomics">トークノミクス</a></li>
+        <li><a href="#disclaimer">免責事項</a></li>
+        <li><a href="#thanks">THANKS</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. HOME -->
+    <section id="home">
+      <div class="card" style="text-align: center; border-color: var(--neon-green);">
+        <h1 style="font-size: 2.2rem; color: var(--neon-green); text-shadow: 0 0 15px var(--neon-green);">TRANSFER GATE</h1>
+        <p style="margin: 15px 0;">Flare's Freedom Energy — Spirit × Community × Power</p>
+        <a href="#dex" class="btn-neon">First BUY</a>
+        <a href="#dex" class="btn-neon" style="background: var(--caution-yellow); box-shadow: 0 0 12px var(--caution-yellow);">Repeat BUY</a>
+      </div>
+      <div class="card">
+        <h3>GanjaFlare について</h3>
+        <p>$GANJA は、Flare Network 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。</p>
+      </div>
+    </section>
+
+    <!-- 2. DEX / チャート -->
+    <section id="dex">
+      <h2 class="sec-title">DEX / チャート</h2>
+      <div class="card">
+        <p>BlazeSwap および SparkDEX にてトレードが可能です。</p>
+        <a href="https://blazeswap.xyz" target="_blank" class="btn-neon">BlazeSwap で取引</a>
+        <a href="https://sparkdex.ai" target="_blank" class="btn-neon">SparkDEX で取引</a>
+      </div>
+    </section>
+
+    <!-- 3. 流動性提供 -->
+    <section id="liquidity">
+      <h2 class="sec-title">流動性提供</h2>
+      <div class="card">
+        <p>DEXへの流動性提供（LP）を行うことで、エコシステムの安定化と取引手数料報酬を獲得できます。</p>
+      </div>
+    </section>
+
+    <!-- 4. NFT v1 -->
+    <section id="nft">
+      <h2 class="sec-title">NFT v1</h2>
+      <div class="card">
+        <p>GanjaFlareの文化を象徴する公式NFTコレクション。ホルダー向け特典やエアドロップ企画を展開中。</p>
+      </div>
+    </section>
+
+    <!-- 5. デイリーロト -->
+    <section id="lotto">
+      <h2 class="sec-title">デイリーロト</h2>
+      <div class="card">
+        <p>毎日開催！ブラウザから気軽に参加して賞金を狙えるデイリーロトシステムです。</p>
+      </div>
+    </section>
+
+    <!-- 6. GANJA CAT RUN -->
+    <section id="game">
+      <h2 class="sec-title">GANJA CAT RUN</h2>
+      <div class="card">
+        <p>公式アクションゲーム「GanjaCatRun」！プレイしてハイスコアを目指そう。</p>
+      </div>
+    </section>
+
+    <!-- 7. GIVEAWAY -->
+    <section id="giveaway">
+      <h2 class="sec-title">GIVEAWAY</h2>
+      <div class="card">
+        <p>X（旧Twitter）などを通じた隔週Giveawayやエアドロップイベントの告知エリア。</p>
+      </div>
+    </section>
+
+    <!-- 8. チーム -->
+    <section id="team">
+      <h2 class="sec-title">チーム</h2>
+      <div class="card">
+        <p>GanjaFlareを支えるコミュニティチームとコアメンバーの紹介。</p>
+      </div>
+    </section>
+
+    <!-- 9. トークノミクス -->
+    <section id="tokenomics">
+      <h2 class="sec-title">トークノミクス</h2>
+      <div class="card">
+        <p>チェーン: Flare Network | シンボル: $GANJA</p>
+        <p>総供給枚数: 42,000,000 $GANJA</p>
+        <p>コントラクトアドレス:</p>
+        <div class="code-box">0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7</div>
+        <p>毎月1回、総供給量の0.5%（777,777 $GANJA）を定期BURN実行中！</p>
+      </div>
+    </section>
+
+    <!-- 10. 免責事項 -->
+    <section id="disclaimer">
+      <h2 class="sec-title">免責事項</h2>
+      <div class="card">
+        <p style="font-size: 0.85rem; color: #a0a0a0;">
+          Important Disclaimer & Request: $GANJA は文化とコミュニティ精神のシンボルであり、投資商品ではありません。日本の法律および規制を遵守し、健全な運用を行っています。
+        </p>
+      </div>
+    </section>
+
+    <!-- 11. SPECIAL THANKS -->
+    <section id="thanks">
+      <h2 class="sec-title">SPECIAL THANKS</h2>
+      <div class="card">
+        <p>GanjaFlareを応援してくれるフレンドプロジェクト＆パートナーの皆様。</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // スマホ用ハンバーガーメニューの開閉処理
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // メニュークリック時にメニューを閉じる（スマホ時）
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
