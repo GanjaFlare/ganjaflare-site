@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main # GitHubのメインブランチ名（masterの場合は master に変更）
+  branch: main # masterブランチの場合は master に変更
 
 media_folder: "public/images"
 public_folder: "/images"
@@ -13,4 +13,45 @@ collections:
         label: "Home Page"
         name: "home"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "サイトタイトル", name: "title", widget: "string" }
+          
+          # 1. HOME セクション
+          - label: "HOME (ヒーローエリア)"
+            name: "home_section"
+            widget: "object"
+            fields:
+              - { label: "メインキャッチコピー", name: "hero_title", widget: "string", default: "TRANSFER GATE" }
+              - { label: "サブキャッチコピー", name: "hero_subtitle", widget: "string", default: "Flare's Freedom Energy — Spirit × Community × Power" }
+              - { label: "GanjaFlare概要テキスト", name: "about_text", widget: "text" }
+
+          # 2. DEX / チャート
+          - label: "DEX / チャート"
+            name: "dex_section"
+            widget: "object"
+            fields:
+              - { label: "説明文", name: "text", widget: "text" }
+              - { label: "BlazeSwap URL", name: "blazeswap_url", widget: "string" }
+              - { label: "SparkDEX URL", name: "sparkdex_url", widget: "string" }
+
+          # 3. トークノミクス
+          - label: "トークノミクス"
+            name: "tokenomics_section"
+            widget: "object"
+            fields:
+              - { label: "コントラクトアドレス", name: "contract_address", widget: "string" }
+              - { label: "総供給量", name: "total_supply", widget: "string" }
+              - { label: "BURN情報", name: "burn_info", widget: "text" }
+
+          # 4. ゲーム & イベント
+          - label: "GANJA CAT RUN"
+            name: "game_section"
+            widget: "object"
+            fields:
+              - { label: "ゲーム説明文", name: "description", widget: "text" }
+
+          # 5. 免責事項
+          - label: "免責事項"
+            name: "disclaimer_section"
+            widget: "object"
+            fields:
+              - { label: "免責全文", name: "text", widget: "text" }
