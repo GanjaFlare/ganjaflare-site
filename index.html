@@ -897,15 +897,14 @@
         </div>
 
         <div id="nft-v2" class="tab-content">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-            <p style="color: var(--text-sub);" class="notranslate" translate="no">GanjaFlare NFT v2 — 毒猫絵巻</p>
-            <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="margin:0; padding: 8px 16px; font-size: 0.82rem;">
-              <i class="fa-solid fa-expand"></i> 全画面で表示
+          <!-- 動画クリックでDAppを開くエリア -->
+          <div style="margin-bottom: 20px; text-align: center;">
+            <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+              <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block; cursor: pointer;">
+                <source src="images/transfer_gate.mp4" type="video/mp4">
+                お使いのブラウザは動画タグに対応していません。
+              </video>
             </a>
-          </div>
-
-          <div class="lotto-iframe-container" style="height: 650px;">
-            <iframe src="https://ganjaflarenftv2dapp.vercel.app/" title="GanjaFlare NFT v2 DApp"></iframe>
           </div>
 
           <div class="info-card">
