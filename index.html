@@ -290,6 +290,14 @@
       box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
     }
 
+    .btn-mint-style.aurix {
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+    }
+    .btn-mint-style.aurix:hover {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+    }
+
     /* タブ切り替えデザイン */
     .tab-container {
       display: flex;
@@ -418,16 +426,16 @@
       width: 100%; height: 100%;
     }
 
-    /* GCRゲーム埋め込み枠（スマホ・PC両方でぴったり表示） */
+    /* GCRゲーム埋め込み枠 */
     .gcr-game-frame {
       width: 100%;
-      height: 600px;
-      max-height: 80vh;
+      height: 550px;
+      max-height: 75vh;
       border-radius: 18px;
       border: 2px solid var(--border-emerald);
       overflow: hidden;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background: #000;
     }
 
@@ -453,6 +461,101 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* チームプロフィールカード */
+    .team-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-emerald);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .team-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--emerald-green);
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+      flex-shrink: 0;
+    }
+
+    /* アコーディオン・トグル */
+    .accordion-btn {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-emerald);
+      color: var(--emerald-green);
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .accordion-btn:hover {
+      background: rgba(52, 211, 153, 0.1);
+    }
+
+    .accordion-content {
+      display: none;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 18px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* フッターSNSリンク */
+    footer {
+      position: relative;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--border-emerald);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .footer-icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-emerald);
+      color: var(--emerald-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .footer-icon-btn:hover {
+      background: var(--emerald-green);
+      color: #0f172a;
+      box-shadow: 0 0 15px var(--emerald-green);
+      transform: translateY(-3px);
     }
 
     /* ガイド・解説カード */
@@ -521,7 +624,7 @@
       .nav-menu.active { display: flex; }
       .drift-coin { width: 42px !important; }
       .drift-cat { width: 85px !important; }
-      .gcr-game-frame { height: 480px; }
+      .team-card { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
@@ -588,7 +691,6 @@
       <div class="sec-title"><i class="fa-solid fa-right-left"></i> DEX</div>
       <div class="hub-card">
         
-        <!-- DEX内 タブ切り替え -->
         <div class="tab-container">
           <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> SWAP</button>
           <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> POOL</button>
@@ -600,10 +702,10 @@
           <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap</a>
           <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX</a>
 
-          <div class="copy-box" onclick="copyContract()">
+          <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
             <div>
               <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">コントラクト</div>
-              <div class="copy-text" id="contractAddr">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+              <div class="copy-text">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
             </div>
             <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
           </div>
@@ -661,6 +763,9 @@
         <a href="https://flare-explorer.flare.network/token/0x2768E83F67D1bAFeBc5A49cdCD9B65Cc4DBc9b71" target="_blank" class="btn-mint-style">
           <i class="fa-solid fa-compass"></i> Flare Explorer
         </a>
+        <a href="https://www.aurixnft.com/collection/ganja" target="_blank" class="btn-mint-style aurix">
+          <i class="fa-solid fa-store"></i> Aurix NFT Marketplace
+        </a>
 
         <!-- 特典 & 動画 -->
         <div style="margin-top: 30px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 20px;">
@@ -687,7 +792,6 @@
       <div class="sec-title"><i class="fa-solid fa-trophy"></i> EVENT</div>
       <div class="hub-card">
 
-        <!-- EVENT内 タブ切り替え -->
         <div class="tab-container">
           <button class="tab-btn active" onclick="switchTab('event', 'lotto')"><i class="fa-solid fa-ticket"></i> Daily Lotto</button>
           <button class="tab-btn" onclick="switchTab('event', 'gcr')"><i class="fa-solid fa-gamepad"></i> GanjaCatRun</button>
@@ -725,7 +829,12 @@
 
         <!-- EVENT: GanjaCatRun (GCR) -->
         <div id="event-gcr" class="tab-content">
-          <p style="color: var(--text-sub); margin-bottom: 14px;">公式ランアクションゲーム「GanjaCatRun」！ハイスコアを目指そう。</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+            <p style="color: var(--text-sub);">公式ランアクションゲーム「GanjaCatRun」！</p>
+            <a href="https://ganjaflare.github.io/GanjaCatRun-Web/" target="_blank" class="btn-mint-style" style="margin:0; padding: 8px 16px; font-size: 0.82rem;">
+              <i class="fa-solid fa-expand"></i> 全画面でゲームをプレイ
+            </a>
+          </div>
 
           <!-- ゲーム画面埋め込み -->
           <div class="gcr-game-frame">
@@ -806,7 +915,20 @@
     <section id="team">
       <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
       <div class="hub-card">
-        <p style="color: var(--text-sub);">GanjaFlareを支えるコミュニティチームとコアメンバーの紹介。</p>
+        <div class="team-card">
+          <img src="images/ganjacat02.png" class="team-img" alt="CEO 肉人形">
+          <div>
+            <h3 style="color: var(--emerald-green); font-size: 1.2rem; font-weight: 800; margin-bottom: 4px;">
+              肉人形 <span style="font-size: 0.85rem; color: #f472b6; font-weight: 700;">(CEO)</span>
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px;">
+              GanjaFlare プロジェクトファウンダー & コミュニティリーダー。Flare Networkに情熱と圧倒的な信頼をもたらすべく奮闘中。
+            </p>
+            <a href="https://x.com/nikuningyou29" target="_blank" class="btn-mint-style x-btn" style="padding: 6px 14px; font-size: 0.78rem; margin:0;">
+              <i class="fa-brands fa-x-twitter"></i> @nikuningyou29
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -814,14 +936,106 @@
     <section id="tokenomics">
       <div class="sec-title"><i class="fa-solid fa-coins"></i> TOKENOMICS</div>
       <div class="hub-card">
-        <p style="color: var(--text-sub);">チェーン: <strong>Flare Network</strong> | シンボル: <strong>$GANJA</strong></p>
-        <p style="color: var(--text-sub); margin-top: 6px;">総供給枚数: <strong>42,000,000 $GANJA</strong></p>
-        <p style="color: var(--emerald-green); font-weight: 700; margin-top: 12px;">
-          <i class="fa-solid fa-fire"></i> 毎月1回、総供給量の0.5%（777,777 $GANJA）を定期BURN実行中！
-        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
+            <div style="font-size: 0.75rem; color: #94a3b8;">チェーン & シンボル</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--emerald-green);">Flare Network ($GANJA)</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
+            <div style="font-size: 0.75rem; color: #94a3b8;">固定総供給枚数</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: #f8fafc;">42,000,000 $GANJA</div>
+          </div>
+        </div>
+
+        <!-- BURN情報カード -->
+        <div style="background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 16px; padding: 18px; margin-bottom: 20px;">
+          <h3 style="color: #f472b6; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px;">
+            <i class="fa-solid fa-fire"></i> 毎月恒久 BURN（定期焼却）
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-main); line-height: 1.6;">
+            GanjaFlareはプロジェクトの透明性と $GANJA の希少性を高めるべく、<strong>毎月1回 777,777 $GANJA をBURN（焼却）</strong>します！<br>
+            <span style="color: var(--emerald-green); font-weight: 700;">（これは総供給枚数 42,000,000 $GANJA に対し、1.85%以上に相当します）</span>
+          </p>
+          <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 8px;">
+            ※このイベントは2025年10月30日に開始（当初は月210,000 $GANJA）。2026年4月より現在の規模へ大幅増量されました。
+          </p>
+        </div>
+
+        <!-- トークノミクス構造アコーディオン -->
+        <button class="accordion-btn" onclick="toggleAccordion('tokDoc')">
+          <span><i class="fa-solid fa-file-contract"></i> トークン・エコノミクス詳細設計文書</span>
+          <i class="fa-solid fa-chevron-down" id="tokDocIcon"></i>
+        </button>
+        <div id="tokDoc" class="accordion-content">
+          <h4 style="color: var(--emerald-green); margin: 10px 0 5px;">I. 供給構造の決定論的永続性</h4>
+          <p>$GANJA トークンは総供給量 42,000,000 単位に固定され、スマートコントラクトレベルで不変性が保証されています。新規発行（ミント）は一切不可能です。</p>
+
+          <h4 style="color: var(--emerald-green); margin: 15px 0 5px;">II. フェア・ローンチ & 初期分散</h4>
+          <p>プレセールやインサイダー枠のない完全フェアローンチ構造です。</p>
+          <ul style="padding-left: 18px; margin-top: 5px;">
+            <li><strong>DEX流動性プール (57.14%)</strong>: 24,000,000 $GANJA（BlazeSwap / SparkDEXのWFLRペアへ配分）</li>
+            <li><strong>コミュニティ戦略リザーブ (42.86%)</strong>: 18,000,000 $GANJA（NFTホルダーへのエアドロップ、イベント等に使用）</li>
+          </ul>
+
+          <h4 style="color: var(--emerald-green); margin: 15px 0 5px;">III. 恒久的な燃焼メカニズム</h4>
+          <p>毎月総供給量の 1.85% に相当するトークンが恒久的にバーンされ、強固なデフレ構造を維持します。</p>
+
+          <h4 style="color: var(--emerald-green); margin: 15px 0 5px;">IV. 内部売却リスクの排除</h4>
+          <p>チーム割り当て（Vesting）が存在しないため、関係者による大規模売却（Dump）のリスクはゼロです。</p>
+        </div>
+
+        <!-- 重要事項・免責事項 -->
+        <button class="accordion-btn" onclick="toggleAccordion('discDoc')">
+          <span><i class="fa-solid fa-shield-halved"></i> 重要なお願い・免責事項 & 法的遵守</span>
+          <i class="fa-solid fa-chevron-down" id="discDocIcon"></i>
+        </button>
+        <div id="discDoc" class="accordion-content">
+          <p><strong>1. 投資助言の禁止</strong>: $GANJAは文化・コミュニティ活動のシンボルであり、投資商品ではありません。「必ず儲かる」等の価格言及は禁止されています。</p>
+          <p style="margin-top: 8px;"><strong>2. 違法行為の厳禁</strong>: トークンの名称・イメージは純粋な文化的表現であり、いかなる違法行為とも関係ありません。</p>
+          <p style="margin-top: 8px;"><strong>3. 法的遵守</strong>: 日本の法令および規制を遵守するため、継続的なモニタリングを行っています。</p>
+        </div>
+
+        <!-- 運営寄付アドレス -->
+        <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 20px;">
+          <h3 style="color: var(--emerald-green); font-size: 1.05rem; font-weight: 800;">
+            <i class="fa-solid fa-hand-holding-heart"></i> 運営寄付のお願い
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-sub); margin: 8px 0;">
+            GanjaFlareは非営利のコミュニティプロジェクトです。BOTやインフラ維持費はCEO肉人形の自己資金で賄われています。ご支援いただける方は以下のアドレスよりご寄付（FLR / WFLR等）いただけますと幸いです。
+          </p>
+
+          <div class="copy-box" onclick="copyContract('0xE809127d1927EE013834B9E95A53E0b37B688eF7', 'donateCopyBtn')">
+            <div>
+              <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">GanjaFlare 運営寄付アドレス</div>
+              <div class="copy-text">0xE809127d1927EE013834B9E95A53E0b37B688eF7</div>
+            </div>
+            <div class="copy-btn" id="donateCopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+          </div>
+          <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 8px;">
+            ⚠ 重要な注意事項: 本寄付は純粋な運営支援であり、対価（トークン配布や特典等）は一切発生いたしません。
+          </p>
+        </div>
+
       </div>
     </section>
   </main>
+
+  <!-- フッター (SNSリンク集) -->
+  <footer>
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="footer-socials">
+        <a href="https://x.com/nikuningyou29" target="_blank" class="footer-icon-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://discord.com/invite/N49czBczAE" target="_blank" class="footer-icon-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://linktr.ee/GanjaFlare" target="_blank" class="footer-icon-btn" title="Linktree"><i class="fa-solid fa-link"></i></a>
+        <a href="https://www.youtube.com/@GanjaFlare/shorts" target="_blank" class="footer-icon-btn" title="YouTube Shorts"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://t.me/+2jIGRmKaoUU3MjQ1" target="_blank" class="footer-icon-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <a href="mailto:ganjaflare@gmail.com" class="footer-icon-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <p style="font-size: 0.8rem; color: #94a3b8;">
+        © GanjaFlare — Bringing passion and trust to the Flare ecosystem!
+      </p>
+    </div>
+  </footer>
 
   <script>
     // ハンバーガーメニュー
@@ -838,7 +1052,7 @@
       });
     });
 
-    // 汎用タブ切り替え関数（DEX, EVENT対応）
+    // 汎用タブ切り替え
     function switchTab(section, tabName) {
       const sectionElem = document.getElementById(section);
       if (!sectionElem) return;
@@ -856,11 +1070,24 @@
       }
     }
 
-    // ワンタップコピー機能
-    function copyContract() {
-      const addr = "0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7";
+    // アコーディオン開閉
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(`${id}Icon`);
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        if (icon) icon.className = 'fa-solid fa-chevron-down';
+      } else {
+        content.style.display = 'block';
+        if (icon) icon.className = 'fa-solid fa-chevron-up';
+      }
+    }
+
+    // コピー機能
+    function copyContract(addrText, btnId) {
       const setSuccessUI = () => {
-        const copyBtn = document.getElementById('copyBtn');
+        const copyBtn = document.getElementById(btnId);
+        if (!copyBtn) return;
         copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
         copyBtn.style.background = '#059669';
         copyBtn.style.color = '#ffffff';
@@ -872,9 +1099,9 @@
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(addr).then(setSuccessUI).catch(() => fallbackCopy(addr, setSuccessUI));
+        navigator.clipboard.writeText(addrText).then(setSuccessUI).catch(() => fallbackCopy(addrText, setSuccessUI));
       } else {
-        fallbackCopy(addr, setSuccessUI);
+        fallbackCopy(addrText, setSuccessUI);
       }
     }
 
