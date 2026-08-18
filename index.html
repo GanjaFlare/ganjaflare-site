@@ -50,9 +50,14 @@
       line-height: 1.6;
     }
 
-    /* Google Translate用非表示設定 */
-    #google_translate_element { display: none; }
-    .goog-te-banner-frame { display: none !important; }
+    /* Google Translate非表示設定 */
+    #google_translate_element {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .goog-te-banner-frame, .goog-te-balloon-frame { display: none !important; }
     body { top: 0px !important; }
 
     /* 背景パーティクルキャンバス */
@@ -134,7 +139,7 @@
       padding: 10px 20px;
     }
 
-    /* TOPロゴ（従来の2分の1サイズ＝高さを16pxへ変更） */
+    /* TOPロゴ */
     .logo {
       font-size: 1.2rem;
       font-weight: 800;
@@ -253,6 +258,7 @@
       box-shadow: 0 0 30px rgba(16, 185, 129, 0.12);
       padding: 28px 24px;
       margin-bottom: 24px;
+      overflow: hidden; /* はみ出し防止 */
     }
 
     .hero-grid {
@@ -336,32 +342,37 @@
       box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
     }
 
-    /* タブ切り替えデザイン */
+    /* タブ切り替えデザイン（レスポンシブ・はみ出し防止修正） */
     .tab-container {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 20px;
       background: rgba(0, 0, 0, 0.4);
       padding: 6px;
       border-radius: 16px;
       border: 1px solid var(--border-emerald);
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 10px 14px;
+      min-width: 90px;
+      padding: 8px 10px;
       background: transparent;
       border: none;
       color: var(--text-sub);
       border-radius: 12px;
       font-weight: 800;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      white-space: nowrap;
     }
 
     .tab-btn.active {
@@ -390,7 +401,7 @@
       border: 1px solid var(--border-emerald);
       border-radius: 14px;
       padding: 14px 18px;
-      margin-top: 18px;
+      margin: 14px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -439,7 +450,7 @@
       border: none;
     }
 
-    /* NFT 7色コインGIFスライダー（従来の2倍の大きさ＝320pxへ拡大） */
+    /* NFT 7色コインGIFスライダー */
     .coin-slideshow {
       width: 320px;
       height: 320px;
@@ -486,11 +497,20 @@
       width: 100%; height: 100%;
     }
 
-    /* 立体円グラフのレスポンシブコンテナ */
+    /* 立体円グラフの完全センター揃えコンテナ */
     .chart-box {
+      width: 100%;
       max-width: 320px;
       margin: 20px auto;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chart-box canvas {
+      max-width: 100% !important;
+      height: auto !important;
     }
 
     /* GCRゲーム埋め込み枠 */
@@ -693,6 +713,8 @@
       .drift-cat { width: 85px !important; }
       .team-card { flex-direction: column; text-align: center; }
       .coin-slideshow { width: 220px; height: 220px; }
+      .hub-card { padding: 20px 14px; }
+      .tab-btn { font-size: 0.76rem; padding: 6px 8px; }
     }
   </style>
 </head>
@@ -766,7 +788,7 @@
       </div>
     </section>
 
-    <!-- 2. DEX（SWAP & POOL 統合、GeckoTerminalチャート追加） -->
+    <!-- 2. DEX -->
     <section id="dex">
       <div class="sec-title"><i class="fa-solid fa-right-left"></i> DEX</div>
       <div class="hub-card">
@@ -778,7 +800,17 @@
 
         <!-- DEX: SWAPタブ -->
         <div id="dex-swap" class="tab-content active">
-          <p style="color: var(--text-sub); margin-bottom: 14px;">BlazeSwap および SparkDEX にて分散型トレードが可能です。</p>
+          <p style="color: var(--text-sub); margin-bottom: 8px;">BlazeSwap および SparkDEX にて分散型トレードが可能です。</p>
+
+          <!-- コントラクトコピーバー -->
+          <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
+            <div>
+              <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">コントラクト (ワンタップでコピー)</div>
+              <div class="copy-text">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+            </div>
+            <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+          </div>
+
           <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap</a>
           <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX</a>
           <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7?tab=token_transfers" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
@@ -788,14 +820,6 @@
           <!-- GeckoTerminal 埋め込みチャート -->
           <div class="dex-chart-container">
             <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
-          </div>
-
-          <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
-            <div>
-              <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">コントラクト</div>
-              <div class="copy-text">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
-            </div>
-            <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
           </div>
         </div>
 
@@ -829,7 +853,7 @@
       </div>
     </section>
 
-    <!-- 3. NFT（v1 & v2 統合） -->
+    <!-- 3. NFT -->
     <section id="nft">
       <div class="sec-title"><i class="fa-solid fa-gem"></i> NFT</div>
       <div class="hub-card">
@@ -839,13 +863,13 @@
           <button class="tab-btn" onclick="switchTab('nft', 'v2')"><i class="fa-solid fa-sparkles"></i> NFT v2</button>
         </div>
 
-        <!-- NFT v1 タブ (拡大したコイン画像) -->
+        <!-- NFT v1 タブ -->
         <div id="nft-v1" class="tab-content active">
           <p style="color: var(--text-sub); margin-bottom: 14px;">
             GanjaFlareの文化を象徴する公式NFTコレクション v1。ホルダー向け特典やエアドロップ企画を展開中。
           </p>
           
-          <!-- 2倍に拡大したコインGIFスライダー -->
+          <!-- コインGIFスライダー -->
           <div class="coin-slideshow" id="coinSlideshow">
             <img src="images/ganjagold.png" class="active" alt="Gold Coin">
             <img src="images/ganjasilver.png" alt="Silver Coin">
@@ -865,7 +889,7 @@
             </a>
           </div>
 
-          <!-- 特典 & 主張を抑えた動画枠 -->
+          <!-- 特典 & 動画枠 -->
           <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 18px;">
             <h3 style="color: var(--emerald-green); font-size: 1rem; font-weight: 800; text-align: center;">
               <i class="fa-solid fa-gamepad"></i> Play with GanjaFlareNFT & earn $BILLY!
@@ -902,7 +926,7 @@
       </div>
     </section>
 
-    <!-- 4. EVENT（LOTTO / GCR / GIVEAWAY 統合） -->
+    <!-- 4. EVENT（タブ修正済） -->
     <section id="event">
       <div class="sec-title"><i class="fa-solid fa-trophy"></i> EVENT</div>
       <div class="hub-card">
@@ -1046,7 +1070,7 @@
       </div>
     </section>
 
-    <!-- 6. TOKENOMICS -->
+    <!-- 6. TOKENOMICS（グラフ配置中央修正済） -->
     <section id="tokenomics">
       <div class="sec-title"><i class="fa-solid fa-coins"></i> TOKENOMICS</div>
       <div class="hub-card">
@@ -1061,7 +1085,7 @@
           </div>
         </div>
 
-        <!-- 立体風ドーナツ型円グラフ -->
+        <!-- 中央揃えを厳密化した立体風ドーナツ型円グラフ -->
         <div class="chart-box">
           <canvas id="tokenomicsChart"></canvas>
         </div>
@@ -1162,7 +1186,7 @@
       new google.translate.TranslateElement({
         pageLanguage: 'ja',
         includedLanguages: 'en,zh-CN,ja',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        autoDisplay: false
       }, 'google_translate_element');
     }
 
@@ -1175,6 +1199,10 @@
       if (select) {
         select.value = langCode;
         select.dispatchEvent(new Event('change'));
+      } else {
+        if (langCode !== 'ja') {
+          window.location.href = `https://translate.google.com/translate?sl=ja&tl=${langCode}&u=${encodeURIComponent(window.location.href)}`;
+        }
       }
     }
 
@@ -1271,7 +1299,7 @@
       }, 1200);
     }
 
-    // トークノミクス 3Dネオン風円グラフ (Chart.js)
+    // トークノミクス 3Dネオン風円グラフ (中央揃え設定強化版)
     document.addEventListener("DOMContentLoaded", () => {
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
       
@@ -1293,13 +1321,18 @@
         options: {
           responsive: true,
           maintainAspectRatio: true,
+          layout: {
+            padding: 0
+          },
           plugins: {
             legend: {
               position: 'bottom',
+              align: 'center',
               labels: {
                 color: '#f8fafc',
-                font: { family: 'Plus Jakarta Sans', size: 12, weight: 'bold' },
-                padding: 15
+                font: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
+                padding: 12,
+                boxWidth: 14
               }
             },
             tooltip: {
