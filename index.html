@@ -535,22 +535,533 @@
       max-height: 85vh;
       border-radius: 16px;
       overflow: hidden;
-      borderヘッダー（ナビゲーションバー）の言語切替連動を外し、特定の言語で固定するための実装方法です。
+      border: 1px solid var(--border-emerald);
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
 
-**実装方法のポイント**
+    .lotto-iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
-* **ナビバーの文字列を直接記述（ハードコード）する**
-  i18nなどの多言語化ライブラリ（`i18next` や `vue-i18n` など）を使用している場合、ヘッダー部分だけ翻訳キー（例: `t('nav.home')`）を使わず、表示したい言語のテキストを直接指定します。
+    .team-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-emerald);
+      border-radius: 18px;
+      padding: 20px;
+    }
 
-* **React (JSX) の場合の例**
-  ```jsx
-  // 変更前（言語切替に追従する場合）
-  // <a href="/">{t('nav.home')}</a>
+    .team-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--emerald-green);
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+      flex-shrink: 0;
+    }
 
-  // 変更後（英語で固定する場合）
-  <a href="/">HOME</a>
-  <a href="/dex">DEX</a>
-  <a href="/nft">NFT</a>
-  <a href="/event">EVENT</a>
-  <a href="/team">TEAM</a>
-  <a href="/tokenomics">TOKENOMICS</a>
+    .accordion-btn {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-emerald);
+      color: var(--emerald-green);
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .accordion-btn:hover {
+      background: rgba(52, 211, 153, 0.1);
+    }
+
+    .accordion-content {
+      display: none;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 18px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--border-emerald);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .footer-icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-emerald);
+      color: var(--emerald-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .footer-icon-btn:hover {
+      background: var(--emerald-green);
+      color: #0f172a;
+      box-shadow: 0 0 15px var(--emerald-green);
+      transform: translateY(-3px);
+    }
+
+    .info-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 15px;
+    }
+
+    .rarity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .rarity-card {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .rarity-card .name { font-weight: 800; font-size: 0.85rem; }
+    .rarity-card .rate { color: var(--emerald-green); font-size: 0.8rem; font-weight: 700; }
+    .rarity-card .reward { color: #f472b6; font-size: 0.78rem; }
+
+    .step-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+    }
+
+    .step-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0; top: 2px;
+      color: var(--emerald-green);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hamburger { display: block; }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: rgba(15, 23, 42, 0.96);
+        border-bottom: 1px solid var(--border-emerald);
+        padding: 20px;
+        gap: 10px;
+      }
+      .nav-menu.active { display: flex; }
+      .drift-coin { width: 42px !important; }
+      .drift-cat { width: 85px !important; }
+      .team-card { flex-direction: column; text-align: center; }
+      .coin-slideshow { width: 220px; height: 220px; }
+      .hub-card { padding: 20px 14px; }
+      .tab-btn { font-size: 0.76rem; padding: 6px 8px; }
+      .ganja-logo-frame { max-width: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="google_translate_element"></div>
+
+  <div id="particles-js"></div>
+
+  <div class="moving-coin-container">
+    <img src="images/ganjagold.png" class="drift-coin coin-1" alt="Gold Coin">
+    <img src="images/ganjagreen.png" class="drift-coin coin-2" alt="Green Coin">
+    <img src="images/ganjapurple.png" class="drift-coin coin-3" alt="Purple Coin">
+    <img src="images/ganjared.png" class="drift-coin coin-4" alt="Red Coin">
+    <img src="images/ganjablue.png" class="drift-coin coin-5" alt="Blue Coin">
+    <img src="images/ganjasilver.png" class="drift-coin coin-6" alt="Silver Coin">
+    <img src="images/ganjacat01.png" class="drift-cat" alt="GanjaCat Rocket">
+  </div>
+
+  <!-- 上部固定ナビゲーション（全体に翻訳不可ロックを適用） -->
+  <header class="notranslate" translate="no">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <img src="images/Ganjalogo.svg" alt="GanjaFlare Logo">
+        <span>GanjaFlare</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#dex">DEX</a></li>
+        <li><a href="#nft">NFT</a></li>
+        <li><a href="#event">EVENT</a></li>
+        <li><a href="#team">TEAM</a></li>
+        <li><a href="#tokenomics">TOKENOMICS</a></li>
+      </ul>
+
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="changeLanguage('ja')">JP</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="changeLanguage('zh-CN')">CN</button>
+      </div>
+
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. HOME -->
+    <section id="home">
+      <div class="hub-card">
+        <div class="hero-grid">
+          <div>
+            <h1 class="notranslate" translate="no" style="font-size: 2.2rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
+              GanjaFlare
+            </h1>
+            <p class="notranslate" translate="no" style="margin: 8px 0 16px; color: #f472b6; font-weight: 700; font-size: 1rem;">
+              Flare's Freedom Energy
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;">
+              <span class="notranslate" translate="no">$GANJA</span> は、<span class="notranslate" translate="no">Flare Network</span> 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。
+            </p>
+          </div>
+          <div class="ganja-logo-frame">
+            <img src="images/Ganjalogo.svg" alt="GanjaFlare Official Logo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DEX -->
+    <section id="dex">
+      <div class="sec-title"><i class="fa-solid fa-right-left"></i> <span class="notranslate" translate="no">DEX</span></div>
+      <div class="hub-card">
+        
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> <span class="notranslate" translate="no">SWAP</span></button>
+          <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> <span class="notranslate" translate="no">POOL</span></button>
+        </div>
+
+        <div id="dex-swap" class="tab-content active">
+          <p style="color: var(--text-sub); margin-bottom: 8px;">
+            <span class="notranslate" translate="no">BlazeSwap</span> および <span class="notranslate" translate="no">SparkDEX</span> にて分散型トレードが可能です。
+          </p>
+
+          <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
+            <div>
+              <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+            </div>
+            <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+          </div>
+
+          <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">BlazeSwap</span></a>
+          <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">SparkDEX</span></a>
+          <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7?tab=token_transfers" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
+            <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
+          </a>
+
+          <div class="dex-chart-container">
+            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div id="dex-pool" class="tab-content">
+          <p style="color: var(--text-sub); margin-bottom: 16px;">
+            <span class="notranslate" translate="no">DEX</span>へ流動性（<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$FLR</span> など）を提供することで、取引手数料報酬を獲得できます。
+          </p>
+
+          <div class="info-card" style="margin-bottom: 15px;">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">BlazeSwap</span> ガイド</h4>
+            <ul class="step-list">
+              <li><span class="notranslate" translate="no">BlazeSwap</span>の「<span class="notranslate" translate="no">Pool</span>」ページでウォレットを接続します。</li>
+              <li>「Add Liquidity」でペア（<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$FLR</span> 等）を指定します。</li>
+              <li>数量を入力し、Token Approve承認後に「Supply」で完了！</li>
+            </ul>
+            <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 8px;"><span class="notranslate" translate="no">BlazeSwap Pool</span>へ</a>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">SparkDEX</span> ガイド</h4>
+            <ul class="step-list">
+              <li><span class="notranslate" translate="no">SparkDEX</span>の「Earn / <span class="notranslate" translate="no">Pool</span>」でウォレットを接続します。</li>
+              <li><span class="notranslate" translate="no">$GANJA</span> トークンのプールを選択します。</li>
+              <li>希望の割合でDeposit（預け入れ）を実行すれば完了！</li>
+            </ul>
+            <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 8px;"><span class="notranslate" translate="no">SparkDEX Pool</span>へ</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. NFT -->
+    <section id="nft">
+      <div class="sec-title"><i class="fa-solid fa-gem"></i> <span class="notranslate" translate="no">NFT</span></div>
+      <div class="hub-card">
+
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchTab('nft', 'v1')"><i class="fa-solid fa-layer-group"></i> <span class="notranslate" translate="no">NFT v1</span></button>
+          <button class="tab-btn" onclick="switchTab('nft', 'v2')"><i class="fa-solid fa-sparkles"></i> <span class="notranslate" translate="no">NFT v2</span></button>
+        </div>
+
+        <div id="nft-v1" class="tab-content active">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">
+            <span class="notranslate" translate="no">GanjaFlare</span>の文化を象徴する公式<span class="notranslate" translate="no">NFT</span>コレクション v1。ホルダー向け特典やエアドロップ企画を展開中。
+          </p>
+          
+          <div class="coin-slideshow" id="coinSlideshow">
+            <img src="images/ganjagold.png" class="active" alt="Gold Coin">
+            <img src="images/ganjasilver.png" alt="Silver Coin">
+            <img src="images/ganjabronze.png" alt="Bronze Coin">
+            <img src="images/ganjagreen.png" alt="Green Coin">
+            <img src="images/ganjablue.png" alt="Blue Coin">
+            <img src="images/ganjapurple.png" alt="Purple Coin">
+            <img src="images/ganjared.png" alt="Red Coin">
+          </div>
+
+          <div style="text-align: center;">
+            <a href="https://flare-explorer.flare.network/token/0x2768E83F67D1bAFeBc5A49cdCD9B65Cc4DBc9b71" target="_blank" class="btn-mint-style">
+              <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
+            </a>
+            <a href="https://www.aurixnft.com/collection/ganja" target="_blank" class="btn-mint-style aurix">
+              <i class="fa-solid fa-store"></i> <span class="notranslate" translate="no">Aurix NFT Marketplace</span>
+            </a>
+          </div>
+
+          <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 18px;">
+            <h3 class="notranslate" translate="no" style="color: var(--emerald-green); font-size: 1rem; font-weight: 800; text-align: center;">
+              <i class="fa-solid fa-gamepad"></i> Play with GanjaFlareNFT & earn $BILLY!
+            </h3>
+            <p style="color: var(--text-sub); font-size: 0.82rem; margin: 6px 0 10px; text-align: center;">
+              <span class="notranslate" translate="no">GanjaFlare NFT(v1)</span>を所有してゲームやコミュニティ参加で <span class="notranslate" translate="no">$BILLY!</span> トークンを獲得！
+            </p>
+            
+            <div class="compact-video-box">
+              <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/NMno8ag0hq0" title="Play with GanjaFlareNFT & earn $BILLY!" allowfullscreen></iframe>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+              <a href="https://discord.com/invite/J7pHyxCzg8" target="_blank" class="btn-mint-style discord" style="font-size: 0.82rem; padding: 8px 16px;">
+                <i class="fa-brands fa-discord"></i> <span class="notranslate" translate="no">Gully Discord</span> に参加
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="nft-v2" class="tab-content">
+          <div style="text-align: center; padding: 40px 10px;">
+            <i class="fa-solid fa-rocket" style="font-size: 3rem; color: var(--emerald-green); margin-bottom: 15px; text-shadow: 0 0 20px rgba(52, 211, 153, 0.5);"></i>
+            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--emerald-green);"><span class="notranslate" translate="no">NFT v2</span> — Coming Soon!</h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 10px;">
+              次世代の<span class="notranslate" translate="no">GanjaFlare NFT</span>コレクションを展開予定。最新情報は公式Xおよび<span class="notranslate" translate="no">Discord</span>にて順次公開されます！
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. EVENT -->
+    <section id="event">
+      <div class="sec-title"><i class="fa-solid fa-trophy"></i> <span class="notranslate" translate="no">EVENT</span></div>
+      <div class="hub-card">
+
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchTab('event', 'lotto')"><i class="fa-solid fa-ticket"></i> <span class="notranslate" translate="no">Daily Lotto</span></button>
+          <button class="tab-btn" onclick="switchTab('event', 'gcr')"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GanjaCatRun</span></button>
+          <button class="tab-btn" onclick="switchTab('event', 'giveaway')"><i class="fa-solid fa-gift"></i> <span class="notranslate" translate="no">Giveaway</span></button>
+        </div>
+
+        <div id="event-lotto" class="tab-content active">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">毎日無料で挑戦！デイリーロト会場。</p>
+
+          <div class="lotto-iframe-container">
+            <iframe src="https://ganjaflare-lotto.vercel.app/" title="GanjaFlare Daily Lotto"></iframe>
+          </div>
+
+          <div class="info-card">
+            <div style="color: #f472b6; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px;">
+              <i class="fa-solid fa-clock"></i> 毎日 12:00 UTC（日本時間 21:00）にリセット！
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 12px;" class="notranslate" translate="no">Resets daily at 12:00 UTC!</p>
+
+            <div class="rarity-grid">
+              <div class="rarity-card"><div class="name">Mythic 👑</div><div class="rate">0.5%</div><div class="reward notranslate" translate="no">2,000 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Legendary 💎</div><div class="rate">3.0%</div><div class="reward notranslate" translate="no">500 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Epic 🪨</div><div class="rate">10.0%</div><div class="reward notranslate" translate="no">100 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Rare 🔨</div><div class="rate">20.0%</div><div class="reward notranslate" translate="no">30 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Common 🥦</div><div class="rate">35.0%</div><div class="reward notranslate" translate="no">10 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">No Luck 🍃</div><div class="rate">31.5%</div><div class="reward">Better luck!</div></div>
+            </div>
+
+            <p style="font-size: 0.82rem; color: var(--emerald-green); margin-top: 12px; font-weight: 700;">
+              <i class="fa-solid fa-shield-halved"></i> Googleサインイン＆ウォレットアドレスの手動入力のみ。安全にご利用いただけます！
+            </p>
+          </div>
+        </div>
+
+        <div id="event-gcr" class="tab-content">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+            <p style="color: var(--text-sub);">公式ランアクションゲーム「<span class="notranslate" translate="no">GanjaCatRun</span>」！</p>
+            <a href="https://ganjaflare.github.io/GanjaCatRun-Web/" target="_blank" class="btn-mint-style" style="margin:0; padding: 8px 16px; font-size: 0.82rem;">
+              <i class="fa-solid fa-expand"></i> 全画面でゲームをプレイ
+            </a>
+          </div>
+
+          <div class="gcr-game-frame">
+            <iframe src="https://ganjaflare.github.io/GanjaCatRun-Web/" title="GanjaCatRun Game"></iframe>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-trophy"></i> 報酬＆<span class="notranslate" translate="no">BURN</span>ルール</h4>
+            <ul class="step-list">
+              <li><strong>賞金🎁</strong>: 隔週、最高得点獲得者＆最高プレイ数の人にそれぞれ <strong class="notranslate" translate="no">500 $GANJA</strong> をプレゼント！</li>
+              <li><strong>定期<span class="notranslate" translate="no">BURN</span>🔥</strong>: 隔週、全プレイヤーが獲得した累計ポイントと同額の <span class="notranslate" translate="no">$GANJA</span> を<span class="notranslate" translate="no">BURN</span>（焼却）します！</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gamepad"></i> 操作方法 & キーボード割り当て</h4>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
+              画面上でXアカウント名を入力してモードを選択。画面上のAボタンまたはキーボードで操作できます。
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.82rem;">
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">ジャンプ / 再スタート</strong><br> Space / ↑ 矢印キー（または Aボタン）
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">ポーズ（一時停止/再開）</strong><br> Enter キー
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">リーダーボード表示</strong><br> M / Backspace キー
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">ランキング ページ切り替え</strong><br> ← / → 矢印キー
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="event-giveaway" class="tab-content">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">コミュニティ還元！隔週<span class="notranslate" translate="no">Giveaway</span>イベント。</p>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-clipboard-check"></i> 参加手順</h4>
+            <ul class="step-list">
+              <li><strong>条件1</strong>: <a href="https://x.com/nikuningyou29" target="_blank" class="notranslate" translate="no" style="color: var(--emerald-green);">@nikuningyou29</a> をフォロー</li>
+              <li><strong>条件2</strong>: <code class="notranslate" translate="no">@nikuningyou29</code> を含めて、<span class="notranslate" translate="no">GanjaFlare</span>や<span class="notranslate" translate="no">$GANJA</span>への熱いメッセージや好きなところをXでポスト！🌿🔥</li>
+            </ul>
+
+            <a href="https://x.com/intent/tweet?text=@nikuningyou29%20" target="_blank" class="btn-mint-style x-btn" style="margin-top: 12px; width: 100%;">
+              <i class="fa-brands fa-x-twitter"></i> JOIN（Xでポストして参加）
+            </a>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-circle-info"></i> ルール & 当選連絡</h4>
+            <ul class="step-list">
+              <li>約2週間に1度、勝者（1名）を決定し賞金や<span class="notranslate" translate="no">NFT</span>をプレゼント！</li>
+              <li>勝者にはXのDM（ダイレクトメッセージ）にて直接ご連絡します。</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. TEAM -->
+    <section id="team">
+      <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
+      <div class="hub-card">
+        <div class="team-card">
+          <img src="images/ganjacat02.png" class="team-img" alt="CEO 肉人形">
+          <div>
+            <h3 style="color: var(--emerald-green); font-size: 1.2rem; font-weight: 800; margin-bottom: 4px;">
+              <span class="notranslate" translate="no">肉人形</span> <span style="font-size: 0.85rem; color: #f472b6; font-weight: 700;">(CEO)</span>
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px;">
+              <span class="notranslate" translate="no">GanjaFlare</span> プロジェクトファウンダー & コミュニティリーダー。<span class="notranslate" translate="no">Flare Network</span>に情熱と圧倒的な信頼をもたらすべく奮闘中。
+            </p>
+            <a href="https://x.com/nikuningyou29" target="_blank" class="btn-mint-style x-btn" style="padding: 6px 14px; font-size: 0.78rem; margin:0;">
+              <i class="fa-brands fa-x-twitter"></i> <span class="notranslate" translate="no">@nikuningyou29</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. TOKENOMICS -->
+    <section id="tokenomics">
+      <div class="sec-title"><i class="fa-solid fa-coins"></i> <span class="notranslate" translate="no">TOKENOMICS</span></div>
+      <div class="hub-card">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
+            <div style="font-size: 0.75rem; color: #94a3b8;">チェーン & シンボル</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--emerald-green);" class="notranslate" translate="no">Flare Network ($GANJA)</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
+            <div style="font-size: 0.75rem; color: #94a3b8;">固定総供給枚数</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: #f8fafc;" class="notranslate" translate="no">42,000,000 $GANJA</div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <canvas id="tokenomicsChart"></canvas>
+        </div>
+
+        <div style="background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(2突然のことで大変驚かれたと思います。画面の表示や大切なテキスト、あるいは作成中のデータなどが消えてしまった状況でしょうか？
+
+まずは落ち着いて、以下の点をご確認・お試しください。
+
+* **画面の更新や戻る操作:** ブラウザの「戻る」ボタン（←）や `Ctrl + Z`（Macは `Cmd + Z`）で直前の状態に戻るか確認する。
+* **画面のスクロール:** 単に画面が下や上に移動してしまい、白紙に見えている可能性がないかスクロールしてみる。
+* **履歴の確認:** 使用しているアプリやサービスに「履歴」「下書き」「復元」などの機能がないか探す。
+
+どのような状況で何が消えてしまったのか（例：チャットの返信文、特定のアプリのデータ、作成中のファイルなど）、詳しい情報をお知らせいただければ、復元方法や対処法を一緒にお探しします。
