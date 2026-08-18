@@ -263,6 +263,51 @@
       overflow: hidden;
     }
 
+    /* アバター吹き出し（ナビゲーター演出）用スタイル */
+    .avatar-speech-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-emerald);
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .avatar-speech-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--emerald-green);
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .avatar-speech-bubble {
+      position: relative;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .avatar-speech-bubble::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 8px solid rgba(52, 211, 153, 0.4);
+    }
+
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -758,6 +803,14 @@
     <!-- 1. HOME -->
     <section id="home">
       <div class="hub-card">
+        <!-- ナビゲーター演出（HOME） -->
+        <div class="avatar-speech-box">
+          <img src="images/ganjacat02.png" class="avatar-speech-img" alt="GanjaCat Navigator">
+          <div class="avatar-speech-bubble">
+            ようこそ GanjaFlare へ！Flare Network の熱いコミュニティへ飛び込もう！🔥
+          </div>
+        </div>
+
         <div class="hero-grid">
           <div>
             <h1 class="notranslate" translate="no" style="font-size: 2.2rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
@@ -781,6 +834,13 @@
     <section id="dex">
       <div class="sec-title"><i class="fa-solid fa-right-left"></i> <span class="notranslate" translate="no">DEX</span></div>
       <div class="hub-card">
+        <!-- ナビゲーター演出（DEX） -->
+        <div class="avatar-speech-box">
+          <img src="images/ganjacat02.png" class="avatar-speech-img" alt="GanjaCat Navigator">
+          <div class="avatar-speech-bubble">
+            <span class="notranslate" translate="no">BlazeSwap</span> や <span class="notranslate" translate="no">SparkDEX</span> でスムーズにトレードできるよ。チャートもチェックしてみてね！
+          </div>
+        </div>
         
         <div class="tab-container">
           <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> <span class="notranslate" translate="no">SWAP</span></button>
@@ -845,6 +905,13 @@
     <section id="nft">
       <div class="sec-title"><i class="fa-solid fa-gem"></i> <span class="notranslate" translate="no">NFT</span></div>
       <div class="hub-card">
+        <!-- ナビゲーター演出（NFT） -->
+        <div class="avatar-speech-box">
+          <img src="images/ganjacat02.png" class="avatar-speech-img" alt="GanjaCat Navigator">
+          <div class="avatar-speech-bubble">
+            公式NFTコレクション！毎月1日の報酬システムやエアドロップ特典も用意されているよ！
+          </div>
+        </div>
 
         <div class="tab-container">
           <button class="tab-btn active" onclick="switchTab('nft', 'v1')"><i class="fa-solid fa-layer-group"></i> <span class="notranslate" translate="no">NFT v1</span></button>
@@ -967,6 +1034,13 @@
     <section id="event">
       <div class="sec-title"><i class="fa-solid fa-trophy"></i> <span class="notranslate" translate="no">EVENT</span></div>
       <div class="hub-card">
+        <!-- ナビゲーター演出（EVENT） -->
+        <div class="avatar-speech-box">
+          <img src="images/ganjacat02.png" class="avatar-speech-img" alt="GanjaCat Navigator">
+          <div class="avatar-speech-bubble">
+            デイリーロトや GanjaCatRun、Giveaway などのイベントが目白押し！積極的に参加しよう！
+          </div>
+        </div>
 
         <div class="tab-container">
           <button class="tab-btn active" onclick="switchTab('event', 'lotto')"><i class="fa-solid fa-ticket"></i> <span class="notranslate" translate="no">Daily Lotto</span></button>
@@ -1096,6 +1170,14 @@
     <section id="tokenomics">
       <div class="sec-title"><i class="fa-solid fa-coins"></i> <span class="notranslate" translate="no">TOKENOMICS</span></div>
       <div class="hub-card">
+        <!-- ナビゲーター演出（TOKENOMICS） -->
+        <div class="avatar-speech-box">
+          <img src="images/ganjacat02.png" class="avatar-speech-img" alt="GanjaCat Navigator">
+          <div class="avatar-speech-bubble">
+            固定供給と毎月BURN（定期焼却）で持続可能なエコシステムを構築しているよ！
+          </div>
+        </div>
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
           <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
             <div style="font-size: 0.75rem; color: #94a3b8;">チェーン & シンボル</div>
