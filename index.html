@@ -806,8 +806,9 @@
             <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
           </a>
 
+          <!-- デフォルトで4h足（timeframe=4h）へ変更 -->
           <div class="dex-chart-container">
-            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
+            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1&timeframe=4h" allow="clipboard-write" allowfullscreen></iframe>
           </div>
         </div>
 
@@ -897,13 +898,20 @@
         </div>
 
         <div id="nft-v2" class="tab-content">
-          <!-- 動画クリックでDAppを開くエリア -->
-          <div style="margin-bottom: 20px; text-align: center;">
-            <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3); transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-              <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block; cursor: pointer;">
+          <!-- 動画表示エリア（リンク解除） -->
+          <div style="margin-bottom: 16px; text-align: center;">
+            <div style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3);">
+              <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block;">
                 <source src="images/transfer_gate.mp4" type="video/mp4">
                 お使いのブラウザは動画タグに対応していません。
               </video>
+            </div>
+          </div>
+
+          <!-- 動画下の明確なナビゲーションボタン -->
+          <div style="text-align: center; margin-bottom: 24px;">
+            <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); font-size: 1rem; padding: 14px 28px; width: 100%; max-width: 480px; box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);">
+              <i class="fa-solid fa-rocket"></i> <span class="notranslate" translate="no">毒猫絵巻 DApp</span> へ移動する <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
 
@@ -929,8 +937,8 @@
           <div class="info-card">
             <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gift"></i> Airdrop & MINT</h4>
             <ul class="step-list">
-              <li><span class="notranslate" translate="no">GanjaFlare NFT v1</span> を1枚保有につき <strong class="notranslate" translate="no">1 DNE</strong> を <span class="notranslate" translate="no">Airdrop</span></li>
-              <li>1 MINT = <strong>22 FLR / 1 DNE</strong></li>
+              <li><span class="notranslate" translate="no">GanjaFlare NFT v1</span> を1枚保有につき <strong class="notranslate" translate="no">1 <span class="notranslate" translate="no">DNE</span></strong> を <span class="notranslate" translate="no">Airdrop</span></li>
+              <li>1 MINT = <strong>22 FLR / 1 <span class="notranslate" translate="no">DNE</span></strong></li>
             </ul>
             <div style="margin-top: 12px; font-size: 0.85rem; color: #f472b6; font-weight: 700;">
               <div>🎁 Airdrop：9月3日 12:00 UTC</div>
@@ -1161,12 +1169,14 @@
           </p>
         </div>
 
+        <!-- 文言を拡充した運営寄付セクション -->
         <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 20px;">
           <h3 style="color: var(--emerald-green); font-size: 1.05rem; font-weight: 800;">
             <i class="fa-solid fa-hand-holding-heart"></i> 運営寄付のお願い
           </h3>
-          <p style="font-size: 0.85rem; color: var(--text-sub); margin: 8px 0;">
-            <span class="notranslate" translate="no">GanjaFlare</span>は非営利のコミュニティプロジェクトです。
+          <p style="font-size: 0.88rem; color: var(--text-main); margin: 8px 0 10px; line-height: 1.6;">
+            <span class="notranslate" translate="no">GanjaFlare</span> は非営利のコミュニティ主導プロジェクトです。BOTのサーバー維持費やインフラ運用コストは、現在すべてCEO肉人形の自己資金によって賄われております。<br>
+            もし <span class="notranslate" translate="no">GanjaFlare</span> の活動に共感し、持続的なインフラ維持をご支援いただける方がいらっしゃいましたら、以下のウォレットアドレスより任意の暗号資産（<span class="notranslate" translate="no">FLR / WFLR</span> 等）でのご寄付をいただけますと幸いでございます。
           </p>
 
           <div class="copy-box" onclick="copyContract('0xE809127d1927EE013834B9E95A53E0b37B688eF7', 'donateCopyBtn')">
@@ -1175,6 +1185,10 @@
             </div>
             <div class="copy-btn" id="donateCopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
           </div>
+
+          <p style="font-size: 0.8rem; color: #f472b6; margin-top: 10px; line-height: 1.5; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(244, 114, 182, 0.2);">
+            ⚠️ <strong>重要な注意事項</strong>：本寄付は純粋な運営支援であり、いかなる対価（トークンの配布、特別な権利やサービスの提供、将来の利益分配等）も発生いたしません。ご寄付いただいた資金は、全額インフラ維持費およびBOTの運用コストのみに充当させていただきます。いかなる投資助言も行っておらず、<span class="notranslate" translate="no">$GANJA</span> は投資商品ではありません。あらかじめご了承の上、ご自身の判断にてお願いいたします。
+          </p>
         </div>
 
       </div>
