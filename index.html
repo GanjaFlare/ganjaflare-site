@@ -16,6 +16,8 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <!-- 円グラフ用ライブラリ (Chart.js) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google 翻訳要素スクリプト -->
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
     :root {
@@ -47,6 +49,11 @@
       overflow-x: hidden;
       line-height: 1.6;
     }
+
+    /* Google Translate用非表示設定 */
+    #google_translate_element { display: none; }
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0px !important; }
 
     /* 背景パーティクルキャンバス */
     #particles-js {
@@ -127,8 +134,9 @@
       padding: 10px 20px;
     }
 
+    /* TOPロゴ（従来の2分の1サイズ＝高さを16pxへ変更） */
     .logo {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--emerald-green);
       text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
@@ -136,19 +144,19 @@
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       white-space: nowrap;
     }
 
     .logo img {
-      height: 32px;
+      height: 16px;
       width: auto;
       display: block;
     }
 
     .nav-menu {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       list-style: none;
       align-items: center;
     }
@@ -156,9 +164,9 @@
     .nav-menu a {
       color: var(--text-sub);
       text-decoration: none;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 8px;
       border: 1px solid transparent;
       background: rgba(30, 41, 59, 0.4);
@@ -171,6 +179,34 @@
       border-color: var(--emerald-green);
       background: rgba(52, 211, 153, 0.15);
       box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
+    }
+
+    /* 言語切り替えスイッチ */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-emerald);
+      border-radius: 12px;
+      padding: 2px 4px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--emerald-green);
+      color: #0f172a;
     }
 
     .hamburger {
@@ -386,11 +422,28 @@
       white-space: nowrap;
     }
 
-    /* NFT 7色コインGIFスライダー */
+    /* DEXチャート枠 */
+    .dex-chart-container {
+      width: 100%;
+      height: 500px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-emerald);
+      margin: 18px 0;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .dex-chart-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* NFT 7色コインGIFスライダー（従来の2倍の大きさ＝320pxへ拡大） */
     .coin-slideshow {
-      width: 160px;
-      height: 160px;
-      margin: 15px auto;
+      width: 320px;
+      height: 320px;
+      margin: 20px auto;
       position: relative;
       display: flex;
       justify-content: center;
@@ -404,7 +457,7 @@
       object-fit: contain;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
-      filter: drop-shadow(0 0 15px rgba(52, 211, 153, 0.5));
+      filter: drop-shadow(0 0 25px rgba(52, 211, 153, 0.6));
     }
 
     .coin-slideshow img.active {
@@ -639,10 +692,14 @@
       .drift-coin { width: 42px !important; }
       .drift-cat { width: 85px !important; }
       .team-card { flex-direction: column; text-align: center; }
+      .coin-slideshow { width: 220px; height: 220px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- 非表示のGoogle翻訳エレメント -->
+  <div id="google_translate_element"></div>
 
   <!-- 背景粒子キャンバス -->
   <div id="particles-js"></div>
@@ -665,7 +722,7 @@
         <img src="images/Ganjalogo.svg" alt="GanjaFlare Logo">
         <span>GanjaFlare</span>
       </a>
-      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+      
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home">HOME</a></li>
         <li><a href="#dex">DEX</a></li>
@@ -674,6 +731,15 @@
         <li><a href="#team">TEAM</a></li>
         <li><a href="#tokenomics">TOKENOMICS</a></li>
       </ul>
+
+      <!-- 言語切り替えスイッチ (JP / EN / CN) -->
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="changeLanguage('ja')">JP</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="changeLanguage('zh-CN')">CN</button>
+      </div>
+
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
@@ -700,7 +766,7 @@
       </div>
     </section>
 
-    <!-- 2. DEX（SWAP & POOL 統合） -->
+    <!-- 2. DEX（SWAP & POOL 統合、GeckoTerminalチャート追加） -->
     <section id="dex">
       <div class="sec-title"><i class="fa-solid fa-right-left"></i> DEX</div>
       <div class="hub-card">
@@ -715,6 +781,14 @@
           <p style="color: var(--text-sub); margin-bottom: 14px;">BlazeSwap および SparkDEX にて分散型トレードが可能です。</p>
           <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap</a>
           <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX</a>
+          <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7?tab=token_transfers" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
+            <i class="fa-solid fa-compass"></i> Flare Explorer
+          </a>
+
+          <!-- GeckoTerminal 埋め込みチャート -->
+          <div class="dex-chart-container">
+            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
+          </div>
 
           <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
             <div>
@@ -765,13 +839,13 @@
           <button class="tab-btn" onclick="switchTab('nft', 'v2')"><i class="fa-solid fa-sparkles"></i> NFT v2</button>
         </div>
 
-        <!-- NFT v1 タブ -->
+        <!-- NFT v1 タブ (拡大したコイン画像) -->
         <div id="nft-v1" class="tab-content active">
           <p style="color: var(--text-sub); margin-bottom: 14px;">
             GanjaFlareの文化を象徴する公式NFTコレクション v1。ホルダー向け特典やエアドロップ企画を展開中。
           </p>
           
-          <!-- コインGIFスライダー -->
+          <!-- 2倍に拡大したコインGIFスライダー -->
           <div class="coin-slideshow" id="coinSlideshow">
             <img src="images/ganjagold.png" class="active" alt="Gold Coin">
             <img src="images/ganjasilver.png" alt="Silver Coin">
@@ -782,12 +856,14 @@
             <img src="images/ganjared.png" alt="Red Coin">
           </div>
 
-          <a href="https://flare-explorer.flare.network/token/0x2768E83F67D1bAFeBc5A49cdCD9B65Cc4DBc9b71" target="_blank" class="btn-mint-style">
-            <i class="fa-solid fa-compass"></i> Flare Explorer
-          </a>
-          <a href="https://www.aurixnft.com/collection/ganja" target="_blank" class="btn-mint-style aurix">
-            <i class="fa-solid fa-store"></i> Aurix NFT Marketplace
-          </a>
+          <div style="text-align: center;">
+            <a href="https://flare-explorer.flare.network/token/0x2768E83F67D1bAFeBc5A49cdCD9B65Cc4DBc9b71" target="_blank" class="btn-mint-style">
+              <i class="fa-solid fa-compass"></i> Flare Explorer
+            </a>
+            <a href="https://www.aurixnft.com/collection/ganja" target="_blank" class="btn-mint-style aurix">
+              <i class="fa-solid fa-store"></i> Aurix NFT Marketplace
+            </a>
+          </div>
 
           <!-- 特典 & 主張を抑えた動画枠 -->
           <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 18px;">
@@ -1081,6 +1157,27 @@
   </footer>
 
   <script>
+    // Google翻訳初期化
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ja',
+        includedLanguages: 'en,zh-CN,ja',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+
+    // 言語切り替えスクリプト
+    function changeLanguage(langCode) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = langCode;
+        select.dispatchEvent(new Event('change'));
+      }
+    }
+
     // ハンバーガーメニュー
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
@@ -1185,8 +1282,8 @@
           datasets: [{
             data: [24000000, 18000000],
             backgroundColor: [
-              '#34d399', // エメラルドグリーン
-              '#a855f7'  // ネオンパープル
+              '#34d399',
+              '#a855f7'
             ],
             borderColor: '#0f172a',
             borderWidth: 4,
