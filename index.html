@@ -48,17 +48,29 @@
       position: relative;
       overflow-x: hidden;
       line-height: 1.6;
+      top: 0px !important; /* ツールバー挿入による画面ズレを防止 */
     }
 
-    /* Google Translate非表示設定 */
-    #google_translate_element {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-      z-index: -1;
+    /* Google Translate ツールバー・ポップアップ完全非表示化 */
+    #google_translate_element,
+    .goog-te-banner-frame,
+    .goog-te-balloon-frame,
+    .goog-tooltip,
+    .goog-tooltip:hover,
+    .goog-text-highlight,
+    iframe.skiptranslate,
+    .VIpgJd-yD32b-r4395e {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      width: 0 !important;
     }
-    .goog-te-banner-frame, .goog-te-balloon-frame { display: none !important; }
-    body { top: 0px !important; }
+
+    body > .skiptranslate {
+      display: none !important;
+    }
 
     /* 背景パーティクルキャンバス */
     #particles-js {
@@ -139,7 +151,7 @@
       padding: 10px 20px;
     }
 
-    /* TOPヘッダーロゴ（元の大きさに復元） */
+    /* TOPヘッダーロゴ */
     .logo {
       font-size: 1.35rem;
       font-weight: 800;
@@ -268,7 +280,7 @@
       align-items: center;
     }
 
-    /* HOMEセクションのメインロゴ（2分の1の大きさに変更） */
+    /* HOMEセクションのメインロゴ */
     .ganja-logo-frame {
       position: relative;
       border: 2px solid var(--border-emerald);
@@ -277,8 +289,8 @@
       box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
       background: rgba(0, 0, 0, 0.4);
       padding: 10px;
-      max-width: 190px; /* 2分の1サイズへ縮小 */
-      margin: 0 auto;   /* 中央配置 */
+      max-width: 190px;
+      margin: 0 auto;
       animation: floatAnim 4s ease-in-out infinite;
     }
 
@@ -718,7 +730,7 @@
       .coin-slideshow { width: 220px; height: 220px; }
       .hub-card { padding: 20px 14px; }
       .tab-btn { font-size: 0.76rem; padding: 6px 8px; }
-      .ganja-logo-frame { max-width: 150px; } /* スマホ時さらにフィットするよう最適化 */
+      .ganja-logo-frame { max-width: 150px; }
     }
   </style>
 </head>
@@ -785,7 +797,6 @@
               $GANJA は、Flare Network 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。
             </p>
           </div>
-          <!-- 半分サイズに調整したメインロゴ -->
           <div class="ganja-logo-frame">
             <img src="images/Ganjalogo.svg" alt="GanjaFlare Official Logo">
           </div>
@@ -1090,7 +1101,7 @@
           </div>
         </div>
 
-        <!-- 中央揃えを厳密化した立体風ドーナツ型円グラフ -->
+        <!-- 立体風ドーナツ型円グラフ -->
         <div class="chart-box">
           <canvas id="tokenomicsChart"></canvas>
         </div>
@@ -1304,7 +1315,7 @@
       }, 1200);
     }
 
-    // トークノミクス 3Dネオン風円グラフ (中央揃え設定)
+    // トークノミクス 3Dネオン風円グラフ
     document.addEventListener("DOMContentLoaded", () => {
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
       
