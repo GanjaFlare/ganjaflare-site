@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>GanjaFlare - Flare's Freedom Energy</title>
   
+  <!-- 洗練されたPlus Jakarta Sansフォント & アイコン -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- 背景パーティクル用ライブラリ -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <style>
     :root {
       --bg-color: #0f172a;
-      --card-bg: rgba(15, 23, 42, 0.55);
+      --card-bg: rgba(15, 23, 42, 0.65);
       --border-emerald: rgba(52, 211, 153, 0.3);
       --emerald-green: #34d399;
       --emerald-dark: #059669;
@@ -53,7 +55,7 @@
       pointer-events: none;
     }
 
-    /* 画面全体を大きな軌道で漂う$GANJAコイン＆GanjaCatロケット群 */
+    /* 画面全体を漂う$GANJAコイン＆GanjaCatロケット */
     .moving-coin-container {
       position: fixed;
       top: 0; left: 0;
@@ -144,18 +146,17 @@
 
     .nav-menu {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       list-style: none;
       align-items: center;
-      flex-wrap: nowrap;
     }
 
     .nav-menu a {
       color: var(--text-sub);
       text-decoration: none;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 8px;
       border: 1px solid transparent;
       background: rgba(30, 41, 59, 0.4);
@@ -189,12 +190,12 @@
     }
 
     section {
-      padding: 25px 0;
+      padding: 20px 0;
       position: relative;
     }
 
     .sec-title {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: var(--emerald-green);
       text-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
@@ -279,7 +280,65 @@
       box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
     }
 
-    /* ワンタップコピー用ボックス */
+    .btn-mint-style.x-btn {
+      background: linear-gradient(135deg, #000000 0%, #262626 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    }
+    .btn-mint-style.x-btn:hover {
+      border-color: var(--emerald-green);
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+    }
+
+    /* タブ切り替えデザイン */
+    .tab-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px;
+      border-radius: 16px;
+      border: 1px solid var(--border-emerald);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px 14px;
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn.active {
+      background: var(--emerald-green);
+      color: #0f172a;
+      box-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ワンタップコピーボックス */
     .copy-box {
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid var(--border-emerald);
@@ -317,7 +376,7 @@
       white-space: nowrap;
     }
 
-    /* NFT 7色コインGIF風スライダー */
+    /* NFT 7色コインGIFスライダー */
     .coin-slideshow {
       width: 180px;
       height: 180px;
@@ -342,7 +401,7 @@
       opacity: 1;
     }
 
-    /* 動画レスポンシブ枠 */
+    /* 動画・ゲーム用フレーム */
     .video-container {
       position: relative;
       padding-bottom: 56.25%;
@@ -359,67 +418,26 @@
       width: 100%; height: 100%;
     }
 
-    /* POOL用タブスタイル */
-    .pool-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
+    /* GCRゲーム埋め込み枠（スマホ・PC両方でぴったり表示） */
+    .gcr-game-frame {
+      width: 100%;
+      height: 600px;
+      max-height: 80vh;
+      border-radius: 18px;
+      border: 2px solid var(--border-emerald);
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+      background: #000;
     }
 
-    .pool-tab-btn {
-      flex: 1;
-      padding: 10px;
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid var(--border-emerald);
-      color: var(--text-sub);
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .gcr-game-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
-    .pool-tab-btn.active {
-      background: var(--emerald-green);
-      color: #0f172a;
-      border-color: var(--emerald-green);
-      box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
-    }
-
-    .pool-content {
-      display: none;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 18px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .pool-content.active {
-      display: block;
-    }
-
-    .step-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .step-list li {
-      position: relative;
-      padding-left: 28px;
-      margin-bottom: 12px;
-      font-size: 0.88rem;
-      color: var(--text-sub);
-    }
-
-    .step-list li::before {
-      content: "\f00c";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      position: absolute;
-      left: 0; top: 2px;
-      color: var(--emerald-green);
-    }
-
-    /* ロト枠スタイル（きっちり収めるため750pxに調整） */
+    /* ロト用フレーム */
     .lotto-iframe-container {
       width: 100%;
       height: 750px;
@@ -437,9 +455,18 @@
       border: none;
     }
 
+    /* ガイド・解説カード */
+    .info-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 15px;
+    }
+
     .rarity-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       gap: 10px;
       margin: 15px 0;
     }
@@ -448,13 +475,35 @@
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      padding: 10px 14px;
+      padding: 10px;
       text-align: center;
     }
 
     .rarity-card .name { font-weight: 800; font-size: 0.85rem; }
     .rarity-card .rate { color: var(--emerald-green); font-size: 0.8rem; font-weight: 700; }
     .rarity-card .reward { color: #f472b6; font-size: 0.78rem; }
+
+    .step-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+    }
+
+    .step-list li::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0; top: 2px;
+      color: var(--emerald-green);
+    }
 
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
@@ -472,13 +521,16 @@
       .nav-menu.active { display: flex; }
       .drift-coin { width: 42px !important; }
       .drift-cat { width: 85px !important; }
+      .gcr-game-frame { height: 480px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- 背景粒子キャンバス -->
   <div id="particles-js"></div>
 
+  <!-- 画面全体を漂う$GANJAコイン＆GanjaCatロケット -->
   <div class="moving-coin-container">
     <img src="images/ganjagold.png" class="drift-coin coin-1" alt="Gold Coin">
     <img src="images/ganjagreen.png" class="drift-coin coin-2" alt="Green Coin">
@@ -489,6 +541,7 @@
     <img src="images/ganjacat01.png" class="drift-cat" alt="GanjaCat Rocket">
   </div>
 
+  <!-- 上部固定ナビゲーション -->
   <header>
     <div class="nav-container">
       <a href="#home" class="logo">
@@ -499,11 +552,8 @@
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home">HOME</a></li>
         <li><a href="#dex">DEX</a></li>
-        <li><a href="#liquidity">POOL</a></li>
         <li><a href="#nft">NFT v1</a></li>
-        <li><a href="#lotto">LOTTO</a></li>
-        <li><a href="#game">GCR</a></li>
-        <li><a href="#giveaway">GIVEAWAY</a></li>
+        <li><a href="#event">EVENT</a></li>
         <li><a href="#team">TEAM</a></li>
         <li><a href="#tokenomics">TOKENOMICS</a></li>
       </ul>
@@ -511,6 +561,7 @@
   </header>
 
   <main>
+    <!-- 1. HOME (GanjaFlare) -->
     <section id="home">
       <div class="hub-card">
         <div class="hero-grid">
@@ -532,59 +583,63 @@
       </div>
     </section>
 
+    <!-- 2. DEX（SWAP & POOL 統合） -->
     <section id="dex">
-      <div class="sec-title"><i class="fa-solid fa-chart-line"></i> DEX</div>
+      <div class="sec-title"><i class="fa-solid fa-right-left"></i> DEX</div>
       <div class="hub-card">
-        <p style="color: var(--text-sub); margin-bottom: 14px;">BlazeSwap および SparkDEX にて分散型トレードが可能です。</p>
-        <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap</a>
-        <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX</a>
+        
+        <!-- DEX内 タブ切り替え -->
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> SWAP</button>
+          <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> POOL</button>
+        </div>
 
-        <div class="copy-box" onclick="copyContract()">
-          <div>
-            <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">コントラクト</div>
-            <div class="copy-text" id="contractAddr">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+        <!-- DEX: SWAPタブ -->
+        <div id="dex-swap" class="tab-content active">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">BlazeSwap および SparkDEX にて分散型トレードが可能です。</p>
+          <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap</a>
+          <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX</a>
+
+          <div class="copy-box" onclick="copyContract()">
+            <div>
+              <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">コントラクト</div>
+              <div class="copy-text" id="contractAddr">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+            </div>
+            <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
           </div>
-          <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
         </div>
+
+        <!-- DEX: POOLタブ -->
+        <div id="dex-pool" class="tab-content">
+          <p style="color: var(--text-sub); margin-bottom: 16px;">
+            DEXへ流動性（$GANJA / $FLRなど）を提供することで、取引手数料報酬を獲得できます。
+          </p>
+
+          <div class="info-card" style="margin-bottom: 15px;">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> BlazeSwap ガイド</h4>
+            <ul class="step-list">
+              <li>BlazeSwapの「Pool」ページでウォレットを接続します。</li>
+              <li>「Add Liquidity」でペア（$GANJA / $FLR 等）を指定します。</li>
+              <li>数量を入力し、Token Approve承認後に「Supply」で完了！</li>
+            </ul>
+            <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 8px;">BlazeSwap Poolへ</a>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> SparkDEX ガイド</h4>
+            <ul class="step-list">
+              <li>SparkDEXの「Earn / Pool」でウォレットを接続します。</li>
+              <li>$GANJA トークンのプールを選択します。</li>
+              <li>希望の割合でDeposit（預け入れ）を実行すれば完了！</li>
+            </ul>
+            <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 8px;">SparkDEX Poolへ</a>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section id="liquidity">
-      <div class="sec-title"><i class="fa-solid fa-droplet"></i> POOL</div>
-      <div class="hub-card">
-        <p style="color: var(--text-sub); margin-bottom: 16px;">
-          DEXへ流動性（$GANJA / $FLRなど）を提供することで、エコシステムの取引を安定させ、取引手数料報酬を獲得できます。
-        </p>
-
-        <div class="pool-tabs">
-          <button class="pool-tab-btn active" id="tabBtnBlaze" onclick="switchPoolTab('blaze')">BlazeSwap ガイド</button>
-          <button class="pool-tab-btn" id="tabBtnSpark" onclick="switchPoolTab('spark')">SparkDEX ガイド</button>
-        </div>
-
-        <div id="blazeGuide" class="pool-content active">
-          <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> BlazeSwap での提供手順</h4>
-          <ul class="step-list">
-            <li>BlazeSwapの「Pool」ページを開き、ウォレット（MetaMask等）を接続します。</li>
-            <li>「Add Liquidity」を選択し、ペア（$GANJA と $FLR 等）を指定します。</li>
-            <li>提供する数量を入力し、トークンの使用（Approve）を承認します。</li>
-            <li>「Supply」をクリックしてトランザクションを確定すれば流動性提供（LP化）完了です！</li>
-          </ul>
-          <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 10px;">BlazeSwap Poolへ移動</a>
-        </div>
-
-        <div id="sparkGuide" class="pool-content">
-          <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> SparkDEX での提供手順</h4>
-          <ul class="step-list">
-            <li>SparkDEXの「Earn / Pool」セクションにアクセスし、ウォレットを接続します。</li>
-            <li>$GANJA を含む対象のプールを検索・選択します。</li>
-            <li>希望するペアの比率でトークン額を設定し、Approveを実行します。</li>
-            <li>Deposit（預け入れ）を完了すると、LPトークンを受け取り手数料の分配が開始されます。</li>
-          </ul>
-          <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 10px;">SparkDEX Poolへ移動</a>
-        </div>
-      </div>
-    </section>
-
+    <!-- 3. NFT v1 -->
     <section id="nft">
       <div class="sec-title"><i class="fa-solid fa-gem"></i> NFT v1</div>
       <div class="hub-card">
@@ -592,6 +647,7 @@
           GanjaFlareの文化を象徴する公式NFTコレクション。ホルダー向け特典やエアドロップ企画を展開中。
         </p>
         
+        <!-- コインGIFスライダー -->
         <div class="coin-slideshow" id="coinSlideshow">
           <img src="images/ganjagold.png" class="active" alt="Gold Coin">
           <img src="images/ganjasilver.png" alt="Silver Coin">
@@ -606,12 +662,13 @@
           <i class="fa-solid fa-compass"></i> Flare Explorer
         </a>
 
+        <!-- 特典 & 動画 -->
         <div style="margin-top: 30px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 20px;">
           <h3 style="color: var(--emerald-green); font-size: 1.1rem; font-weight: 800;">
             <i class="fa-solid fa-gamepad"></i> Play with GanjaFlareNFT & earn $BILLY!
           </h3>
           <p style="color: var(--text-sub); font-size: 0.85rem; margin: 8px 0 12px;">
-            GanjaFlare NFTを所有して、ゲームプレイやコミュニティ参加で $BILLY トークンを獲得しよう！詳細解説動画とDiscordコミュニティはこちら。
+            GanjaFlare NFTを所有して、ゲームプレイやコミュニティ参加で $BILLY トークンを獲得しよう！
           </p>
           
           <div class="video-container">
@@ -625,75 +682,127 @@
       </div>
     </section>
 
-    <section id="lotto">
-      <div class="sec-title"><i class="fa-solid fa-ticket"></i> LOTTO</div>
+    <!-- 4. EVENT（LOTTO / GCR / GIVEAWAY 統合） -->
+    <section id="event">
+      <div class="sec-title"><i class="fa-solid fa-trophy"></i> EVENT</div>
       <div class="hub-card">
-        <p style="color: var(--text-sub); margin-bottom: 14px;">毎日チャレンジ可能！デイリーロト会場です。</p>
 
-        <div class="lotto-iframe-container">
-          <iframe src="https://ganjaflare-lotto.vercel.app/" title="GanjaFlare Daily Lotto"></iframe>
+        <!-- EVENT内 タブ切り替え -->
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchTab('event', 'lotto')"><i class="fa-solid fa-ticket"></i> Daily Lotto</button>
+          <button class="tab-btn" onclick="switchTab('event', 'gcr')"><i class="fa-solid fa-gamepad"></i> GanjaCatRun</button>
+          <button class="tab-btn" onclick="switchTab('event', 'giveaway')"><i class="fa-solid fa-gift"></i> Giveaway</button>
         </div>
 
-        <div style="background: rgba(0, 0, 0, 0.3); border-radius: 16px; padding: 18px; border: 1px solid rgba(52, 211, 153, 0.2);">
-          <div style="color: #f472b6; font-weight: 800; font-size: 0.95rem; margin-bottom: 8px;">
-            <i class="fa-solid fa-clock"></i> 毎日 12:00 UTC（日本時間 21:00）にリセット！
-          </div>
-          <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">Resets daily at 12:00 UTC!</p>
+        <!-- EVENT: Daily Lotto -->
+        <div id="event-lotto" class="tab-content active">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">毎日無料で挑戦！デイリーロト会場。</p>
 
-          <div class="rarity-grid">
-            <div class="rarity-card">
-              <div class="name">Mythic 👑</div>
-              <div class="rate">0.5%</div>
-              <div class="reward">2,000 $GANJA</div>
-            </div>
-            <div class="rarity-card">
-              <div class="name">Legendary 💎</div>
-              <div class="rate">3.0%</div>
-              <div class="reward">500 $GANJA</div>
-            </div>
-            <div class="rarity-card">
-              <div class="name">Epic 🪨</div>
-              <div class="rate">10.0%</div>
-              <div class="reward">100 $GANJA</div>
-            </div>
-            <div class="rarity-card">
-              <div class="name">Rare 🔨</div>
-              <div class="rate">20.0%</div>
-              <div class="reward">30 $GANJA</div>
-            </div>
-            <div class="rarity-card">
-              <div class="name">Common 🥦</div>
-              <div class="rate">35.0%</div>
-              <div class="reward">10 $GANJA</div>
-            </div>
-            <div class="rarity-card">
-              <div class="name">No Luck 🍃</div>
-              <div class="rate">31.5%</div>
-              <div class="reward">Better luck!</div>
-            </div>
+          <div class="lotto-iframe-container">
+            <iframe src="https://ganjaflare-lotto.vercel.app/" title="GanjaFlare Daily Lotto"></iframe>
           </div>
 
-          <p style="font-size: 0.82rem; color: var(--emerald-green); margin-top: 14px; font-weight: 700;">
-            <i class="fa-solid fa-shield-halved"></i> ログインはGoogleサインインのみ、ウォレットはアドレスの手動入力だけなので、セキュリティリスクは一切ありません。あなたの資産は完全に安全です！
-          </p>
+          <div class="info-card">
+            <div style="color: #f472b6; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px;">
+              <i class="fa-solid fa-clock"></i> 毎日 12:00 UTC（日本時間 21:00）にリセット！
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 12px;">Resets daily at 12:00 UTC!</p>
+
+            <div class="rarity-grid">
+              <div class="rarity-card"><div class="name">Mythic 👑</div><div class="rate">0.5%</div><div class="reward">2,000 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Legendary 💎</div><div class="rate">3.0%</div><div class="reward">500 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Epic 🪨</div><div class="rate">10.0%</div><div class="reward">100 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Rare 🔨</div><div class="rate">20.0%</div><div class="reward">30 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Common 🥦</div><div class="rate">35.0%</div><div class="reward">10 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">No Luck 🍃</div><div class="rate">31.5%</div><div class="reward">Better luck!</div></div>
+            </div>
+
+            <p style="font-size: 0.82rem; color: var(--emerald-green); margin-top: 12px; font-weight: 700;">
+              <i class="fa-solid fa-shield-halved"></i> Googleサインイン＆ウォレットアドレスの手動入力のみ。安全にご利用いただけます！
+            </p>
+          </div>
         </div>
+
+        <!-- EVENT: GanjaCatRun (GCR) -->
+        <div id="event-gcr" class="tab-content">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">公式ランアクションゲーム「GanjaCatRun」！ハイスコアを目指そう。</p>
+
+          <!-- ゲーム画面埋め込み -->
+          <div class="gcr-game-frame">
+            <iframe src="https://ganjaflare.github.io/GanjaCatRun-Web/" title="GanjaCatRun Game"></iframe>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-trophy"></i> 報酬＆BURNルール</h4>
+            <ul class="step-list">
+              <li><strong>賞金🎁</strong>: 隔週、最高得点獲得者＆最高プレイ数の人にそれぞれ <strong>500 $GANJA</strong> をプレゼント！</li>
+              <li><strong>定期BURN🔥</strong>: 隔週、全プレイヤーが獲得した累計ポイントと同額の $GANJA をBURN（焼却）します！</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gamepad"></i> 操作方法 & キーボード割り当て</h4>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
+              画面上でXアカウント名を入力してモードを選択。画面上のAボタンまたはキーボードで操作できます。
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.82rem;">
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">ジャンプ / 再スタート</strong><br> Space / ↑ 矢印キー（または Aボタン）
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">ポーズ（一時停止/再開）</strong><br> Enter キー
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">リーダーボード表示</strong><br> M / Backspace キー
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
+                <strong style="color: #f472b6;">ランキング ページ切り替え</strong><br> ← / → 矢印キー
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 10px;">
+              ※ゲームプレイ中にスタートボタンでポーズ後、セレクトボタンでリーダーボード呼出可能。十字キーでレジェンドボードもチェックできます！
+            </p>
+          </div>
+        </div>
+
+        <!-- EVENT: Giveaway -->
+        <div id="event-giveaway" class="tab-content">
+          <p style="color: var(--text-sub); margin-bottom: 14px;">コミュニティ還元！隔週Giveawayイベント。</p>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-clipboard-check"></i> 参加手順</h4>
+            <ul class="step-list">
+              <li><strong>条件1</strong>: <a href="https://x.com/nikuningyou29" target="_blank" style="color: var(--emerald-green);">@nikuningyou29</a> をフォロー</li>
+              <li><strong>条件2</strong>: <code>@nikuningyou29</code> を含めて、GanjaFlareや$GANJAへの熱いメッセージや好きなところをXでポスト！🌿🔥</li>
+            </ul>
+
+            <a href="https://x.com/intent/tweet?text=@nikuningyou29%20" target="_blank" class="btn-mint-style x-btn" style="margin-top: 12px; width: 100%;">
+              <i class="fa-brands fa-x-twitter"></i> JOIN（Xでポストして参加）
+            </a>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-circle-info"></i> ルール & 当選連絡</h4>
+            <ul class="step-list">
+              <li>約2週間に1度、勝者（1名）を決定し賞金やNFTをプレゼント！</li>
+              <li>勝者にはXのDM（ダイレクトメッセージ）にて直接ご連絡します。</li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 14px; padding: 14px; margin-top: 15px;">
+            <div style="color: #f472b6; font-weight: 800; font-size: 0.88rem; margin-bottom: 6px;">
+              💡 投稿時のワンポイントアドバイス
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-sub); line-height: 1.6;">
+              XのAI制限（シャドウバン等）を避けるため、投稿文には<strong>「$マーク」</strong>や<strong>「当選・プレゼント」</strong>などの単語を使わず、プロジェクトへの純粋な想いやカルチャーについて書いてね！
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section id="game">
-      <div class="sec-title"><i class="fa-solid fa-gamepad"></i> GCR</div>
-      <div class="hub-card">
-        <p style="color: var(--text-sub);">公式アクションゲーム「GanjaCatRun」！プレイしてハイスコアを目指そう。</p>
-      </div>
-    </section>
-
-    <section id="giveaway">
-      <div class="sec-title"><i class="fa-solid fa-gift"></i> GIVEAWAY</div>
-      <div class="hub-card">
-        <p style="color: var(--text-sub);">X（旧Twitter）などを通じた隔週Giveawayやエアドロップイベントの告知エリア。</p>
-      </div>
-    </section>
-
+    <!-- 5. TEAM -->
     <section id="team">
       <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
       <div class="hub-card">
@@ -701,6 +810,7 @@
       </div>
     </section>
 
+    <!-- 6. TOKENOMICS -->
     <section id="tokenomics">
       <div class="sec-title"><i class="fa-solid fa-coins"></i> TOKENOMICS</div>
       <div class="hub-card">
@@ -728,10 +838,27 @@
       });
     });
 
-    // ワンタップコピー機能（より確実なフォールバック付き）
+    // 汎用タブ切り替え関数（DEX, EVENT対応）
+    function switchTab(section, tabName) {
+      const sectionElem = document.getElementById(section);
+      if (!sectionElem) return;
+
+      const buttons = sectionElem.querySelectorAll('.tab-btn');
+      const contents = sectionElem.querySelectorAll('.tab-content');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      const targetContent = document.getElementById(`${section}-${tabName}`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    }
+
+    // ワンタップコピー機能
     function copyContract() {
       const addr = "0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7";
-      
       const setSuccessUI = () => {
         const copyBtn = document.getElementById('copyBtn');
         copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
@@ -765,27 +892,7 @@
       document.body.removeChild(textArea);
     }
 
-    // POOL タブ切り替え機能修復
-    function switchPoolTab(type) {
-      const blazeBtn = document.getElementById('tabBtnBlaze');
-      const sparkBtn = document.getElementById('tabBtnSpark');
-      const blazeGuide = document.getElementById('blazeGuide');
-      const sparkGuide = document.getElementById('sparkGuide');
-
-      if (type === 'blaze') {
-        blazeBtn.classList.add('active');
-        sparkBtn.classList.remove('active');
-        blazeGuide.classList.add('active');
-        sparkGuide.classList.remove('active');
-      } else {
-        sparkBtn.classList.add('active');
-        blazeBtn.classList.remove('active');
-        sparkGuide.classList.add('active');
-        blazeGuide.classList.remove('active');
-      }
-    }
-
-    // NFT 7色コインGIFスライダー修復
+    // NFT 7色コインGIFスライダー
     const coinImgs = document.querySelectorAll('#coinSlideshow img');
     let currentCoinIdx = 0;
 
