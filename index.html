@@ -727,7 +727,7 @@
     <img src="images/ganjacat01.png" class="drift-cat" alt="GanjaCat Rocket">
   </div>
 
-  <!-- 上部固定ナビゲーション（全体に翻訳不可ロックを適用） -->
+  <!-- 上部固定ナビゲーション（header全体に翻訳ロック適用） -->
   <header class="notranslate" translate="no">
     <div class="nav-container">
       <a href="#home" class="logo">
@@ -792,6 +792,7 @@
             <span class="notranslate" translate="no">BlazeSwap</span> および <span class="notranslate" translate="no">SparkDEX</span> にて分散型トレードが可能です。
           </p>
 
+          <!-- コピーボックス（コントラクト表記固定） -->
           <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
             <div>
               <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
@@ -1056,12 +1057,266 @@
           <canvas id="tokenomicsChart"></canvas>
         </div>
 
-        <div style="background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(2突然のことで大変驚かれたと思います。画面の表示や大切なテキスト、あるいは作成中のデータなどが消えてしまった状況でしょうか？
+        <div style="background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 16px; padding: 18px; margin-bottom: 20px;">
+          <h3 style="color: #f472b6; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px;">
+            <i class="fa-solid fa-fire"></i> 毎月恒久 <span class="notranslate" translate="no">BURN</span>（定期焼却）
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-main); line-height: 1.6;">
+            <span class="notranslate" translate="no">GanjaFlare</span>はプロジェクトの透明性と <span class="notranslate" translate="no">$GANJA</span> の希少性を高めるべく、<strong>毎月1回 <span class="notranslate" translate="no">777,777 $GANJA</span> を<span class="notranslate" translate="no">BURN</span>（焼却）</strong>します！<br>
+            <span style="color: var(--emerald-green); font-weight: 700;">（これは総供給枚数 <span class="notranslate" translate="no">42,000,000 $GANJA</span> に対し、1.85%以上に相当します）</span>
+          </p>
+        </div>
 
-まずは落ち着いて、以下の点をご確認・お試しください。
+        <button class="accordion-btn" onclick="toggleAccordion('tokDoc')">
+          <span><i class="fa-solid fa-file-contract"></i> トークン・エコノミクス詳細設計文書</span>
+          <i class="fa-solid fa-chevron-down" id="tokDocIcon"></i>
+        </button>
+        <div id="tokDoc" class="accordion-content">
+          <h4 style="color: var(--emerald-green); margin: 10px 0 5px;">I. 供給構造の決定論的永続性</h4>
+          <p><span class="notranslate" translate="no">$GANJA</span> トークンは総供給量 42,000,000 単位に固定され、スマートコントラクトレベルで不変性が保証されています。</p>
+        </div>
 
-* **画面の更新や戻る操作:** ブラウザの「戻る」ボタン（←）や `Ctrl + Z`（Macは `Cmd + Z`）で直前の状態に戻るか確認する。
-* **画面のスクロール:** 単に画面が下や上に移動してしまい、白紙に見えている可能性がないかスクロールしてみる。
-* **履歴の確認:** 使用しているアプリやサービスに「履歴」「下書き」「復元」などの機能がないか探す。
+        <button class="accordion-btn" onclick="toggleAccordion('discDoc')">
+          <span><i class="fa-solid fa-shield-halved"></i> 重要なお願い・免責事項 & 法的遵守</span>
+          <i class="fa-solid fa-chevron-down" id="discDocIcon"></i>
+        </button>
+        <div id="discDoc" class="accordion-content">
+          <p><strong>1. 投資助言の禁止</strong>: <span class="notranslate" translate="no">$GANJA</span>は文化・コミュニティ活動のシンボルであり、投資商品ではありません。</p>
+        </div>
 
-どのような状況で何が消えてしまったのか（例：チャットの返信文、特定のアプリのデータ、作成中のファイルなど）、詳しい情報をお知らせいただければ、復元方法や対処法を一緒にお探しします。
+        <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 20px;">
+          <h3 style="color: var(--emerald-green); font-size: 1.05rem; font-weight: 800;">
+            <i class="fa-solid fa-hand-holding-heart"></i> 運営寄付のお願い
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-sub); margin: 8px 0;">
+            <span class="notranslate" translate="no">GanjaFlare</span>は非営利のコミュニティプロジェクトです。
+          </p>
+
+          <div class="copy-box" onclick="copyContract('0xE809127d1927EE013834B9E95A53E0b37B688eF7', 'donateCopyBtn')">
+            <div>
+              <div class="copy-text notranslate" translate="no">0xE809127d1927EE013834B9E95A53E0b37B688eF7</div>
+            </div>
+            <div class="copy-btn" id="donateCopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div class="footer-socials">
+        <a href="https://x.com/nikuningyou29" target="_blank" class="footer-icon-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://discord.com/invite/N49czBczAE" target="_blank" class="footer-icon-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://linktr.ee/GanjaFlare" target="_blank" class="footer-icon-btn" title="Linktree"><i class="fa-solid fa-link"></i></a>
+        <a href="https://www.youtube.com/@GanjaFlare/shorts" target="_blank" class="footer-icon-btn" title="YouTube Shorts"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://t.me/+2jIGRmKaoUU3MjQ1" target="_blank" class="footer-icon-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <a href="mailto:ganjaflare@gmail.com" class="footer-icon-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <p style="font-size: 0.8rem; color: #94a3b8;" class="notranslate" translate="no">
+        © GanjaFlare — Bringing passion and trust to the Flare ecosystem!
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ja',
+        includedLanguages: 'en,zh-CN,ja',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+
+    function changeLanguage(langCode) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = langCode;
+        select.dispatchEvent(new Event('change'));
+      } else {
+        if (langCode !== 'ja') {
+          window.location.href = `https://translate.google.com/translate?sl=ja&tl=${langCode}&u=${encodeURIComponent(window.location.href)}`;
+        }
+      }
+    }
+
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    function switchTab(section, tabName) {
+      const sectionElem = document.getElementById(section);
+      if (!sectionElem) return;
+
+      const buttons = sectionElem.querySelectorAll('.tab-btn');
+      const contents = sectionElem.querySelectorAll('.tab-content');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      const targetContent = document.getElementById(`${section}-${tabName}`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    }
+
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(`${id}Icon`);
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        if (icon) icon.className = 'fa-solid fa-chevron-down';
+      } else {
+        content.style.display = 'block';
+        if (icon) icon.className = 'fa-solid fa-chevron-up';
+      }
+    }
+
+    function copyContract(addrText, btnId) {
+      const setSuccessUI = () => {
+        const copyBtn = document.getElementById(btnId);
+        if (!copyBtn) return;
+        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
+        copyBtn.style.background = '#059669';
+        copyBtn.style.color = '#ffffff';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> COPY';
+          copyBtn.style.background = 'rgba(52, 211, 153, 0.2)';
+          copyBtn.style.color = 'var(--emerald-green)';
+        }, 2000);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addrText).then(setSuccessUI).catch(() => fallbackCopy(addrText, setSuccessUI));
+      } else {
+        fallbackCopy(addrText, setSuccessUI);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        callback();
+      } catch (err) {
+        alert("コピーに失敗しました。手動でご入力ください。");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    const coinImgs = document.querySelectorAll('#coinSlideshow img');
+    let currentCoinIdx = 0;
+
+    if (coinImgs.length > 0) {
+      setInterval(() => {
+        coinImgs[currentCoinIdx].classList.remove('active');
+        currentCoinIdx = (currentCoinIdx + 1) % coinImgs.length;
+        coinImgs[currentCoinIdx].classList.add('active');
+      }, 1200);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+      
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
+          datasets: [{
+            data: [24000000, 18000000],
+            backgroundColor: [
+              '#34d399',
+              '#a855f7'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 4,
+            hoverOffset: 12
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          layout: {
+            padding: 0
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              align: 'center',
+              labels: {
+                color: '#f8fafc',
+                font: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
+                padding: 12,
+                boxWidth: 14
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const value = context.raw.toLocaleString();
+                  return ` ${context.label}: ${value} $GANJA`;
+                }
+              }
+            }
+          },
+          cutout: '65%'
+        }
+      });
+    });
+
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#34d399", "#10b981", "#3b82f6", "#a855f7"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 4, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 130,
+          "color": "#34d399",
+          "opacity": 0.25,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.8,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 150, "line_linked": { "opacity": 0.7 } }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
