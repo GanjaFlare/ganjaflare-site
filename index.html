@@ -897,11 +897,58 @@
         </div>
 
         <div id="nft-v2" class="tab-content">
-          <div style="text-align: center; padding: 40px 10px;">
-            <i class="fa-solid fa-rocket" style="font-size: 3rem; color: var(--emerald-green); margin-bottom: 15px; text-shadow: 0 0 20px rgba(52, 211, 153, 0.5);"></i>
-            <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--emerald-green);"><span class="notranslate" translate="no">NFT v2</span> — Coming Soon!</h3>
-            <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 10px;">
-              次世代の<span class="notranslate" translate="no">GanjaFlare NFT</span>コレクションを展開予定。最新情報は公式Xおよび<span class="notranslate" translate="no">Discord</span>にて順次公開されます！
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+            <p style="color: var(--text-sub);" class="notranslate" translate="no">GanjaFlare NFT v2 — 毒猫絵巻</p>
+            <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="margin:0; padding: 8px 16px; font-size: 0.82rem;">
+              <i class="fa-solid fa-expand"></i> 全画面で表示
+            </a>
+          </div>
+
+          <div class="lotto-iframe-container" style="height: 650px;">
+            <iframe src="https://ganjaflarenftv2dapp.vercel.app/" title="GanjaFlare NFT v2 DApp"></iframe>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); font-size: 1.1rem; font-weight: 800; margin-bottom: 12px;" class="notranslate" translate="no">
+              GanjaFlare NFT v2
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.88rem; margin-bottom: 15px;">
+              <div><strong>コレクション名 :</strong> <span class="notranslate" translate="no">毒猫絵巻</span></div>
+              <div><strong>総発行枚数 :</strong> 420枚</div>
+              <div><strong>シンボル :</strong> <span class="notranslate" translate="no">DNE</span></div>
+              <div><strong>ネットワーク :</strong> <span class="notranslate" translate="no">Flare Mainnet</span></div>
+            </div>
+
+            <div class="copy-box" onclick="copyContract('0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a', 'nftV2CopyBtn')">
+              <div>
+                <div class="copy-text notranslate" translate="no">0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a</div>
+              </div>
+              <div class="copy-btn" id="nftV2CopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gift"></i> Airdrop & MINT</h4>
+            <ul class="step-list">
+              <li><span class="notranslate" translate="no">GanjaFlare NFT v1</span> を1枚保有につき <strong class="notranslate" translate="no">1 DNE</strong> を <span class="notranslate" translate="no">Airdrop</span></li>
+              <li>1 MINT = <strong>22 FLR / 1 DNE</strong></li>
+            </ul>
+            <div style="margin-top: 12px; font-size: 0.85rem; color: #f472b6; font-weight: 700;">
+              <div>🎁 Airdrop：9月3日 12:00 UTC</div>
+              <div>🪙 Public Mint：9月5日 12:00 UTC</div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> Reward system（毎月1日の報酬システム）</h4>
+            <div class="rarity-grid">
+              <div class="rarity-card"><div class="name">LEGENDARY 👑</div><div class="rate">150点 以上</div><div class="reward notranslate" translate="no">60 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">EPIC 💎</div><div class="rate">90〜149点</div><div class="reward notranslate" translate="no">35 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">RARE 🔨</div><div class="rate">60〜89点</div><div class="reward notranslate" translate="no">20 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">COMMON 🥦</div><div class="rate">59点 以下</div><div class="reward notranslate" translate="no">12 $GANJA</div></div>
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;">
+              （未請求報酬は1ヶ月後に消滅します）
             </p>
           </div>
         </div>
