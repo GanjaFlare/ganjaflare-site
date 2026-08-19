@@ -426,8 +426,6 @@
 
     /* ロック状態のタブボタン用スタイル */
     .tab-btn.locked {
-      cursor: not-allowed;
-      opacity: 0.7;
       color: #f472b6;
       background: rgba(244, 114, 182, 0.08);
       border: 1px dashed rgba(244, 114, 182, 0.4);
@@ -896,12 +894,12 @@
       </div>
     </section>
 
-    <!-- 3. NFT (左：NFT v2 / 右：NFT v1 に順序変更＆v2の初期表示＆タイマー翻訳ロック) -->
+    <!-- 3. NFT (左：NFT v2 / 右：NFT v1 - タイマー制御パターンB実装) -->
     <section id="nft">
       <div class="sec-title"><i class="fa-solid fa-gem"></i> <span class="notranslate" translate="no">NFT</span></div>
       <div class="hub-card">
         <div class="tab-container">
-          <!-- 左：NFT v2 カウントダウン用タブボタン（初期アクティブ） -->
+          <!-- 左：NFT v2 タブボタン -->
           <button class="tab-btn locked active notranslate" translate="no" id="nftv2-tab-btn" onclick="switchTab('nft', 'v2')">
             <i class="fa-solid fa-clock"></i> <span id="nftv2-timer-text" class="notranslate" translate="no">計算中...</span>
           </button>
@@ -914,66 +912,87 @@
 
         <!-- NFT v2 (左・初期アクティブ) -->
         <div id="nft-v2" class="tab-content active">
-          <!-- 動画表示エリア -->
-          <div style="margin-bottom: 16px; text-align: center;">
-            <div style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3);">
-              <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block;">
-                <source src="images/transfer_gate.mp4" type="video/mp4">
-                お使いのブラウザは動画タグに対応していません。
-              </video>
+          
+          <!-- カウントダウン中（ロック状態）の専用表示エリア -->
+          <div id="nftv2-locked-view" style="text-align: center; padding: 50px 20px; background: rgba(0, 0, 0, 0.4); border: 1px dashed var(--border-emerald); border-radius: 18px; margin: 10px 0;">
+            <div style="font-size: 2.8rem; color: #f472b6; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.5));">
+              <i class="fa-solid fa-lock"></i>
             </div>
-          </div>
-
-          <!-- ナビゲーションボタン -->
-          <div style="text-align: center; margin-bottom: 24px;">
-            <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); font-size: 1rem; padding: 14px 28px; width: 100%; max-width: 480px; box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);">
-              <i class="fa-solid fa-rocket"></i> <span class="notranslate" translate="no">毒猫絵巻 DApp</span> へ移動する <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-
-          <div class="info-card">
-            <h4 style="color: var(--emerald-green); font-size: 1.1rem; font-weight: 800; margin-bottom: 12px;" class="notranslate" translate="no">
+            <h3 style="color: var(--emerald-green); font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;" class="notranslate" translate="no">
               GanjaFlare NFT v2
-            </h4>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.88rem; margin-bottom: 15px;">
-              <div><strong>コレクション名 :</strong> <span class="notranslate" translate="no">毒猫絵巻</span></div>
-              <div><strong>総発行枚数 :</strong> 420枚</div>
-              <div><strong>シンボル :</strong> <span class="notranslate" translate="no">DNE</span></div>
-              <div><strong>ネットワーク :</strong> <span class="notranslate" translate="no">Flare Mainnet</span></div>
-            </div>
-
-            <div class="copy-box" onclick="copyContract('0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a', 'nftV2CopyBtn')">
-              <div>
-                <div class="copy-text notranslate" translate="no">0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a</div>
-              </div>
-              <div class="copy-btn" id="nftV2CopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gift"></i> Airdrop & MINT</h4>
-            <ul class="step-list">
-              <li><span class="notranslate" translate="no">GanjaFlare NFT v1</span> を1枚保有につき <strong class="notranslate" translate="no">1 <span class="notranslate" translate="no">DNE</span></strong> を <span class="notranslate" translate="no">Airdrop</span></li>
-              <li>1 MINT = <strong>22 FLR / 1 <span class="notranslate" translate="no">DNE</span></strong></li>
-            </ul>
-            <div style="margin-top: 12px; font-size: 0.85rem; color: #f472b6; font-weight: 700;">
-              <div>🎁 Airdrop：9月3日 12:00 UTC</div>
-              <div>🪙 Public Mint：9月5日 12:00 UTC</div>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> Reward system（毎月1日の報酬システム）</h4>
-            <div class="rarity-grid">
-              <div class="rarity-card"><div class="name">LEGENDARY 👑</div><div class="rate">150点 以上</div><div class="reward notranslate" translate="no">60 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">EPIC 💎</div><div class="rate">90〜149点</div><div class="reward notranslate" translate="no">35 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">RARE 🔨</div><div class="rate">60〜89点</div><div class="reward notranslate" translate="no">20 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">COMMON 🥦</div><div class="rate">59点 以下</div><div class="reward notranslate" translate="no">12 $GANJA</div></div>
-            </div>
-            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;">
-              （未請求報酬は1ヶ月後に消滅します）
+            </h3>
+            <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 22px;">
+              毒猫絵巻 DApp ＆ 公開ミント 解禁までカウントダウン中...
             </p>
+            <div id="nftv2-big-timer" class="notranslate" translate="no" style="font-size: 1.8rem; font-weight: 800; color: #ffffff; text-shadow: 0 0 15px rgba(244, 114, 182, 0.6); background: rgba(15, 23, 42, 0.85); display: inline-block; padding: 12px 28px; border-radius: 16px; border: 1px solid rgba(244, 114, 182, 0.4); box-shadow: 0 0 20px rgba(0,0,0,0.5);">
+              --d --h --m --s
+            </div>
           </div>
+
+          <!-- 解放後のフルコンテンツ画面（タイマー「0」まで初期非表示） -->
+          <div id="nftv2-unlocked-view" style="display: none;">
+            <!-- 動画表示エリア -->
+            <div style="margin-bottom: 16px; text-align: center;">
+              <div style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3);">
+                <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block;">
+                  <source src="images/transfer_gate.mp4" type="video/mp4">
+                  お使いのブラウザは動画タグに対応していません。
+                </video>
+              </div>
+            </div>
+
+            <!-- ナビゲーションボタン -->
+            <div style="text-align: center; margin-bottom: 24px;">
+              <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); font-size: 1rem; padding: 14px 28px; width: 100%; max-width: 480px; box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);">
+                <i class="fa-solid fa-rocket"></i> <span class="notranslate" translate="no">毒猫絵巻 DApp</span> へ移動する <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="info-card">
+              <h4 style="color: var(--emerald-green); font-size: 1.1rem; font-weight: 800; margin-bottom: 12px;" class="notranslate" translate="no">
+                GanjaFlare NFT v2
+              </h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.88rem; margin-bottom: 15px;">
+                <div><strong>コレクション名 :</strong> <span class="notranslate" translate="no">毒猫絵巻</span></div>
+                <div><strong>総発行枚数 :</strong> 420枚</div>
+                <div><strong>シンボル :</strong> <span class="notranslate" translate="no">DNE</span></div>
+                <div><strong>ネットワーク :</strong> <span class="notranslate" translate="no">Flare Mainnet</span></div>
+              </div>
+
+              <div class="copy-box" onclick="copyContract('0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a', 'nftV2CopyBtn')">
+                <div>
+                  <div class="copy-text notranslate" translate="no">0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a</div>
+                </div>
+                <div class="copy-btn" id="nftV2CopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gift"></i> Airdrop & MINT</h4>
+              <ul class="step-list">
+                <li><span class="notranslate" translate="no">GanjaFlare NFT v1</span> を1枚保有につき <strong class="notranslate" translate="no">1 <span class="notranslate" translate="no">DNE</span></strong> を <span class="notranslate" translate="no">Airdrop</span></li>
+                <li>1 MINT = <strong>22 FLR / 1 <span class="notranslate" translate="no">DNE</span></strong></li>
+              </ul>
+              <div style="margin-top: 12px; font-size: 0.85rem; color: #f472b6; font-weight: 700;">
+                <div>🎁 Airdrop：9月3日 12:00 UTC</div>
+                <div>🪙 Public Mint：9月5日 12:00 UTC</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> Reward system（毎月1日の報酬システム）</h4>
+              <div class="rarity-grid">
+                <div class="rarity-card"><div class="name">LEGENDARY 👑</div><div class="rate">150点 以上</div><div class="reward notranslate" translate="no">60 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">EPIC 💎</div><div class="rate">90〜149点</div><div class="reward notranslate" translate="no">35 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">RARE 🔨</div><div class="rate">60〜89点</div><div class="reward notranslate" translate="no">20 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">COMMON 🥦</div><div class="rate">59点 以下</div><div class="reward notranslate" translate="no">12 $GANJA</div></div>
+              </div>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;">
+                （未請求報酬は1ヶ月後に消滅します）
+              </p>
+            </div>
+          </div>
+
         </div>
 
         <!-- NFT v1 (右) -->
@@ -1026,7 +1045,7 @@
       </div>
     </section>
 
-    <!-- 4. GAME (タブ名を Lotto / GCR / Giveaway に変更) -->
+    <!-- 4. GAME -->
     <section id="game">
       <div class="sec-title"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GAME</span></div>
       <div class="hub-card">
@@ -1075,7 +1094,7 @@
             <iframe src="https://ganjaflare.github.io/GanjaCatRun-Web/" title="GanjaCatRun Game"></iframe>
           </div>
 
-          <!-- エラー頻発時の避難所（GAS版）ボタン：カラーを落ち着いたマイルドなトーンへ調整 -->
+          <!-- エラー頻発時の避難所（GAS版）ボタン -->
           <div style="margin: 15px 0; padding: 12px 16px; background: rgba(159, 18, 57, 0.25); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 14px; text-align: center;">
             <p style="font-size: 0.82rem; color: #fecdd3; margin-bottom: 8px; font-weight: 700;">
               <i class="fa-solid fa-triangle-exclamation"></i> ゲーム画面でエラーが頻発する場合はこちら
@@ -1125,7 +1144,6 @@
               <li><strong>条件2</strong>: <code class="notranslate" translate="no">@nikuningyou29</code> を含めて、<span class="notranslate" translate="no">GanjaFlare</span>や<span class="notranslate" translate="no">$GANJA</span>への熱いメッセージや好きなところをXでポスト！🌿🔥</li>
             </ul>
 
-            <!-- JOINボタンのテキストを「JOIN」のみに変更 -->
             <a href="https://x.com/intent/tweet?text=@nikuningyou29%20" target="_blank" class="btn-mint-style x-btn" style="margin-top: 12px; width: 100%;">
               <i class="fa-brands fa-x-twitter"></i> JOIN
             </a>
@@ -1143,7 +1161,7 @@
       </div>
     </section>
 
-    <!-- 5. TOKENOMICS (Flare Explorer リンクボタン＆コピー付きコントラクトアドレスを追加) -->
+    <!-- 5. TOKENOMICS -->
     <section id="tokenomics">
       <div class="sec-title"><i class="fa-solid fa-coins"></i> <span class="notranslate" translate="no">TOKENOMICS</span></div>
       <div class="hub-card">
@@ -1158,7 +1176,6 @@
           </div>
         </div>
 
-        <!-- 追加：コントラクトアドレス＆エクスプローラーボタン -->
         <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'tokCopyBtn')">
           <div>
             <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">$GANJA コントラクトアドレス</div>
@@ -1260,7 +1277,7 @@
       </div>
     </section>
 
-    <!-- 6. TEAM (紹介文をご指定の文言へ更新) -->
+    <!-- 6. TEAM -->
     <section id="team">
       <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
       <div class="hub-card">
@@ -1344,11 +1361,6 @@
 
     function switchTab(section, tabName) {
       const btn = event ? event.currentTarget : null;
-      // ロック中のタブはクリック無効化
-      if (btn && btn.classList.contains('locked')) {
-        return;
-      }
-
       const sectionElem = document.getElementById(section);
       if (!sectionElem) return;
 
@@ -1365,7 +1377,7 @@
       }
     }
 
-    /* NFT v2 カウントダウンタイマー処理 */
+    /* NFT v2 カウントダウンタイマー処理 (パターンB制御) */
     const launchTarget = new Date("2026-09-05T12:00:00Z").getTime(); // 9月5日 12:00 UTC (JST 21:00)
 
     function updateNftV2Countdown() {
@@ -1373,21 +1385,31 @@
       const distance = launchTarget - now;
       const btn = document.getElementById('nftv2-tab-btn');
       const timerText = document.getElementById('nftv2-timer-text');
+      const bigTimer = document.getElementById('nftv2-big-timer');
+      const lockedView = document.getElementById('nftv2-locked-view');
+      const unlockedView = document.getElementById('nftv2-unlocked-view');
 
       if (!btn || !timerText) return;
 
       if (distance <= 0) {
-        // カウントダウン終了時：ロック解除
+        // カウントダウン終了時：ロック解除＆フルコンテンツ表示
         btn.classList.remove('locked');
         btn.innerHTML = '<i class="fa-solid fa-sparkles"></i> <span class="notranslate" translate="no">NFT v2</span>';
+        if (lockedView) lockedView.style.display = 'none';
+        if (unlockedView) unlockedView.style.display = 'block';
       } else {
-        // カウントダウン中
+        // カウントダウン中：ロック画面を表示＆中身を隠す
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        timerText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        const timeStr = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        timerText.textContent = timeStr;
+        if (bigTimer) bigTimer.textContent = timeStr;
+
+        if (lockedView) lockedView.style.display = 'block';
+        if (unlockedView) unlockedView.style.display = 'none';
       }
     }
 
