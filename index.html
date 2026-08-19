@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- ★ここに追加★ 自動翻訳バーの強制起動をブロック -->
+  <!-- 自動翻訳バーの強制起動をブロック -->
   <meta name="google" content="notranslate">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title class="notranslate" translate="no">GanjaFlare - Flare's Freedom Energy</title>
   
-<!-- ファビコン（タブ・お気に入りアイコン）設定 -->
+  <!-- ファビコン（タブ・お気に入りアイコン）設定 -->
   <link rel="icon" type="image/png" href="images/Ganjalogo.png">
   <link rel="apple-touch-icon" href="images/Ganjalogo.png">
   
@@ -788,7 +788,7 @@
     <img src="images/ganjacat03.png" class="drift-bg-cat cat-bg-3" alt="GanjaCat Gold">
   </div>
 
-  <!-- 上部固定ナビゲーション（HOME -> NFT -> GAME -> DEX -> TOKENOMICS -> TEAM に順番変更） -->
+  <!-- 上部固定ナビゲーション -->
   <header class="notranslate" translate="no">
     <div class="nav-container">
       <a href="#home" class="logo">
@@ -806,8 +806,8 @@
       </ul>
 
       <div class="lang-switcher">
-        <button class="lang-btn active" onclick="changeLanguage('ja')">JP</button>
-        <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="changeLanguage('ja')">JP</button>
+        <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
         <button class="lang-btn" onclick="changeLanguage('zh-CN')">CN</button>
       </div>
 
@@ -816,7 +816,7 @@
   </header>
 
   <main>
-    <!-- 1. HOME (文章を新しい指定内容に更新) -->
+    <!-- 1. HOME -->
     <section id="home">
       <div class="hub-card">
         <div class="hero-grid">
@@ -840,14 +840,14 @@
       </div>
     </section>
 
-    <!-- 2. NFT (順序を HOME の直後に変更) -->
+    <!-- 2. NFT -->
     <section id="nft">
       <div class="sec-title"><i class="fa-solid fa-gem"></i> <span class="notranslate" translate="no">NFT</span></div>
       <div class="hub-card">
         <div class="tab-container">
           <!-- 左：NFT v2 タブボタン -->
           <button class="tab-btn locked active notranslate" translate="no" id="nftv2-tab-btn" onclick="switchTab('nft', 'v2')">
-            <i class="fa-solid fa-clock"></i> <span id="nftv2-timer-text" class="notranslate" translate="no">計算中...</span>
+            <i class="fa-solid fa-clock"></i> <span id="nftv2-timer-text" class="notranslate" translate="no">Calculating...</span>
           </button>
 
           <!-- 右：NFT v1 タブボタン -->
@@ -859,7 +859,7 @@
         <!-- NFT v2 (左・初期アクティブ) -->
         <div id="nft-v2" class="tab-content active">
           
-          <!-- カウントダウン中（ロック状態）の専用表示エリア（SOONのみのシンプル表示に変更） -->
+          <!-- カウントダウン中（ロック状態）の専用表示エリア -->
           <div id="nftv2-locked-view" style="text-align: center; padding: 60px 20px; background: rgba(0, 0, 0, 0.4); border: 1px dashed var(--border-emerald); border-radius: 18px; margin: 10px 0;">
             <div style="font-size: 3rem; color: #f472b6; margin-bottom: 16px; filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.6));">
               <i class="fa-solid fa-lock"></i>
@@ -869,14 +869,14 @@
             </div>
           </div>
 
-          <!-- 解放後のフルコンテンツ画面（タイマー「0」まで初期非表示） -->
+          <!-- 解放後のフルコンテンツ画面 -->
           <div id="nftv2-unlocked-view" style="display: none;">
             <!-- 動画表示エリア -->
             <div style="margin-bottom: 16px; text-align: center;">
               <div style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3);">
                 <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block;">
                   <source src="images/transfer_gate.mp4" type="video/mp4">
-                  お使いのブラウザは動画タグに対応していません。
+                  Your browser does not support the video tag.
                 </video>
               </div>
             </div>
@@ -985,7 +985,7 @@
       </div>
     </section>
 
-    <!-- 3. GAME (順序を NFT の直後に変更) -->
+    <!-- 3. GAME -->
     <section id="game">
       <div class="sec-title"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GAME</span></div>
       <div class="hub-card">
@@ -1101,7 +1101,7 @@
       </div>
     </section>
 
-    <!-- 4. DEX (順序を GAME の直後に変更) -->
+    <!-- 4. DEX -->
     <section id="dex">
       <div class="sec-title"><i class="fa-solid fa-right-left"></i> <span class="notranslate" translate="no">DEX</span></div>
       <div class="hub-card">
@@ -1325,22 +1325,50 @@
         includedLanguages: 'en,zh-CN,ja',
         autoDisplay: false
       }, 'google_translate_element');
+      
+      // デフォルト言語を英語（EN）にセットして初期化
+      setTimeout(() => {
+        changeLanguage('en');
+      }, 500);
+    }
+
+    // チャート用の多言語辞書データ
+    const chartTranslations = {
+      'ja': ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
+      'en': ['DEX Liquidity Pool (57.14%)', 'Community Strategic Reserve (42.86%)'],
+      'zh-CN': ['DEX 流动性池 (57.14%)', '社区战略储备 (42.86%)']
+    };
+
+    let tokenomicsChartInstance = null;
+
+    function updateChartLanguage(langCode) {
+      if (!tokenomicsChartInstance) return;
+      const labels = chartTranslations[langCode] || chartTranslations['en'];
+      tokenomicsChartInstance.data.labels = labels;
+      tokenomicsChartInstance.update();
     }
 
     function changeLanguage(langCode) {
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       if (event && event.target) {
         event.target.classList.add('active');
+      } else {
+        // スクリプトからの呼び出し時は対応するボタンをアクティブ化
+        const btns = document.querySelectorAll('.lang-btn');
+        btns.forEach(b => {
+          if (b.textContent.trim().toLowerCase() === (langCode === 'zh-CN' ? 'cn' : langCode)) {
+            b.classList.add('active');
+          }
+        });
       }
+
+      // チャートのテキストを更新
+      updateChartLanguage(langCode);
 
       const select = document.querySelector('.goog-te-combo');
       if (select) {
         select.value = langCode;
         select.dispatchEvent(new Event('change'));
-      } else {
-        if (langCode !== 'ja') {
-          window.location.href = `https://translate.google.com/translate?sl=ja&tl=${langCode}&u=${encodeURIComponent(window.location.href)}`;
-        }
       }
     }
 
@@ -1459,7 +1487,7 @@
         document.execCommand('copy');
         callback();
       } catch (err) {
-        alert("コピーに失敗しました。手動でご入力ください。");
+        alert("Copy failed. Please copy manually.");
       }
       document.body.removeChild(textArea);
     }
@@ -1478,10 +1506,10 @@
     document.addEventListener("DOMContentLoaded", () => {
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
       
-      new Chart(ctx, {
+      tokenomicsChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
+          labels: chartTranslations['en'],
           datasets: [{
             data: [24000000, 18000000],
             backgroundColor: [
