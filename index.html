@@ -1335,8 +1335,8 @@
       }
     }
 
-/* NFT v2 カウントダウンタイマー処理（テスト用：現在時刻の10秒後） */
-const launchTarget = new Date().getTime() + 150000;
+    /* NFT v2 カウントダウンタイマー処理 */
+    const launchTarget = new Date("2026-09-05T12:00:00Z").getTime(); // 9月5日 12:00 UTC (JST 21:00)
 
     function updateNftV2Countdown() {
       const now = new Date().getTime();
