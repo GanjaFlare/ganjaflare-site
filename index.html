@@ -783,7 +783,7 @@
     <img src="images/ganjacat03.png" class="drift-bg-cat cat-bg-3" alt="GanjaCat Gold">
   </div>
 
-  <!-- 上部固定ナビゲーション（TOKENOMICS と TEAM の順序を変更） -->
+  <!-- 上部固定ナビゲーション（EVENT -> GAME に変更） -->
   <header class="notranslate" translate="no">
     <div class="nav-container">
       <a href="#home" class="logo">
@@ -795,7 +795,7 @@
         <li><a href="#home">HOME</a></li>
         <li><a href="#dex">DEX</a></li>
         <li><a href="#nft">NFT</a></li>
-        <li><a href="#event">EVENT</a></li>
+        <li><a href="#game">GAME</a></li>
         <li><a href="#tokenomics">TOKENOMICS</a></li>
         <li><a href="#team">TEAM</a></li>
       </ul>
@@ -1021,17 +1021,17 @@
       </div>
     </section>
 
-    <!-- 4. EVENT -->
-    <section id="event">
-      <div class="sec-title"><i class="fa-solid fa-trophy"></i> <span class="notranslate" translate="no">EVENT</span></div>
+    <!-- 4. GAME (EVENT から GAME に変更) -->
+    <section id="game">
+      <div class="sec-title"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GAME</span></div>
       <div class="hub-card">
         <div class="tab-container">
-          <button class="tab-btn active" onclick="switchTab('event', 'lotto')"><i class="fa-solid fa-ticket"></i> <span class="notranslate" translate="no">Daily Lotto</span></button>
-          <button class="tab-btn" onclick="switchTab('event', 'gcr')"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GanjaCatRun</span></button>
-          <button class="tab-btn" onclick="switchTab('event', 'giveaway')"><i class="fa-solid fa-gift"></i> <span class="notranslate" translate="no">Giveaway</span></button>
+          <button class="tab-btn active" onclick="switchTab('game', 'lotto')"><i class="fa-solid fa-ticket"></i> <span class="notranslate" translate="no">Daily Lotto</span></button>
+          <button class="tab-btn" onclick="switchTab('game', 'gcr')"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GanjaCatRun</span></button>
+          <button class="tab-btn" onclick="switchTab('game', 'giveaway')"><i class="fa-solid fa-gift"></i> <span class="notranslate" translate="no">Giveaway</span></button>
         </div>
 
-        <div id="event-lotto" class="tab-content active">
+        <div id="game-lotto" class="tab-content active">
           <p style="color: var(--text-sub); margin-bottom: 14px;">毎日無料で挑戦！デイリーロト会場。</p>
 
           <div class="lotto-iframe-container">
@@ -1059,7 +1059,7 @@
           </div>
         </div>
 
-        <div id="event-gcr" class="tab-content">
+        <div id="game-gcr" class="tab-content">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
             <p style="color: var(--text-sub);">公式ランアクションゲーム「<span class="notranslate" translate="no">GanjaCatRun</span>」！</p>
             <a href="https://ganjaflare.github.io/GanjaCatRun-Web/" target="_blank" class="btn-mint-style" style="margin:0; padding: 8px 16px; font-size: 0.82rem;">
@@ -1069,6 +1069,16 @@
 
           <div class="gcr-game-frame">
             <iframe src="https://ganjaflare.github.io/GanjaCatRun-Web/" title="GanjaCatRun Game"></iframe>
+          </div>
+
+          <!-- エラー頻発時の避難所（GAS版）ボタン -->
+          <div style="margin: 15px 0; padding: 14px 16px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 14px; text-align: center;">
+            <p style="font-size: 0.85rem; color: #fca5a5; margin-bottom: 8px; font-weight: 700;">
+              <i class="fa-solid fa-triangle-exclamation"></i> ゲーム画面でエラーが頻発する場合はこちら
+            </p>
+            <a href="https://script.google.com/macros/s/AKfycbynwDqLFmF0lG4Ree0WWVEdm3Twl98SYd7Mtdi8fI7iMun3G9zAzoXA5Ohwy-t2RhJU/exec" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); margin: 0; font-size: 0.85rem; width: 100%; max-width: 400px; box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);">
+              <i class="fa-solid fa-life-ring"></i> 安定版（GAS避難所）でプレイする <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
 
           <div class="info-card">
@@ -1101,7 +1111,7 @@
           </div>
         </div>
 
-        <div id="event-giveaway" class="tab-content">
+        <div id="game-giveaway" class="tab-content">
           <p style="color: var(--text-sub); margin-bottom: 14px;">コミュニティ還元！隔週<span class="notranslate" translate="no">Giveaway</span>イベント。</p>
 
           <div class="info-card">
@@ -1128,7 +1138,7 @@
       </div>
     </section>
 
-    <!-- 5. TOKENOMICS（EVENT の次に移動） -->
+    <!-- 5. TOKENOMICS -->
     <section id="tokenomics">
       <div class="sec-title"><i class="fa-solid fa-coins"></i> <span class="notranslate" translate="no">TOKENOMICS</span></div>
       <div class="hub-card">
@@ -1230,7 +1240,7 @@
       </div>
     </section>
 
-    <!-- 6. TEAM（TOKENOMICS の後ろに移動） -->
+    <!-- 6. TEAM -->
     <section id="team">
       <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
       <div class="hub-card">
