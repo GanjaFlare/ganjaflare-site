@@ -1165,6 +1165,13 @@
             To enhance project transparency and scarcity of $GANJA, we <strong>burn 777,777 $GANJA once every month</strong>!<br>
             <span style="color: var(--emerald-green); font-weight: 700;">(Represents over 1.85% of the total 42,000,000 $GANJA supply)</span>
           </p>
+          
+          <!-- BURN HISTORY ボタン追加箇所 -->
+          <div style="margin-top: 12px; text-align: right;">
+            <a href="https://flare-explorer.flare.network/advanced-filter?to_address_hashes_to_include=0x000000000000000000000000000000000000dEaD&transaction_types=ERC-20&token_contract_address_hashes_to_include=0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7&token_contract_symbols_to_include=GANJA" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); font-size: 0.75rem; padding: 6px 14px; margin: 0; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);">
+              <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="tok_burn_history_btn">BURN HISTORY</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
+            </a>
+          </div>
         </div>
 
         <!-- Accordion 1 -->
@@ -1328,6 +1335,7 @@
         tok_contract_lbl: "$GANJA Contract Address", tok_explorer_btn: "View Token on Flare Explorer",
         tok_burn_title: "Permanent Monthly BURN",
         tok_burn_desc: "To enhance project transparency and scarcity of $GANJA, we <strong>burn 777,777 $GANJA once every month</strong>!<br><span style=\"color: var(--emerald-green); font-weight: 700;\">(Represents over 1.85% of the total 42,000,000 $GANJA supply)</span>",
+        tok_burn_history_btn: "BURN HISTORY",
         accordion_tok_title: "Tokenomics Detailed Specification",
         tok_sec1_h: "I. Deterministic Permanence of Supply Structure",
         tok_sec1_p: "The $GANJA token supply is strictly and permanently capped at 42,000,000 units. Minting functionality is eliminated at the smart contract level, systematically ruling out inflation risks and offering holders solid dilution protection and long-term stability.",
@@ -1398,6 +1406,7 @@
         tok_contract_lbl: "$GANJA コントラクトアドレス", tok_explorer_btn: "Flare Explorer でトークン情報を確認",
         tok_burn_title: "毎月恒久 BURN（定期焼却）",
         tok_burn_desc: "GanjaFlareはプロジェクトの透明性と $GANJA の希少性を高めるべく、<strong>毎月1回 777,777 $GANJA をBURN（焼却）</strong>します！<br><span style=\"color: var(--emerald-green); font-weight: 700;\">（これは総供給枚数 42,000,000 $GANJA に対し、1.85%以上に相当します）</span>",
+        tok_burn_history_btn: "BURN履歴（Flare Explorer）",
         accordion_tok_title: "トークン・エコノミクス詳細設計文書",
         tok_sec1_h: "I. 供給構造の決定論的永続性（Deterministic Permanence）",
         tok_sec1_p: "$GANJA トークンは、総供給量が 42,000,000 単位に厳格かつ永久に固定されています。スマートコントラクトレベルで「追加発行機能（Mint）」を排除して設計されており、将来的なインフレーション Riskを原理的に遮断。エコシステム参加者に対して確固たる希釈耐性と長期的な価値の安定性を提供します。",
@@ -1468,6 +1477,7 @@
         tok_contract_lbl: "$GANJA 合约地址", tok_explorer_btn: "在 Flare Explorer 查看代币信息",
         tok_burn_title: "每月永久销毁（定期销毁）",
         tok_burn_desc: "为了提高项目透明度与 $GANJA 的稀缺性，我们<strong>每月销毁 777,777 $GANJA 1次</strong>！<br><span style=\"color: var(--emerald-green); font-weight: 700;\">（相当于总供应量 42,000,000 $GANJA 的1.85%以上）</span>",
+        tok_burn_history_btn: "销毁历史（Flare Explorer）",
         accordion_tok_title: "代币经济学详细设计文档",
         tok_sec1_h: "I. 供应结构的确定性永久性（Deterministic Permanence）",
         tok_sec1_p: "$GANJA 代币的总供应量被严格且永久地固定为 42,000,000 単位。在智能合约层面消除了“增发功能（Mint）”，从原理上杜绝了通胀风险，为持有者提供坚实的防稀释保护与长期价值稳定性。",
@@ -1502,12 +1512,10 @@
 
     /* 言語切り替えメイン関数 */
     function setLanguage(lang) {
-      // 1. ボタンのアクティブ状態の更新
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`lang-btn-${lang}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      // 2. DOM テキストの一括書き換え
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (i18n[lang] && i18n[lang][key]) {
@@ -1515,13 +1523,11 @@
         }
       });
 
-      // 3. チャートの再描画
       if (tokenomicsChartInstance) {
         tokenomicsChartInstance.data.labels = chartLabels[lang] || chartLabels.en;
         tokenomicsChartInstance.update();
       }
 
-      // 4. html lang 属性の更新
       document.documentElement.lang = lang;
     }
 
@@ -1659,7 +1665,6 @@
 
     /* 初期化（DOMContentLoaded） */
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Chart.js 初期化
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
       
       tokenomicsChartInstance = new Chart(ctx, {
@@ -1702,7 +1707,6 @@
         }
       });
 
-      // 2. 初期言語を英語にセット
       setLanguage('en');
     });
 
