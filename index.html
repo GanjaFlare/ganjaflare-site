@@ -13,6 +13,8 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- TradingView Widget Script -->
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
@@ -102,7 +104,6 @@
       animation: driftCatAnim 22s ease-in-out infinite alternate;
     }
 
-    /* 背景浮遊マスコットキャラのスタイル＆アニメーション配置 */
     .drift-bg-cat {
       position: absolute;
       filter: drop-shadow(0 0 18px rgba(52, 211, 153, 0.35));
@@ -110,18 +111,9 @@
       pointer-events: none;
     }
 
-    .cat-bg-1 {
-      top: 15%; left: 8%; width: 110px;
-      animation: driftCatAnim1 26s ease-in-out infinite alternate;
-    }
-    .cat-bg-2 {
-      top: 55%; right: 5%; width: 120px;
-      animation: driftCatAnim2 24s ease-in-out infinite alternate;
-    }
-    .cat-bg-3 {
-      top: 75%; left: 10%; width: 115px;
-      animation: driftCatAnim3 28s ease-in-out infinite alternate;
-    }
+    .cat-bg-1 { top: 15%; left: 8%; width: 110px; animation: driftCatAnim1 26s ease-in-out infinite alternate; }
+    .cat-bg-2 { top: 55%; right: 5%; width: 120px; animation: driftCatAnim2 24s ease-in-out infinite alternate; }
+    .cat-bg-3 { top: 75%; left: 10%; width: 115px; animation: driftCatAnim3 28s ease-in-out infinite alternate; }
 
     @keyframes driftCatAnim1 {
       0% { transform: translate(0, 0) rotate(0deg) scale(0.95); }
@@ -486,12 +478,7 @@
       border: 1px solid var(--border-emerald);
       margin: 18px 0;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .dex-chart-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+      background: #0f172a;
     }
 
     .coin-slideshow {
@@ -770,7 +757,6 @@
     <img src="images/ganjablue.png" class="drift-coin coin-5" alt="Blue Coin">
     <img src="images/ganjasilver.png" class="drift-coin coin-6" alt="Silver Coin">
     
-    <!-- キャラクターたちの浮遊追加（ganjacat01と同様に画面内を漂う） -->
     <img src="images/ganjacat01.png" class="drift-cat" alt="GanjaCat Rocket">
     <img src="images/ganjacat16.png" class="drift-bg-cat cat-bg-1" alt="GanjaCat Trading">
     <img src="images/ganjacat20.png" class="drift-bg-cat cat-bg-2" alt="GanjaCat Zen">
@@ -855,9 +841,9 @@
             <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
           </a>
 
-          <!-- デフォルトで4h足（timeframe=4h） -->
+          <!-- TradingView ウィジェットによるWFLR建・4時間足固定チャート -->
           <div class="dex-chart-container">
-            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1&timeframe=4h" allow="clipboard-write" allowfullscreen></iframe>
+            <div id="tradingview_ganja_chart" style="width: 100%; height: 100%;"></div>
           </div>
         </div>
 
@@ -1371,6 +1357,22 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      // TradingView ウィジェット初期化（WFLR建・4時間足 '240' 固定）
+      new TradingView.widget({
+        "width": "100%",
+        "height": "100%",
+        "symbol": "BLAZESWAP:GANJAWFLR",
+        "interval": "240", // 4時間足固定
+        "timezone": "Asia/Tokyo",
+        "theme": "dark",
+        "style": "1",
+        "locale": "ja",
+        "toolbar_bg": "#0f172a",
+        "enable_publishing": false,
+        "hide_side_toolbar": false,
+        "container_id": "tradingview_ganja_chart"
+      });
+
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
       
       new Chart(ctx, {
