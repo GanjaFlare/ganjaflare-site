@@ -424,12 +424,13 @@
       box-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
     }
 
+    /* ロック状態のタブボタン用スタイル */
     .tab-btn.locked {
-      background: rgba(255, 255, 255, 0.05);
+      cursor: not-allowed;
+      opacity: 0.7;
       color: #f472b6;
+      background: rgba(244, 114, 182, 0.08);
       border: 1px dashed rgba(244, 114, 182, 0.4);
-      font-family: monospace;
-      font-size: 0.78rem;
     }
 
     .tab-content {
@@ -810,7 +811,7 @@
   </header>
 
   <main>
-    <!-- 1. HOME -->
+    <!-- 1. HOME (画面最上部に完全配置) -->
     <section id="home">
       <div class="hub-card">
         <div class="hero-grid">
@@ -846,6 +847,7 @@
             <span class="notranslate" translate="no">BlazeSwap</span> および <span class="notranslate" translate="no">SparkDEX</span> にて分散型トレードが可能です。
           </p>
 
+          <!-- コピーボックス -->
           <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
             <div>
               <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
@@ -859,6 +861,7 @@
             <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
           </a>
 
+          <!-- SparkDEX V3.1 プール（0xe0b9dac33219a84be0b40510198a3e599be383eb）GeckoTerminal Embed -->
           <div class="dex-chart-container">
             <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
           </div>
@@ -900,9 +903,9 @@
         <div class="tab-container">
           <button class="tab-btn active" onclick="switchTab('nft', 'v1')"><i class="fa-solid fa-layer-group"></i> <span class="notranslate" translate="no">NFT v1</span></button>
           
-          <!-- NFT v2 カウントダウンタイマー兼動的ボタン -->
-          <button class="tab-btn locked" id="nft-v2-tab-btn" onclick="handleNftV2Click(event)">
-            <i class="fa-solid fa-lock" id="nft-v2-icon"></i> <span id="nft-v2-timer-text">残り --日 --:--:--</span>
+          <!-- NFT v2 カウントダウン用タブボタン -->
+          <button class="tab-btn locked" id="nftv2-tab-btn" onclick="switchTab('nft', 'v2')">
+            <i class="fa-solid fa-clock"></i> <span id="nftv2-timer-text">計算中...</span>
           </button>
         </div>
 
@@ -953,6 +956,7 @@
         </div>
 
         <div id="nft-v2" class="tab-content">
+          <!-- 動画表示エリア -->
           <div style="margin-bottom: 16px; text-align: center;">
             <div style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3);">
               <video autoplay loop muted playsinline style="width: 100%; max-width: 800px; height: auto; display: block;">
@@ -962,6 +966,7 @@
             </div>
           </div>
 
+          <!-- ナビゲーションボタン -->
           <div style="text-align: center; margin-bottom: 24px;">
             <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); font-size: 1rem; padding: 14px 28px; width: 100%; max-width: 480px; box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);">
               <i class="fa-solid fa-rocket"></i> <span class="notranslate" translate="no">毒猫絵巻 DApp</span> へ移動する <i class="fa-solid fa-arrow-right"></i>
@@ -1274,7 +1279,9 @@
 
     function changeLanguage(langCode) {
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      if (event && event.target) {
+        event.target.classList.add('active');
+      }
 
       const select = document.querySelector('.goog-te-combo');
       if (select) {
@@ -1297,6 +1304,7 @@
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', (e) => {
         navMenu.classList.remove('active');
+        // HOMEクリック時は画面完全最上部へスクロール
         if (link.getAttribute('href') === '#home') {
           e.preventDefault();
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1305,90 +1313,201 @@
     });
 
     function switchTab(section, tabName) {
+      const btn = event ? event.currentTarget : null;
+      // ロック中のタブはクリック無効化
+      if (btn && btn.classList.contains('locked')) {
+        return;
+      }
+
       const sectionElem = document.getElementById(section);
       if (!sectionElem) return;
 
       const buttons = sectionElem.querySelectorAll('.tab-btn');
       const contents = sectionElem.querySelectorAll('.tab-content');
 
-      buttons.forEach(btn => btn.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
       contents.forEach(content => content.classList.remove('active'));
 
-      if (event && event.currentTarget) {
-        event.currentTarget.classList.add('active');
-      }
+      if (btn) btn.classList.add('active');
       const targetContent = document.getElementById(`${section}-${tabName}`);
       if (targetContent) {
         targetContent.classList.add('active');
       }
     }
 
-    /* NFT v2 ロック＆カウントダウン処理 */
-    // ローンチ日時: 2026年9月5日 12:00 UTC (日本時間 21:00)
-    const targetDate = new Date(Date.UTC(2026, 8, 5, 12, 0, 0)).getTime();
-    let isNftV2Unlocked = false;
+    /* NFT v2 カウントダウンタイマー処理 */
+    const launchTarget = new Date("2026-09-05T12:00:00Z").getTime(); // 9月5日 12:00 UTC (JST 21:00)
 
     function updateNftV2Countdown() {
       const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      const btn = document.getElementById('nft-v2-tab-btn');
-      const timerText = document.getElementById('nft-v2-timer-text');
-      const icon = document.getElementById('nft-v2-icon');
+      const distance = launchTarget - now;
+      const btn = document.getElementById('nftv2-tab-btn');
+      const timerText = document.getElementById('nftv2-timer-text');
 
       if (!btn || !timerText) return;
 
       if (distance <= 0) {
-        // カウントダウン終了：通常タブへ復帰
-        isNftV2Unlocked = true;
+        // カウントダウン終了時：ロック解除
         btn.classList.remove('locked');
-        btn.onclick = function(e) { switchTab('nft', 'v2'); };
-        icon.className = 'fa-solid fa-sparkles';
-        timerText.innerHTML = '<span class="notranslate" translate="no">NFT v2</span>';
+        btn.innerHTML = '<i class="fa-solid fa-sparkles"></i> <span class="notranslate" translate="no">NFT v2</span>';
       } else {
         // カウントダウン中
-        isNftV2Unlocked = false;
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);NFTv2のパブリックミント（9月5日 21:00 JST / 12:00 UTC）に向けた、カウントダウンタイマーによるアクセス制御の処理ですね。
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-HTML/JavaScript（Webサイト用）または React/Next.js 等で実装できるコード例を用意しました。お使いの環境に合わせて参考にしてください。
-
----
-
-## 1. JavaScript / HTML（標準的なWebサイト向け）
-
-NFTv2の領域（ナビゲーションメニューやコンテンツエリア）をIDで指定し、指定日時が来るまではタイマーを表示し、日時を過ぎたら自動的に元のコンテンツへ切り替えます。
-
-### 実装コード例
-
-```html
-<!-- 対象の要素（元々はNFTv2のリンクやボタンなど） -->
-<div id="nftv2-container">
-  <!-- タイマーが終了すると、ここが元のコンテンツ（NFTv2）に差し替わります -->
-</div>
-
-<script>
-  // ローンチ日時: UTC 2026年9月5日 12:00:00 (JST 21:00:00)
-  const targetDate = new Date(Date.UTC(2026, 8, 5, 12, 0, 0)).getTime();
-
-  function updateTimer() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    const container = document.getElementById("nftv2-container");
-
-    // 期限が切れた（ローンチ日時を過ぎた）場合
-    if (distance <= 0) {
-      clearInterval(timerInterval);
-      // 元のNFTv2コンテンツ（リンクやUI要素）を表示
-      container.innerHTML = `<a href="/nftv2" class="nftv2-link">NFTv2</a>`;
-      return;
+        timerText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
     }
 
-    // 残り時間の計算
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // カウントダウンの即時実行と1秒ごとの更新
+    updateNftV2Countdown();
+    setInterval(updateNftV2Countdown, 1000);
+
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(`${id}Icon`);
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        if (icon) icon.className = 'fa-solid fa-chevron-down';
+      } else {
+        content.style.display = 'block';
+        if (icon) icon.className = 'fa-solid fa-chevron-up';
+      }
+    }
+
+    function copyContract(addrText, btnId) {
+      const setSuccessUI = () => {
+        const copyBtn = document.getElementById(btnId);
+        if (!copyBtn) return;
+        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
+        copyBtn.style.background = '#059669';
+        copyBtn.style.color = '#ffffff';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> COPY';
+          copyBtn.style.background = 'rgba(52, 211, 153, 0.2)';
+          copyBtn.style.color = 'var(--emerald-green)';
+        }, 2000);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addrText).then(setSuccessUI).catch(() => fallbackCopy(addrText, setSuccessUI));
+      } else {
+        fallbackCopy(addrText, setSuccessUI);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        callback();
+      } catch (err) {
+        alert("コピーに失敗しました。手動でご入力ください。");
+      }
+      document.body.removeChild(textArea);
+    }
+
+    const coinImgs = document.querySelectorAll('#coinSlideshow img');
+    let currentCoinIdx = 0;
+
+    if (coinImgs.length > 0) {
+      setInterval(() => {
+        coinImgs[currentCoinIdx].classList.remove('active');
+        currentCoinIdx = (currentCoinIdx + 1) % coinImgs.length;
+        coinImgs[currentCoinIdx].classList.add('active');
+      }, 1200);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const ctx = document.getElementById('tokenomicsChart').getContext('2d');
+      
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
+          datasets: [{
+            data: [24000000, 18000000],
+            backgroundColor: [
+              '#34d399',
+              '#a855f7'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 4,
+            hoverOffset: 12
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          layout: {
+            padding: 0
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              align: 'center',
+              labels: {
+                color: '#f8fafc',
+                font: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
+                padding: 12,
+                boxWidth: 14
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const value = context.raw.toLocaleString();
+                  return ` ${context.label}: ${value} $GANJA`;
+                }
+              }
+            }
+          },
+          cutout: '65%'
+        }
+      });
+    });
+
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#34d399", "#10b981", "#3b82f6", "#a855f7"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 4, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 130,
+          "color": "#34d399",
+          "opacity": 0.25,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.8,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 150, "line_linked": { "opacity": 0.7 } }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
