@@ -581,6 +581,11 @@
       border: 1px solid var(--border-emerald);
       border-radius: 18px;
       padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .team-card:last-child {
+      margin-bottom: 0;
     }
 
     .team-img {
@@ -1166,7 +1171,6 @@
             <span style="color: var(--emerald-green); font-weight: 700;">(Represents over 1.85% of the total 42,000,000 $GANJA supply)</span>
           </p>
           
-          <!-- BURN HISTORY ボタン追加箇所 -->
           <div style="margin-top: 12px; text-align: right;">
             <a href="https://flare-explorer.flare.network/advanced-filter?to_address_hashes_to_include=0x000000000000000000000000000000000000dEaD&transaction_types=ERC-20&token_contract_address_hashes_to_include=0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7&token_contract_symbols_to_include=GANJA" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); font-size: 0.75rem; padding: 6px 14px; margin: 0; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);">
               <i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="tok_burn_history_btn">BURN HISTORY</span> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
@@ -1249,6 +1253,7 @@
     <section id="team">
       <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
       <div class="hub-card">
+        <!-- CEO Nikuningyou -->
         <div class="team-card">
           <img src="images/ganjacat02.png" class="team-img" alt="CEO Nikuningyou">
           <div>
@@ -1261,6 +1266,19 @@
             <a href="https://x.com/nikuningyou29" target="_blank" class="btn-mint-style x-btn" style="padding: 6px 14px; font-size: 0.78rem; margin:0;">
               <i class="fa-brands fa-x-twitter"></i> @nikuningyou29
             </a>
+          </div>
+        </div>
+
+        <!-- Official Character GanjaCat -->
+        <div class="team-card">
+          <img src="images/ganjacat00.png" class="team-img" alt="Official Character GanjaCat">
+          <div>
+            <h3 style="color: var(--emerald-green); font-size: 1.2rem; font-weight: 800; margin-bottom: 4px;">
+              GanjaCat <span style="font-size: 0.85rem; color: #f472b6; font-weight: 700;" data-i18n="team_cat_role">(Official Character)</span>
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px; line-height: 1.7;" data-i18n="team_cat_desc">
+              A cat born in Meteor City. Struck by lightning while harvesting cannabis, he passed away, was retrieved by a dark syndicate, and rebuilt as a cyborg. Powered by pizza, cannabis, ganja, and nitro. Mining ore is his pastime. After wandering into the Flare Network by chance, he casually handcrafted 42,000,000 $GANJA tokens on a whim. Seeing the community thrive is his sole reason for being—nothing more, nothing less.
+            </p>
           </div>
         </div>
       </div>
@@ -1355,7 +1373,9 @@
         donate_title: "Operations Donation",
         donate_desc: "GanjaFlare is a non-profit community project. Server and infrastructure fees are currently funded personally by CEO Nikuningyou. If you wish to support ongoing infrastructure operations, voluntary donations in crypto assets (FLR / WFLR, etc.) are deeply appreciated.",
         donate_notice: "⚠️ <strong>Notice</strong>: Donations are strictly voluntary support for infrastructure and do not convey any token distributions, rights, or financial returns.",
-        team_ceo_desc: "CEO, developer, designer, and moderator behind GanjaFlare. Operating under the persona of GanjaCat on X, driven purely by passion to boost the Flare Network ecosystem without interest in personal profit."
+        team_ceo_desc: "CEO, developer, designer, and moderator behind GanjaFlare. Operating under the persona of GanjaCat on X, driven purely by passion to boost the Flare Network ecosystem without interest in personal profit.",
+        team_cat_role: "(Official Character)",
+        team_cat_desc: "A cat born in Meteor City. Struck by lightning while harvesting cannabis, he passed away, was retrieved by a dark syndicate, and rebuilt as a cyborg. Powered by pizza, cannabis, ganja, and nitro. Mining ore is his pastime. After wandering into the Flare Network by chance, he casually handcrafted 42,000,000 $GANJA tokens on a whim. Seeing the community thrive is his sole reason for being—nothing more, nothing less."
       },
       ja: {
         nav_home: "ホーム", nav_nft: "NFT", nav_game: "ゲーム", nav_dex: "DEX", nav_tokenomics: "トークノミクス", nav_team: "チーム",
@@ -1426,7 +1446,9 @@
         donate_title: "運営寄付のお願い",
         donate_desc: "GanjaFlare は非営利のコミュニティ主導プロジェクトです。BOTのサーバー維持費やインフラ運用コストは、現在すべてCEO肉人形の自己資金によって賄われております。<br>もし GanjaFlare の活動に共感し、持続的なインフラ維持をご支援いただける方がいらっしゃいましたら、以下のウォレットアドレスより任意の暗号資産（FLR / WFLR 等）でのご寄付をいただけますと幸いでございます。",
         donate_notice: "⚠️ <strong>重要な注意事項</strong>：本寄付は純粋な運営支援であり、いかなる対価（トークンの配布、特別な権利やサービスの提供、将来の利益分配等）も発生いたしません。ご寄付いただいた資金は、全額インフラ維持費およびBOTの運用コストのみに充当させていただきます。いかなる投資助言も行っておらず、$GANJA は投資商品ではありません。あらかじめご了承の上、ご自身の判断にてお願いいたします。",
-        team_ceo_desc: "GanjaFlareプロジェクトのCEOでありエンジニア、デザイナー、モデレーター等、全てをたった1人でこなす狂人。流星街で生まれし忌み子。GanjaCatの皮を被ってXで活動中。利益に興味はなく、ただ単にFlareNetworkを盛り上げたい精神だけで生きている。"
+        team_ceo_desc: "GanjaFlareプロジェクトのCEOでありエンジニア、デザイナー、モデレーター等、全てをたった1人でこなす狂人。流星街で生まれし忌み子。GanjaCatの皮を被ってXで活動中。利益に興味はなく、ただ単にFlareNetworkを盛り上げたい精神だけで生きている。",
+        team_cat_role: "（公式キャラクター）",
+        team_cat_desc: "流星街で生まれた猫。大麻の収穫をしていたところ落雷を受け死亡。闇の組織に回収され、ロボットに改造される。原動力はピザ、大麻、ガンジャ、ニトロ。趣味はマイニングで鉱石を集めること。ひょんなことからFlareNetworkに迷い込み、思いつきで42,000,000枚の$GANJAトークンを手作りで生成した。コミュニティが盛り上がることに生きがいを感じている。彼の目的は、それ以上でもそれ以下でもない。"
       },
       zh: {
         nav_home: "主页", nav_nft: "NFT", nav_game: "游戏", nav_dex: "DEX", nav_tokenomics: "代币经济学", nav_team: "团队",
@@ -1497,7 +1519,9 @@
         donate_title: "运营捐赠请求",
         donate_desc: "GanjaFlare 是一个非营利性社区主导项目。机器人服务器维护费和基础设施运营成本目前完全由 CEO Nikuningyou 个人资金承担。如果您认同 GanjaFlare 的活动并希望支持持续的基础设施维护，非常感谢您通过以下钱包地址使用任意加密资产（FLR / WFLR 等）进行捐赠。",
         donate_notice: "⚠️ <strong>重要注意事项</strong>：本捐赠纯属运营支持，不产生任何回报（代币发放、特殊权利或服务提供、未来利润分配等）。捐赠资金将全额用于基础设施维护与机器人运营成本。不进行任何投资建议，$GANJA 并非投资商品。",
-        team_ceo_desc: "GanjaFlare 项目的 CEO，也是独自承担工程师、设计师、版主等所有工作的人。化身为 GanjaCat 在 X 上活动，纯粹出于推动 FlareNetwork 发展的热情，对个人利益不感兴趣。"
+        team_ceo_desc: "GanjaFlare 项目的 CEO，也是独自承担工程师、设计师、版主等所有工作的人。化身为 GanjaCat 在 X 上活动，纯粹出于推动 FlareNetwork 发展的热情，对个人利益不感兴趣。",
+        team_cat_role: "（官方角色）",
+        team_cat_desc: "出生于流星街的猫。在大麻收割过程中遭受雷击身亡，后被黑暗组织回收并改造为赛博机器人。动力源为比萨、大麻、甘茄与硝基。爱好是通过挖矿收集矿石。机缘巧合下迷失在 Flare Network 中，一时兴起随手制作了 42,000,000 枚 $GANJA 代币。看到社区蓬勃发展是他唯一的生存意义——不多，也不少。"
       }
     };
 
