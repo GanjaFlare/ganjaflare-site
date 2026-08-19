@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title class="notranslate" translate="no">GanjaFlare - Flare's Freedom Energy</title>
   
-  <!-- Favicon Settings -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/Ganjalogo.png">
   <link rel="apple-touch-icon" href="images/Ganjalogo.png">
   
@@ -18,7 +17,6 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
     :root {
@@ -49,28 +47,6 @@
       position: relative;
       overflow-x: hidden;
       line-height: 1.6;
-      top: 0px !important;
-    }
-
-    /* Google Translate Hide Elements */
-    #google_translate_element,
-    .goog-te-banner-frame,
-    .goog-te-balloon-frame,
-    .goog-tooltip,
-    .goog-tooltip:hover,
-    .goog-text-highlight,
-    iframe.skiptranslate,
-    .VIpgJd-yD32b-r4395e {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      height: 0 !important;
-      width: 0 !important;
-    }
-
-    body > .skiptranslate {
-      display: none !important;
     }
 
     #particles-js {
@@ -765,8 +741,6 @@
 </head>
 <body>
 
-  <div id="google_translate_element"></div>
-
   <div id="particles-js"></div>
 
   <!-- Background Floating Characters -->
@@ -785,7 +759,7 @@
   </div>
 
   <!-- Header Navigation -->
-  <header class="notranslate" translate="no">
+  <header>
     <div class="nav-container">
       <a href="#home" class="logo">
         <img src="images/Ganjalogo.svg" alt="GanjaFlare Logo">
@@ -793,18 +767,18 @@
       </a>
       
       <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#nft">NFT</a></li>
-        <li><a href="#game">GAME</a></li>
-        <li><a href="#dex">DEX</a></li>
-        <li><a href="#tokenomics">TOKENOMICS</a></li>
-        <li><a href="#team">TEAM</a></li>
+        <li><a href="#home" data-i18n="nav_home">HOME</a></li>
+        <li><a href="#nft" data-i18n="nav_nft">NFT</a></li>
+        <li><a href="#game" data-i18n="nav_game">GAME</a></li>
+        <li><a href="#dex" data-i18n="nav_dex">DEX</a></li>
+        <li><a href="#tokenomics" data-i18n="nav_tokenomics">TOKENOMICS</a></li>
+        <li><a href="#team" data-i18n="nav_team">TEAM</a></li>
       </ul>
 
       <div class="lang-switcher">
-        <button class="lang-btn" onclick="changeLanguage('ja')">JP</button>
-        <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="changeLanguage('zh-CN')">CN</button>
+        <button class="lang-btn" id="lang-btn-ja" onclick="setLanguage('ja')">JP</button>
+        <button class="lang-btn active" id="lang-btn-en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" id="lang-btn-zh" onclick="setLanguage('zh')">CN</button>
       </div>
 
       <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
@@ -817,14 +791,14 @@
       <div class="hub-card">
         <div class="hero-grid">
           <div>
-            <h1 class="notranslate" translate="no" style="font-size: 2.2rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
+            <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
               GanjaFlare
             </h1>
-            <p class="notranslate" translate="no" style="margin: 8px 0 16px; color: #f472b6; font-weight: 700; font-size: 1rem;">
+            <p style="margin: 8px 0 16px; color: #f472b6; font-weight: 700; font-size: 1rem;">
               Flare's Freedom Energy
             </p>
-            <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;">
-              GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin <span class="notranslate" translate="no">$GANJA</span>, games, and NFTs.<br>
+            <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;" data-i18n="home_desc">
+              GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin $GANJA, games, and NFTs.<br>
               It is defined by collective enthusiasm and resonance, rather than speculative promises.<br>
               The proper nouns associated with the project carry no endorsement of illegal substances; they embody the shared concept of "freedom" inherent to cats and cannabis.
             </p>
@@ -838,34 +812,28 @@
 
     <!-- 2. NFT -->
     <section id="nft">
-      <div class="sec-title"><i class="fa-solid fa-gem"></i> <span class="notranslate" translate="no">NFT</span></div>
+      <div class="sec-title"><i class="fa-solid fa-gem"></i> NFT</div>
       <div class="hub-card">
         <div class="tab-container">
-          <!-- Left: NFT v2 Tab -->
-          <button class="tab-btn locked active notranslate" translate="no" id="nftv2-tab-btn" onclick="switchTab('nft', 'v2')">
-            <i class="fa-solid fa-clock"></i> <span id="nftv2-timer-text" class="notranslate" translate="no">Calculating...</span>
+          <button class="tab-btn locked active" id="nftv2-tab-btn" onclick="switchTab('nft', 'v2')">
+            <i class="fa-solid fa-clock"></i> <span id="nftv2-timer-text">Calculating...</span>
           </button>
-
-          <!-- Right: NFT v1 Tab -->
           <button class="tab-btn" onclick="switchTab('nft', 'v1')">
-            <i class="fa-solid fa-layer-group"></i> <span class="notranslate" translate="no">NFT v1</span>
+            <i class="fa-solid fa-layer-group"></i> NFT v1
           </button>
         </div>
 
-        <!-- NFT v2 Tab Content -->
+        <!-- NFT v2 -->
         <div id="nft-v2" class="tab-content active">
-          
-          <!-- Locked View (SOON) -->
           <div id="nftv2-locked-view" style="text-align: center; padding: 60px 20px; background: rgba(0, 0, 0, 0.4); border: 1px dashed var(--border-emerald); border-radius: 18px; margin: 10px 0;">
             <div style="font-size: 3rem; color: #f472b6; margin-bottom: 16px; filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.6));">
               <i class="fa-solid fa-lock"></i>
             </div>
-            <div class="notranslate" translate="no" style="font-size: 2.2rem; font-weight: 800; color: #ffffff; letter-spacing: 4px; text-shadow: 0 0 20px rgba(244, 114, 182, 0.8);">
+            <div style="font-size: 2.2rem; font-weight: 800; color: #ffffff; letter-spacing: 4px; text-shadow: 0 0 20px rgba(244, 114, 182, 0.8);">
               SOON
             </div>
           </div>
 
-          <!-- Unlocked Full View -->
           <div id="nftv2-unlocked-view" style="display: none;">
             <div style="margin-bottom: 16px; text-align: center;">
               <div style="display: inline-block; border-radius: 18px; overflow: hidden; border: 2px solid var(--border-emerald); box-shadow: 0 0 25px rgba(52, 211, 153, 0.3);">
@@ -878,24 +846,24 @@
 
             <div style="text-align: center; margin-bottom: 24px;">
               <a href="https://ganjaflarenftv2dapp.vercel.app/" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); font-size: 1rem; padding: 14px 28px; width: 100%; max-width: 480px; box-shadow: 0 0 20px rgba(52, 211, 153, 0.5);">
-                <i class="fa-solid fa-rocket"></i> Launch Dokuneko Picture Scroll DApp <i class="fa-solid fa-arrow-right"></i>
+                <i class="fa-solid fa-rocket"></i> <span data-i18n="nft_v2_launch_btn">Launch Dokuneko Picture Scroll DApp</span> <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
 
             <div class="info-card">
-              <h4 style="color: var(--emerald-green); font-size: 1.1rem; font-weight: 800; margin-bottom: 12px;" class="notranslate" translate="no">
+              <h4 style="color: var(--emerald-green); font-size: 1.1rem; font-weight: 800; margin-bottom: 12px;">
                 GanjaFlare NFT v2
               </h4>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.88rem; margin-bottom: 15px;">
-                <div><strong>Collection Name :</strong> Dokuneko Picture Scroll</div>
-                <div><strong>Total Supply :</strong> 420 NFTs</div>
-                <div><strong>Symbol :</strong> <span class="notranslate" translate="no">DNE</span></div>
-                <div><strong>Network :</strong> <span class="notranslate" translate="no">Flare Mainnet</span></div>
+                <div><strong data-i18n="nft_v2_coll_name">Collection Name :</strong> <span data-i18n="nft_v2_coll_val">Dokuneko Picture Scroll</span></div>
+                <div><strong data-i18n="nft_v2_supply">Total Supply :</strong> 420</div>
+                <div><strong data-i18n="nft_v2_symbol">Symbol :</strong> DNE</div>
+                <div><strong data-i18n="nft_v2_network">Network :</strong> Flare Mainnet</div>
               </div>
 
               <div class="copy-box" onclick="copyContract('0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a', 'nftV2CopyBtn')">
                 <div>
-                  <div class="copy-text notranslate" translate="no">0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a</div>
+                  <div class="copy-text">0xfdeA703d0920f3cb4E69b1Ea1e6ED989Ba29E79a</div>
                 </div>
                 <div class="copy-btn" id="nftV2CopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
               </div>
@@ -904,35 +872,34 @@
             <div class="info-card">
               <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gift"></i> Airdrop & MINT</h4>
               <ul class="step-list">
-                <li>Receive <strong class="notranslate" translate="no">1 DNE Airdrop</strong> per 1 <span class="notranslate" translate="no">GanjaFlare NFT v1</span> held</li>
-                <li>1 MINT = <strong>22 FLR / 1 <span class="notranslate" translate="no">DNE</span></strong></li>
+                <li data-i18n="nft_v2_airdrop_rule">Receive 1 DNE Airdrop per 1 GanjaFlare NFT v1 held</li>
+                <li>1 MINT = <strong>22 FLR / 1 DNE</strong></li>
               </ul>
               <div style="margin-top: 12px; font-size: 0.85rem; color: #f472b6; font-weight: 700;">
-                <div>🎁 Airdrop: September 3, 12:00 UTC</div>
-                <div>🪙 Public Mint: September 5, 12:00 UTC</div>
+                <div data-i18n="nft_v2_airdrop_date">🎁 Airdrop: September 3, 12:00 UTC</div>
+                <div data-i18n="nft_v2_mint_date">🪙 Public Mint: September 5, 12:00 UTC</div>
               </div>
             </div>
 
             <div class="info-card">
-              <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> Reward System (1st of Every Month)</h4>
+              <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-coins"></i> <span data-i18n="nft_v2_reward_title">Reward System (1st of Every Month)</span></h4>
               <div class="rarity-grid">
-                <div class="rarity-card"><div class="name">LEGENDARY 👑</div><div class="rate">150+ pts</div><div class="reward notranslate" translate="no">60 $GANJA</div></div>
-                <div class="rarity-card"><div class="name">EPIC 💎</div><div class="rate">90-149 pts</div><div class="reward notranslate" translate="no">35 $GANJA</div></div>
-                <div class="rarity-card"><div class="name">RARE 🔨</div><div class="rate">60-89 pts</div><div class="reward notranslate" translate="no">20 $GANJA</div></div>
-                <div class="rarity-card"><div class="name">COMMON 🥦</div><div class="rate">Below 59 pts</div><div class="reward notranslate" translate="no">12 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">LEGENDARY 👑</div><div class="rate" data-i18n="rate_leg">150+ pts</div><div class="reward">60 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">EPIC 💎</div><div class="rate" data-i18n="rate_epic">90-149 pts</div><div class="reward">35 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">RARE 🔨</div><div class="rate" data-i18n="rate_rare">60-89 pts</div><div class="reward">20 $GANJA</div></div>
+                <div class="rarity-card"><div class="name">COMMON 🥦</div><div class="rate" data-i18n="rate_com">Below 59 pts</div><div class="reward">12 $GANJA</div></div>
               </div>
-              <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;">
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;" data-i18n="nft_v2_reward_expire">
                 (Unclaimed rewards will expire after 1 month)
               </p>
             </div>
           </div>
-
         </div>
 
-        <!-- NFT v1 Tab Content -->
+        <!-- NFT v1 -->
         <div id="nft-v1" class="tab-content">
-          <p style="color: var(--text-sub); margin-bottom: 14px;">
-            The official NFT collection v1 symbolizing the culture of <span class="notranslate" translate="no">GanjaFlare</span>. Exclusive holder perks and airdrop events are active.
+          <p style="color: var(--text-sub); margin-bottom: 14px;" data-i18n="nft_v1_desc">
+            The official NFT collection v1 symbolizing the culture of GanjaFlare. Exclusive holder perks and airdrop events are active.
           </p>
           
           <div class="coin-slideshow" id="coinSlideshow">
@@ -947,19 +914,19 @@
 
           <div style="text-align: center;">
             <a href="https://flare-explorer.flare.network/token/0x2768E83F67D1bAFeBc5A49cdCD9B65Cc4DBc9b71" target="_blank" class="btn-mint-style">
-              <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
+              <i class="fa-solid fa-compass"></i> Flare Explorer
             </a>
             <a href="https://www.aurixnft.com/collection/ganja" target="_blank" class="btn-mint-style aurix">
-              <i class="fa-solid fa-store"></i> <span class="notranslate" translate="no">Aurix NFT Marketplace</span>
+              <i class="fa-solid fa-store"></i> Aurix NFT Marketplace
             </a>
           </div>
 
           <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 18px;">
-            <h3 class="notranslate" translate="no" style="color: var(--emerald-green); font-size: 1rem; font-weight: 800; text-align: center;">
+            <h3 style="color: var(--emerald-green); font-size: 1rem; font-weight: 800; text-align: center;">
               <i class="fa-solid fa-gamepad"></i> Play with GanjaFlareNFT & earn $BILLY!
             </h3>
-            <p style="color: var(--text-sub); font-size: 0.82rem; margin: 6px 0 10px; text-align: center;">
-              Hold <span class="notranslate" translate="no">GanjaFlare NFT(v1)</span> and participate in games/community to earn <span class="notranslate" translate="no">$BILLY!</span> tokens!
+            <p style="color: var(--text-sub); font-size: 0.82rem; margin: 6px 0 10px; text-align: center;" data-i18n="nft_v1_billy_desc">
+              Hold GanjaFlare NFT(v1) and participate in games/community to earn $BILLY! tokens!
             </p>
             
             <div class="compact-video-box">
@@ -970,57 +937,58 @@
 
             <div style="text-align: center; margin-top: 10px;">
               <a href="https://discord.com/invite/J7pHyxCzg8" target="_blank" class="btn-mint-style discord" style="font-size: 0.82rem; padding: 8px 16px;">
-                <i class="fa-brands fa-discord"></i> Join Gully Discord
+                <i class="fa-brands fa-discord"></i> <span data-i18n="join_gully_discord">Join Gully Discord</span>
               </a>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 3. GAME -->
     <section id="game">
-      <div class="sec-title"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GAME</span></div>
+      <div class="sec-title"><i class="fa-solid fa-gamepad"></i> GAME</div>
       <div class="hub-card">
         <div class="tab-container">
-          <button class="tab-btn active" onclick="switchTab('game', 'lotto')"><i class="fa-solid fa-ticket"></i> <span class="notranslate" translate="no">Lotto</span></button>
-          <button class="tab-btn" onclick="switchTab('game', 'gcr')"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GCR</span></button>
-          <button class="tab-btn" onclick="switchTab('game', 'giveaway')"><i class="fa-solid fa-gift"></i> <span class="notranslate" translate="no">Giveaway</span></button>
+          <button class="tab-btn active" onclick="switchTab('game', 'lotto')"><i class="fa-solid fa-ticket"></i> Lotto</button>
+          <button class="tab-btn" onclick="switchTab('game', 'gcr')"><i class="fa-solid fa-gamepad"></i> GCR</button>
+          <button class="tab-btn" onclick="switchTab('game', 'giveaway')"><i class="fa-solid fa-gift"></i> Giveaway</button>
         </div>
 
+        <!-- Lotto -->
         <div id="game-lotto" class="tab-content active">
-          <p style="color: var(--text-sub); margin-bottom: 14px;">Try your luck for free every day! Daily Lotto Arena.</p>
+          <p style="color: var(--text-sub); margin-bottom: 14px;" data-i18n="lotto_desc">Try your luck for free every day! Daily Lotto Arena.</p>
 
           <div class="lotto-iframe-container">
             <iframe src="https://ganjaflare-lotto.vercel.app/" title="GanjaFlare Daily Lotto"></iframe>
           </div>
 
           <div class="info-card">
-            <div style="color: #f472b6; font-weight: 800; font-size: 0.95rem; margin-bottom: 12px;">
+            <div style="color: #f472b6; font-weight: 800; font-size: 0.95rem; margin-bottom: 12px;" data-i18n="lotto_reset">
               <i class="fa-solid fa-clock"></i> Resets daily at 12:00 UTC (21:00 JST)!
             </div>
 
             <div class="rarity-grid">
-              <div class="rarity-card"><div class="name">Mythic 👑</div><div class="rate">0.5%</div><div class="reward notranslate" translate="no">2,000 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">Legendary 💎</div><div class="rate">3.0%</div><div class="reward notranslate" translate="no">500 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">Epic 🪨</div><div class="rate">10.0%</div><div class="reward notranslate" translate="no">100 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">Rare 🔨</div><div class="rate">20.0%</div><div class="reward notranslate" translate="no">30 $GANJA</div></div>
-              <div class="rarity-card"><div class="name">Common 🥦</div><div class="rate">35.0%</div><div class="reward notranslate" translate="no">10 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Mythic 👑</div><div class="rate">0.5%</div><div class="reward">2,000 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Legendary 💎</div><div class="rate">3.0%</div><div class="reward">500 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Epic 🪨</div><div class="rate">10.0%</div><div class="reward">100 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Rare 🔨</div><div class="rate">20.0%</div><div class="reward">30 $GANJA</div></div>
+              <div class="rarity-card"><div class="name">Common 🥦</div><div class="rate">35.0%</div><div class="reward">10 $GANJA</div></div>
               <div class="rarity-card"><div class="name">No Luck 🍃</div><div class="rate">31.5%</div><div class="reward">Better luck!</div></div>
             </div>
 
-            <p style="font-size: 0.82rem; color: var(--emerald-green); margin-top: 12px; font-weight: 700;">
+            <p style="font-size: 0.82rem; color: var(--emerald-green); margin-top: 12px; font-weight: 700;" data-i18n="lotto_safety">
               <i class="fa-solid fa-shield-halved"></i> Only requires Google Sign-in and manual wallet address entry. Completely safe to use!
             </p>
           </div>
         </div>
 
+        <!-- GCR -->
         <div id="game-gcr" class="tab-content">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-            <p style="color: var(--text-sub);">Official runner action game "GanjaCatRun"!</p>
+            <p style="color: var(--text-sub);" data-i18n="gcr_subtitle">Official runner action game "GanjaCatRun"!</p>
             <a href="https://ganjaflare.github.io/GanjaCatRun-Web/" target="_blank" class="btn-mint-style" style="margin:0; padding: 8px 16px; font-size: 0.82rem;">
-              <i class="fa-solid fa-expand"></i> Play Fullscreen
+              <i class="fa-solid fa-expand"></i> <span data-i18n="gcr_fullscreen">Play Fullscreen</span>
             </a>
           </div>
 
@@ -1029,52 +997,53 @@
           </div>
 
           <div style="margin: 15px 0; padding: 12px 16px; background: rgba(159, 18, 57, 0.25); border: 1px solid rgba(244, 63, 94, 0.35); border-radius: 14px; text-align: center;">
-            <p style="font-size: 0.82rem; color: #fecdd3; margin-bottom: 8px; font-weight: 700;">
+            <p style="font-size: 0.82rem; color: #fecdd3; margin-bottom: 8px; font-weight: 700;" data-i18n="gcr_error_notice">
               <i class="fa-solid fa-triangle-exclamation"></i> Click here if you experience frequent errors in the game screen
             </p>
             <a href="https://script.google.com/macros/s/AKfycbynwDqLFmF0lG4Ree0WWVEdm3Twl98SYd7Mtdi8fI7iMun3G9zAzoXA5Ohwy-t2RhJU/exec" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #9f1239 0%, #be123c 100%); margin: 0; font-size: 0.82rem; width: 100%; max-width: 380px; box-shadow: 0 0 12px rgba(190, 18, 60, 0.25); border: 1px solid rgba(251, 113, 133, 0.3);">
-              <i class="fa-solid fa-life-ring"></i> Play Stable Version (GAS Backup) <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <i class="fa-solid fa-life-ring"></i> <span data-i18n="gcr_gas_btn">Play Stable Version (GAS Backup)</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
           </div>
 
           <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-trophy"></i> Rewards & BURN Rules</h4>
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-trophy"></i> <span data-i18n="gcr_rules_title">Rewards & BURN Rules</span></h4>
             <ul class="step-list">
-              <li><strong>Prizes 🎁</strong>: Bi-weekly reward of <strong class="notranslate" translate="no">500 $GANJA</strong> each to the highest scorer and the most active player!</li>
-              <li><strong>Regular BURN 🔥</strong>: Bi-weekly burn of <span class="notranslate" translate="no">$GANJA</span> equivalent to total cumulative points earned by all players!</li>
+              <li data-i18n="gcr_prize_rule"><strong>Prizes 🎁</strong>: Bi-weekly reward of 500 $GANJA each to the highest scorer and the most active player!</li>
+              <li data-i18n="gcr_burn_rule"><strong>Regular BURN 🔥</strong>: Bi-weekly burn of $GANJA equivalent to total cumulative points earned by all players!</li>
             </ul>
           </div>
 
           <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gamepad"></i> Controls & Key Bindings</h4>
-            <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-gamepad"></i> <span data-i18n="gcr_controls_title">Controls & Key Bindings</span></h4>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px;" data-i18n="gcr_controls_desc">
               Enter your X account handle on screen to select mode. Control via on-screen A button or keyboard.
             </p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.82rem;">
               <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
-                <strong style="color: #f472b6;">Jump / Restart</strong><br> Space / Up Arrow (or A Button)
+                <strong style="color: #f472b6;" data-i18n="ctrl_jump">Jump / Restart</strong><br> Space / Up Arrow (or A Button)
               </div>
               <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
-                <strong style="color: #f472b6;">Pause / Resume</strong><br> Enter Key
+                <strong style="color: #f472b6;" data-i18n="ctrl_pause">Pause / Resume</strong><br> Enter Key
               </div>
               <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
-                <strong style="color: #f472b6;">Leaderboard Display</strong><br> M / Backspace Key
+                <strong style="color: #f472b6;" data-i18n="ctrl_lb">Leaderboard Display</strong><br> M / Backspace Key
               </div>
               <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px;">
-                <strong style="color: #f472b6;">Ranking Page Switch</strong><br> Left / Right Arrow Keys
+                <strong style="color: #f472b6;" data-i18n="ctrl_page">Ranking Page Switch</strong><br> Left / Right Arrow Keys
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Giveaway -->
         <div id="game-giveaway" class="tab-content">
-          <p style="color: var(--text-sub); margin-bottom: 14px;">Giving back to the community! Bi-weekly Giveaway events.</p>
+          <p style="color: var(--text-sub); margin-bottom: 14px;" data-i18n="ga_desc">Giving back to the community! Bi-weekly Giveaway events.</p>
 
           <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-clipboard-check"></i> How to Participate</h4>
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-clipboard-check"></i> <span data-i18n="ga_how_title">How to Participate</span></h4>
             <ul class="step-list">
-              <li><strong>Step 1</strong>: Follow <a href="https://x.com/nikuningyou29" target="_blank" class="notranslate" translate="no" style="color: var(--emerald-green);">@nikuningyou29</a></li>
-              <li><strong>Step 2</strong>: Post on X including <code class="notranslate" translate="no">@nikuningyou29</code> with your passionate thoughts or favorite aspects of GanjaFlare / $GANJA! 🌿🔥</li>
+              <li><strong data-i18n="ga_step1_lbl">Step 1</strong>: <span data-i18n="ga_step1_txt">Follow</span> <a href="https://x.com/nikuningyou29" target="_blank" style="color: var(--emerald-green);">@nikuningyou29</a></li>
+              <li data-i18n="ga_step2_txt"><strong>Step 2</strong>: Post on X including <code>@nikuningyou29</code> with your passionate thoughts or favorite aspects of GanjaFlare / $GANJA! 🌿🔥</li>
             </ul>
 
             <a href="https://x.com/intent/tweet?text=@nikuningyou29%20" target="_blank" class="btn-mint-style x-btn" style="margin-top: 12px; width: 100%;">
@@ -1083,42 +1052,42 @@
           </div>
 
           <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-circle-info"></i> Rules & Winner Announcement</h4>
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-circle-info"></i> <span data-i18n="ga_rules_title">Rules & Winner Announcement</span></h4>
             <ul class="step-list">
-              <li>One winner selected approximately every 2 weeks to receive prizes or NFTs!</li>
-              <li>Winners will be contacted directly via Direct Message on X.</li>
+              <li data-i18n="ga_rule1">One winner selected approximately every 2 weeks to receive prizes or NFTs!</li>
+              <li data-i18n="ga_rule2">Winners will be contacted directly via Direct Message on X.</li>
             </ul>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 4. DEX -->
     <section id="dex">
-      <div class="sec-title"><i class="fa-solid fa-right-left"></i> <span class="notranslate" translate="no">DEX</span></div>
+      <div class="sec-title"><i class="fa-solid fa-right-left"></i> DEX</div>
       <div class="hub-card">
         <div class="tab-container">
-          <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> <span class="notranslate" translate="no">SWAP</span></button>
-          <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> <span class="notranslate" translate="no">POOL</span></button>
+          <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> SWAP</button>
+          <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> POOL</button>
         </div>
 
+        <!-- Swap -->
         <div id="dex-swap" class="tab-content active">
-          <p style="color: var(--text-sub); margin-bottom: 8px;">
-            Decentralized trading available on <span class="notranslate" translate="no">BlazeSwap</span> and <span class="notranslate" translate="no">SparkDEX</span>.
+          <p style="color: var(--text-sub); margin-bottom: 8px;" data-i18n="dex_swap_desc">
+            Decentralized trading available on BlazeSwap and SparkDEX.
           </p>
 
           <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
             <div>
-              <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+              <div class="copy-text">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
             </div>
             <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
           </div>
 
-          <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">BlazeSwap</span></a>
-          <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">SparkDEX</span></a>
+          <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> BlazeSwap</a>
+          <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> SparkDEX</a>
           <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7?tab=token_transfers" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
-            <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
+            <i class="fa-solid fa-compass"></i> Flare Explorer
           </a>
 
           <div class="dex-chart-container">
@@ -1126,61 +1095,61 @@
           </div>
         </div>
 
+        <!-- Pool -->
         <div id="dex-pool" class="tab-content">
-          <p style="color: var(--text-sub); margin-bottom: 16px;">
-            Provide liquidity (<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$WFLR</span>) to DEXs to earn trading fee rewards.
+          <p style="color: var(--text-sub); margin-bottom: 16px;" data-i18n="dex_pool_desc">
+            Provide liquidity ($GANJA / $WFLR) to DEXs to earn trading fee rewards.
           </p>
 
           <div class="info-card" style="margin-bottom: 15px;">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">BlazeSwap</span> Guide</h4>
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> BlazeSwap Guide</h4>
             <ul class="step-list">
-              <li>Connect wallet on the BlazeSwap "Pool" page.</li>
-              <li>Select pair (<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$WFLR</span>) under "Add Liquidity".</li>
-              <li>Enter amount, approve token, and click "Supply"!</li>
+              <li data-i18n="blaze_step1">Connect wallet on the BlazeSwap "Pool" page.</li>
+              <li data-i18n="blaze_step2">Select pair ($GANJA / $WFLR) under "Add Liquidity".</li>
+              <li data-i18n="blaze_step3">Enter amount, approve token, and click "Supply"!</li>
             </ul>
-            <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 8px;">Go to BlazeSwap Pool</a>
+            <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 8px;" data-i18n="go_blazeswap_pool">Go to BlazeSwap Pool</a>
           </div>
 
           <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">SparkDEX</span> Guide</h4>
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> SparkDEX Guide</h4>
             <ul class="step-list">
-              <li>Connect wallet under "Earn / Pool" on SparkDEX.</li>
-              <li>Select <span class="notranslate" translate="no">$GANJA</span> token pool.</li>
-              <li>Enter desired ratio and execute Deposit!</li>
+              <li data-i18n="spark_step1">Connect wallet under "Earn / Pool" on SparkDEX.</li>
+              <li data-i18n="spark_step2">Select $GANJA token pool.</li>
+              <li data-i18n="spark_step3">Enter desired ratio and execute Deposit!</li>
             </ul>
-            <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 8px;">Go to SparkDEX Pool</a>
+            <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 8px;" data-i18n="go_sparkdex_pool">Go to SparkDEX Pool</a>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- 5. TOKENOMICS -->
     <section id="tokenomics">
-      <div class="sec-title"><i class="fa-solid fa-coins"></i> <span class="notranslate" translate="no">TOKENOMICS</span></div>
+      <div class="sec-title"><i class="fa-solid fa-coins"></i> TOKENOMICS</div>
       <div class="hub-card">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
           <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
-            <div style="font-size: 0.75rem; color: #94a3b8;">Chain & Symbol</div>
-            <div style="font-size: 1.1rem; font-weight: 800; color: var(--emerald-green);" class="notranslate" translate="no">Flare Network ($GANJA)</div>
+            <div style="font-size: 0.75rem; color: #94a3b8;" data-i18n="tok_chain_lbl">Chain & Symbol</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: var(--emerald-green);">Flare Network ($GANJA)</div>
           </div>
           <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-emerald); border-radius: 14px; padding: 15px;">
-            <div style="font-size: 0.75rem; color: #94a3b8;">Fixed Total Supply</div>
-            <div style="font-size: 1.1rem; font-weight: 800; color: #f8fafc;" class="notranslate" translate="no">42,000,000 $GANJA</div>
+            <div style="font-size: 0.75rem; color: #94a3b8;" data-i18n="tok_supply_lbl">Fixed Total Supply</div>
+            <div style="font-size: 1.1rem; font-weight: 800; color: #f8fafc;">42,000,000 $GANJA</div>
           </div>
         </div>
 
         <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'tokCopyBtn')">
           <div>
-            <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;">$GANJA Contract Address</div>
-            <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+            <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 2px;" data-i18n="tok_contract_lbl">$GANJA Contract Address</div>
+            <div class="copy-text">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
           </div>
           <div class="copy-btn" id="tokCopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
         </div>
 
         <div style="text-align: center; margin-bottom: 20px;">
           <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%); margin-top: 0; width: 100%;">
-            <i class="fa-solid fa-compass"></i> View Token on Flare Explorer
+            <i class="fa-solid fa-compass"></i> <span data-i18n="tok_explorer_btn">View Token on Flare Explorer</span>
           </a>
         </div>
 
@@ -1190,83 +1159,82 @@
 
         <div style="background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 16px; padding: 18px; margin-bottom: 20px;">
           <h3 style="color: #f472b6; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px;">
-            <i class="fa-solid fa-fire"></i> Permanent Monthly BURN
+            <i class="fa-solid fa-fire"></i> <span data-i18n="tok_burn_title">Permanent Monthly BURN</span>
           </h3>
-          <p style="font-size: 0.88rem; color: var(--text-main); line-height: 1.6;">
-            To enhance project transparency and scarcity of <span class="notranslate" translate="no">$GANJA</span>, we <strong>burn 777,777 $GANJA once every month</strong>!<br>
+          <p style="font-size: 0.88rem; color: var(--text-main); line-height: 1.6;" data-i18n="tok_burn_desc">
+            To enhance project transparency and scarcity of $GANJA, we <strong>burn 777,777 $GANJA once every month</strong>!<br>
             <span style="color: var(--emerald-green); font-weight: 700;">(Represents over 1.85% of the total 42,000,000 $GANJA supply)</span>
           </p>
         </div>
 
-        <!-- Detailed Tokenomics Documentation -->
+        <!-- Accordion 1 -->
         <button class="accordion-btn" onclick="toggleAccordion('tokDoc')">
-          <span><i class="fa-solid fa-file-contract"></i> Tokenomics Detailed Specification</span>
+          <span><i class="fa-solid fa-file-contract"></i> <span data-i18n="accordion_tok_title">Tokenomics Detailed Specification</span></span>
           <i class="fa-solid fa-chevron-down" id="tokDocIcon"></i>
         </button>
         <div id="tokDoc" class="accordion-content">
-          <h4 style="color: var(--emerald-green); margin: 10px 0 6px; font-weight: 800;">I. Deterministic Permanence of Supply Structure</h4>
-          <p style="margin-bottom: 12px;">
-            The <span class="notranslate" translate="no">$GANJA</span> token supply is strictly and permanently capped at <strong class="notranslate" translate="no">42,000,000 units</strong>. Minting functionality is eliminated at the smart contract level, systematically ruling out inflation risks and offering holders solid dilution protection and long-term stability.
+          <h4 style="color: var(--emerald-green); margin: 10px 0 6px; font-weight: 800;" data-i18n="tok_sec1_h">I. Deterministic Permanence of Supply Structure</h4>
+          <p style="margin-bottom: 12px;" data-i18n="tok_sec1_p">
+            The $GANJA token supply is strictly and permanently capped at 42,000,000 units. Minting functionality is eliminated at the smart contract level, systematically ruling out inflation risks and offering holders solid dilution protection and long-term stability.
           </p>
 
-          <h4 style="color: var(--emerald-green); margin: 10px 0 6px; font-weight: 800;">II. Decentralized Initial Liquidity</h4>
-          <p style="margin-bottom: 12px;">
-            <strong class="notranslate" translate="no">57.14% (24,000,000 $GANJA)</strong> of total supply is initially allocated to liquidity pools on major Flare Network DEXs (BlazeSwap and SparkDEX) to ensure fair market price discovery and seamless trading execution.
+          <h4 style="color: var(--emerald-green); margin: 10px 0 6px; font-weight: 800;" data-i18n="tok_sec2_h">II. Decentralized Initial Liquidity</h4>
+          <p style="margin-bottom: 12px;" data-i18n="tok_sec2_p">
+            57.14% (24,000,000 $GANJA) of total supply is initially allocated to liquidity pools on major Flare Network DEXs (BlazeSwap and SparkDEX) to ensure fair market price discovery and seamless trading execution.
           </p>
 
-          <h4 style="color: var(--emerald-green); margin: 10px 0 6px; font-weight: 800;">III. Community Strategic Reserve & Deflationary Mechanism</h4>
-          <p style="margin-bottom: 8px;">
-            The remaining <strong class="notranslate" translate="no">42.86% (18,000,000 $GANJA)</strong> is strategically managed for sustainable community expansion and autonomous economic loops:
+          <h4 style="color: var(--emerald-green); margin: 10px 0 6px; font-weight: 800;" data-i18n="tok_sec3_h">III. Community Strategic Reserve & Deflationary Mechanism</h4>
+          <p style="margin-bottom: 8px;" data-i18n="tok_sec3_p">
+            The remaining 42.86% (18,000,000 $GANJA) is strategically managed for sustainable community expansion and autonomous economic loops:
           </p>
           <ul class="step-list" style="margin-top: 6px;">
-            <li><strong style="color: #f8fafc;">Permanent Monthly BURN</strong>: 777,777 $GANJA sent to blackhole address monthly to reduce circulating supply.</li>
-            <li><strong style="color: #f8fafc;">Incentives & Product Returns</strong>: Re-circulated to active contributors via GanjaCatRun game rewards, daily lotto, and community events.</li>
+            <li data-i18n="tok_sec3_li1"><strong style="color: #f8fafc;">Permanent Monthly BURN</strong>: 777,777 $GANJA sent to blackhole address monthly to reduce circulating supply.</li>
+            <li data-i18n="tok_sec3_li2"><strong style="color: #f8fafc;">Incentives & Product Returns</strong>: Re-circulated to active contributors via GanjaCatRun game rewards, daily lotto, and community events.</li>
           </ul>
         </div>
 
-        <!-- Disclaimer & Compliance -->
+        <!-- Accordion 2 -->
         <button class="accordion-btn" onclick="toggleAccordion('discDoc')">
-          <span><i class="fa-solid fa-shield-halved"></i> Disclaimer & Legal Compliance</span>
+          <span><i class="fa-solid fa-shield-halved"></i> <span data-i18n="accordion_disc_title">Disclaimer & Legal Compliance</span></span>
           <i class="fa-solid fa-chevron-down" id="discDocIcon"></i>
         </button>
         <div id="discDoc" class="accordion-content">
-          <h4 style="color: #f472b6; margin: 10px 0 6px; font-weight: 800;">1. No Investment Advice</h4>
-          <p style="margin-bottom: 12px;">
-            <span class="notranslate" translate="no">$GANJA</span> is a cultural community memecoin on Flare Network and does not constitute a financial product or investment asset. Statements promising guaranteed profit or price skyrocket are strictly prohibited under community guidelines. Please participate with full personal responsibility.
+          <h4 style="color: #f472b6; margin: 10px 0 6px; font-weight: 800;" data-i18n="disc_sec1_h">1. No Investment Advice</h4>
+          <p style="margin-bottom: 12px;" data-i18n="disc_sec1_p">
+            $GANJA is a cultural community memecoin on Flare Network and does not constitute a financial product or investment asset. Statements promising guaranteed profit or price skyrocket are strictly prohibited under community guidelines. Please participate with full personal responsibility.
           </p>
 
-          <h4 style="color: #f472b6; margin: 10px 0 6px; font-weight: 800;">2. No Illegal Activity</h4>
-          <p style="margin-bottom: 12px;">
+          <h4 style="color: #f472b6; margin: 10px 0 6px; font-weight: 800;" data-i18n="disc_sec2_h">2. No Illegal Activity</h4>
+          <p style="margin-bottom: 12px;" data-i18n="disc_sec2_p">
             All names, symbols, and graphics associated with this token are purely cultural expressions for Web3 entertainment and have no connection to illegal substances or activities.
           </p>
 
-          <h4 style="color: #f472b6; margin: 10px 0 6px; font-weight: 800;">3. Legal Compliance</h4>
-          <p>
+          <h4 style="color: #f472b6; margin: 10px 0 6px; font-weight: 800;" data-i18n="disc_sec3_h">3. Legal Compliance</h4>
+          <p data-i18n="disc_sec3_p">
             The management team continuously maintains compliance and monitoring systems in accordance with Japanese and international laws and regulations.
           </p>
         </div>
 
-        <!-- Donation Section -->
+        <!-- Donation -->
         <div style="margin-top: 25px; border-top: 1px solid rgba(52, 211, 153, 0.2); padding-top: 20px;">
           <h3 style="color: var(--emerald-green); font-size: 1.05rem; font-weight: 800;">
-            <i class="fa-solid fa-hand-holding-heart"></i> Operations Donation
+            <i class="fa-solid fa-hand-holding-heart"></i> <span data-i18n="donate_title">Operations Donation</span>
           </h3>
-          <p style="font-size: 0.88rem; color: var(--text-main); margin: 8px 0 10px; line-height: 1.6;">
+          <p style="font-size: 0.88rem; color: var(--text-main); margin: 8px 0 10px; line-height: 1.6;" data-i18n="donate_desc">
             GanjaFlare is a non-profit community project. Server and infrastructure fees are currently funded personally by CEO Nikuningyou. If you wish to support ongoing infrastructure operations, voluntary donations in crypto assets (FLR / WFLR, etc.) are deeply appreciated.
           </p>
 
           <div class="copy-box" onclick="copyContract('0xE809127d1927EE013834B9E95A53E0b37B688eF7', 'donateCopyBtn')">
             <div>
-              <div class="copy-text notranslate" translate="no">0xE809127d1927EE013834B9E95A53E0b37B688eF7</div>
+              <div class="copy-text">0xE809127d1927EE013834B9E95A53E0b37B688eF7</div>
             </div>
             <div class="copy-btn" id="donateCopyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
           </div>
 
-          <p style="font-size: 0.8rem; color: #f472b6; margin-top: 10px; line-height: 1.5; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(244, 114, 182, 0.2);">
+          <p style="font-size: 0.8rem; color: #f472b6; margin-top: 10px; line-height: 1.5; background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(244, 114, 182, 0.2);" data-i18n="donate_notice">
             ⚠️ <strong>Notice</strong>: Donations are strictly voluntary support for infrastructure and do not convey any token distributions, rights, or financial returns.
           </p>
         </div>
-
       </div>
     </section>
 
@@ -1278,13 +1246,13 @@
           <img src="images/ganjacat02.png" class="team-img" alt="CEO Nikuningyou">
           <div>
             <h3 style="color: var(--emerald-green); font-size: 1.2rem; font-weight: 800; margin-bottom: 4px;">
-              <span class="notranslate" translate="no">Nikuningyou</span> <span style="font-size: 0.85rem; color: #f472b6; font-weight: 700;">(CEO)</span>
+              Nikuningyou <span style="font-size: 0.85rem; color: #f472b6; font-weight: 700;">(CEO)</span>
             </h3>
-            <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px; line-height: 1.7;">
+            <p style="font-size: 0.88rem; color: var(--text-sub); margin-bottom: 12px; line-height: 1.7;" data-i18n="team_ceo_desc">
               CEO, developer, designer, and moderator behind GanjaFlare. Operating under the persona of GanjaCat on X, driven purely by passion to boost the Flare Network ecosystem without interest in personal profit.
             </p>
             <a href="https://x.com/nikuningyou29" target="_blank" class="btn-mint-style x-btn" style="padding: 6px 14px; font-size: 0.78rem; margin:0;">
-              <i class="fa-brands fa-x-twitter"></i> <span class="notranslate" translate="no">@nikuningyou29</span>
+              <i class="fa-brands fa-x-twitter"></i> @nikuningyou29
             </a>
           </div>
         </div>
@@ -1302,51 +1270,262 @@
         <a href="https://t.me/+2jIGRmKaoUU3MjQ1" target="_blank" class="footer-icon-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
         <a href="mailto:ganjaflare@gmail.com" class="footer-icon-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
       </div>
-      <p style="font-size: 0.8rem; color: #94a3b8;" class="notranslate" translate="no">
+      <p style="font-size: 0.8rem; color: #94a3b8;">
         © GanjaFlare — Bringing passion and trust to the Flare ecosystem!
       </p>
     </div>
   </footer>
 
   <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'en,zh-CN,ja',
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
+    /* 多言語辞書データ (英語・日本語・中国語) */
+    const i18n = {
+      en: {
+        nav_home: "HOME", nav_nft: "NFT", nav_game: "GAME", nav_dex: "DEX", nav_tokenomics: "TOKENOMICS", nav_team: "TEAM",
+        home_desc: "GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin $GANJA, games, and NFTs.<br>It is defined by collective enthusiasm and resonance, rather than speculative promises.<br>The proper nouns associated with the project carry no endorsement of illegal substances; they embody the shared concept of \"freedom\" inherent to cats and cannabis.",
+        nft_v2_launch_btn: "Launch Dokuneko Picture Scroll DApp",
+        nft_v2_coll_name: "Collection Name :", nft_v2_coll_val: "Dokuneko Picture Scroll",
+        nft_v2_supply: "Total Supply :", nft_v2_symbol: "Symbol :", nft_v2_network: "Network :",
+        nft_v2_airdrop_rule: "Receive 1 DNE Airdrop per 1 GanjaFlare NFT v1 held",
+        nft_v2_airdrop_date: "🎁 Airdrop: September 3, 12:00 UTC",
+        nft_v2_mint_date: "🪙 Public Mint: September 5, 12:00 UTC",
+        nft_v2_reward_title: "Reward System (1st of Every Month)",
+        rate_leg: "150+ pts", rate_epic: "90-149 pts", rate_rare: "60-89 pts", rate_com: "Below 59 pts",
+        nft_v2_reward_expire: "(Unclaimed rewards will expire after 1 month)",
+        nft_v1_desc: "The official NFT collection v1 symbolizing the culture of GanjaFlare. Exclusive holder perks and airdrop events are active.",
+        nft_v1_billy_desc: "Hold GanjaFlare NFT(v1) and participate in games/community to earn $BILLY! tokens!",
+        join_gully_discord: "Join Gully Discord",
+        lotto_desc: "Try your luck for free every day! Daily Lotto Arena.",
+        lotto_reset: "<i class=\"fa-solid fa-clock\"></i> Resets daily at 12:00 UTC (21:00 JST)!",
+        lotto_safety: "<i class=\"fa-solid fa-shield-halved\"></i> Only requires Google Sign-in and manual wallet address entry. Completely safe to use!",
+        gcr_subtitle: "Official runner action game \"GanjaCatRun\"!",
+        gcr_fullscreen: "Play Fullscreen",
+        gcr_error_notice: "<i class=\"fa-solid fa-triangle-exclamation\"></i> Click here if you experience frequent errors in the game screen",
+        gcr_gas_btn: "Play Stable Version (GAS Backup)",
+        gcr_rules_title: "Rewards & BURN Rules",
+        gcr_prize_rule: "<strong>Prizes 🎁</strong>: Bi-weekly reward of 500 $GANJA each to the highest scorer and the most active player!",
+        gcr_burn_rule: "<strong>Regular BURN 🔥</strong>: Bi-weekly burn of $GANJA equivalent to total cumulative points earned by all players!",
+        gcr_controls_title: "Controls & Key Bindings",
+        gcr_controls_desc: "Enter your X account handle on screen to select mode. Control via on-screen A button or keyboard.",
+        ctrl_jump: "Jump / Restart", ctrl_pause: "Pause / Resume", ctrl_lb: "Leaderboard Display", ctrl_page: "Ranking Page Switch",
+        ga_desc: "Giving back to the community! Bi-weekly Giveaway events.",
+        ga_how_title: "How to Participate",
+        ga_step1_lbl: "Step 1", ga_step1_txt: "Follow",
+        ga_step2_txt: "<strong>Step 2</strong>: Post on X including <code>@nikuningyou29</code> with your passionate thoughts or favorite aspects of GanjaFlare / $GANJA! 🌿🔥",
+        ga_rules_title: "Rules & Winner Announcement",
+        ga_rule1: "One winner selected approximately every 2 weeks to receive prizes or NFTs!",
+        ga_rule2: "Winners will be contacted directly via Direct Message on X.",
+        dex_swap_desc: "Decentralized trading available on BlazeSwap and SparkDEX.",
+        dex_pool_desc: "Provide liquidity ($GANJA / $WFLR) to DEXs to earn trading fee rewards.",
+        blaze_step1: "Connect wallet on the BlazeSwap \"Pool\" page.",
+        blaze_step2: "Select pair ($GANJA / $WFLR) under \"Add Liquidity\".",
+        blaze_step3: "Enter amount, approve token, and click \"Supply\"!",
+        go_blazeswap_pool: "Go to BlazeSwap Pool",
+        spark_step1: "Connect wallet under \"Earn / Pool\" on SparkDEX.",
+        spark_step2: "Select $GANJA token pool.",
+        spark_step3: "Enter desired ratio and execute Deposit!",
+        go_sparkdex_pool: "Go to SparkDEX Pool",
+        tok_chain_lbl: "Chain & Symbol", tok_supply_lbl: "Fixed Total Supply",
+        tok_contract_lbl: "$GANJA Contract Address", tok_explorer_btn: "View Token on Flare Explorer",
+        tok_burn_title: "Permanent Monthly BURN",
+        tok_burn_desc: "To enhance project transparency and scarcity of $GANJA, we <strong>burn 777,777 $GANJA once every month</strong>!<br><span style=\"color: var(--emerald-green); font-weight: 700;\">(Represents over 1.85% of the total 42,000,000 $GANJA supply)</span>",
+        accordion_tok_title: "Tokenomics Detailed Specification",
+        tok_sec1_h: "I. Deterministic Permanence of Supply Structure",
+        tok_sec1_p: "The $GANJA token supply is strictly and permanently capped at 42,000,000 units. Minting functionality is eliminated at the smart contract level, systematically ruling out inflation risks and offering holders solid dilution protection and long-term stability.",
+        tok_sec2_h: "II. Decentralized Initial Liquidity",
+        tok_sec2_p: "57.14% (24,000,000 $GANJA) of total supply is initially allocated to liquidity pools on major Flare Network DEXs (BlazeSwap and SparkDEX) to ensure fair market price discovery and seamless trading execution.",
+        tok_sec3_h: "III. Community Strategic Reserve & Deflationary Mechanism",
+        tok_sec3_p: "The remaining 42.86% (18,000,000 $GANJA) is strategically managed for sustainable community expansion and autonomous economic loops:",
+        tok_sec3_li1: "<strong style=\"color: #f8fafc;\">Permanent Monthly BURN</strong>: 777,777 $GANJA sent to blackhole address monthly to reduce circulating supply.",
+        tok_sec3_li2: "<strong style=\"color: #f8fafc;\">Incentives & Product Returns</strong>: Re-circulated to active contributors via GanjaCatRun game rewards, daily lotto, and community events.",
+        accordion_disc_title: "Disclaimer & Legal Compliance",
+        disc_sec1_h: "1. No Investment Advice",
+        disc_sec1_p: "$GANJA is a cultural community memecoin on Flare Network and does not constitute a financial product or investment asset. Statements promising guaranteed profit or price skyrocket are strictly prohibited under community guidelines. Please participate with full personal responsibility.",
+        disc_sec2_h: "2. No Illegal Activity",
+        disc_sec2_p: "All names, symbols, and graphics associated with this token are purely cultural expressions for Web3 entertainment and have no connection to illegal substances or activities.",
+        disc_sec3_h: "3. Legal Compliance",
+        disc_sec3_p: "The management team continuously maintains compliance and monitoring systems in accordance with Japanese and international laws and regulations.",
+        donate_title: "Operations Donation",
+        donate_desc: "GanjaFlare is a non-profit community project. Server and infrastructure fees are currently funded personally by CEO Nikuningyou. If you wish to support ongoing infrastructure operations, voluntary donations in crypto assets (FLR / WFLR, etc.) are deeply appreciated.",
+        donate_notice: "⚠️ <strong>Notice</strong>: Donations are strictly voluntary support for infrastructure and do not convey any token distributions, rights, or financial returns.",
+        team_ceo_desc: "CEO, developer, designer, and moderator behind GanjaFlare. Operating under the persona of GanjaCat on X, driven purely by passion to boost the Flare Network ecosystem without interest in personal profit."
+      },
+      ja: {
+        nav_home: "ホーム", nav_nft: "NFT", nav_game: "ゲーム", nav_dex: "DEX", nav_tokenomics: "トークノミクス", nav_team: "チーム",
+        home_desc: "GanjaFlareはFlareNetworkのMemecoinの$GANJA・ゲーム・NFTを通じ、コミュニティ主導の文化的資産を構築します。<br>投機的な約束はなく、集団的熱意と共鳴によって定義されます。<br>プロジェクトに関する固有名詞は違法薬物を肯定する意味合いはなく、猫と大麻に共通する「自由」の概念を具現化したものです。",
+        nft_v2_launch_btn: "毒猫絵巻 DApp へ移動する",
+        nft_v2_coll_name: "コレクション名 :", nft_v2_coll_val: "毒猫絵巻",
+        nft_v2_supply: "総発行枚数 :", nft_v2_symbol: "シンボル :", nft_v2_network: "ネットワーク :",
+        nft_v2_airdrop_rule: "GanjaFlare NFT v1 を1枚保有につき 1 DNE を Airdrop",
+        nft_v2_airdrop_date: "🎁 Airdrop：9月3日 12:00 UTC",
+        nft_v2_mint_date: "🪙 Public Mint：9月5日 12:00 UTC",
+        nft_v2_reward_title: "Reward system（毎月1日の報酬システム）",
+        rate_leg: "150点 以上", rate_epic: "90〜149点", rate_rare: "60〜89点", rate_com: "59点 以下",
+        nft_v2_reward_expire: "（未請求報酬は1ヶ月後に消滅します）",
+        nft_v1_desc: "GanjaFlareの文化を象徴する公式NFTコレクション v1。ホルダー向け特典やエアドロップ企画を展開中。",
+        nft_v1_billy_desc: "GanjaFlare NFT(v1)を所有してゲームやコミュニティ参加で $BILLY! トークンを獲得！",
+        join_gully_discord: "Gully Discord に参加",
+        lotto_desc: "毎日無料で挑戦！デイリーロト会場。",
+        lotto_reset: "<i class=\"fa-solid fa-clock\"></i> 毎日 12:00 UTC（日本時間 21:00）にリセット！",
+        lotto_safety: "<i class=\"fa-solid fa-shield-halved\"></i> Googleサインイン＆ウォレットアドレスの手動入力のみ。安全にご利用いただけます！",
+        gcr_subtitle: "公式ランアクションゲーム「GanjaCatRun」！",
+        gcr_fullscreen: "全画面でゲームをプレイ",
+        gcr_error_notice: "<i class=\"fa-solid fa-triangle-exclamation\"></i> ゲーム画面でエラーが頻発する場合はこちら",
+        gcr_gas_btn: "安定版（GAS避難所）でプレイする",
+        gcr_rules_title: "報酬＆BURNルール",
+        gcr_prize_rule: "<strong>賞金🎁</strong>: 隔週、最高得点獲得者＆最高プレイ数の人にそれぞれ 500 $GANJA をプレゼント！",
+        gcr_burn_rule: "<strong>定期BURN🔥</strong>: 隔週、全プレイヤーが獲得した累計ポイントと同額の $GANJA をBURN（焼却）します！",
+        gcr_controls_title: "操作方法 & キーボード割り当て",
+        gcr_controls_desc: "画面上でXアカウント名を入力してモードを選択。画面上のAボタンまたはキーボードで操作できます。",
+        ctrl_jump: "ジャンプ / 再スタート", ctrl_pause: "ポーズ（一時停止/再開）", ctrl_lb: "リーダーボード表示", ctrl_page: "ランキング ページ切り替え",
+        ga_desc: "コミュニティ還元！隔週Giveawayイベント。",
+        ga_how_title: "参加手順",
+        ga_step1_lbl: "条件1", ga_step1_txt: "フォロー",
+        ga_step2_txt: "<strong>条件2</strong>: <code>@nikuningyou29</code> を含めて、GanjaFlareや$GANJAへの熱いメッセージや好きなところをXでポスト！🌿🔥",
+        ga_rules_title: "ルール & 当選連絡",
+        ga_rule1: "約2週間に1度、勝者（1名）を決定し賞金やNFTをプレゼント！",
+        ga_rule2: "勝者にはXのDM（ダイレクトメッセージ）にて直接ご連絡します。",
+        dex_swap_desc: "BlazeSwap および SparkDEX にて分散型トレードが可能です。",
+        dex_pool_desc: "DEXへ流動性（$GANJA / $WFLR など）を提供することで、取引手数料報酬を獲得できます。",
+        blaze_step1: "BlazeSwapの「Pool」ページでウォレットを接続します。",
+        blaze_step2: "「Add Liquidity」でペア（$GANJA / $WFLR 等）を指定します。",
+        blaze_step3: "数量を入力し、Token Approve承認後に「Supply」で完了！",
+        go_blazeswap_pool: "BlazeSwap Poolへ",
+        spark_step1: "SparkDEXの「Earn / Pool」でウォレットを接続します。",
+        spark_step2: "$GANJA トークンのプールを選択します。",
+        spark_step3: "希望の割合でDeposit（預け入れ）を実行すれば完了！",
+        go_sparkdex_pool: "SparkDEX Poolへ",
+        tok_chain_lbl: "チェーン & シンボル", tok_supply_lbl: "固定総供給枚数",
+        tok_contract_lbl: "$GANJA コントラクトアドレス", tok_explorer_btn: "Flare Explorer でトークン情報を確認",
+        tok_burn_title: "毎月恒久 BURN（定期焼却）",
+        tok_burn_desc: "GanjaFlareはプロジェクトの透明性と $GANJA の希少性を高めるべく、<strong>毎月1回 777,777 $GANJA をBURN（焼却）</strong>します！<br><span style=\"color: var(--emerald-green); font-weight: 700;\">（これは総供給枚数 42,000,000 $GANJA に対し、1.85%以上に相当します）</span>",
+        accordion_tok_title: "トークン・エコノミクス詳細設計文書",
+        tok_sec1_h: "I. 供給構造の決定論的永続性（Deterministic Permanence）",
+        tok_sec1_p: "$GANJA トークンは、総供給量が 42,000,000 単位に厳格かつ永久に固定されています。スマートコントラクトレベルで「追加発行機能（Mint）」を排除して設計されており、将来的なインフレーション Riskを原理的に遮断。エコシステム参加者に対して確固たる希釈耐性と長期的な価値の安定性を提供します。",
+        tok_sec2_h: "II. 分散型初期流動性（Decentralized Liquidity Infrastructure）",
+        tok_sec2_p: "総供給量のうち 57.14%（24,000,000 $GANJA） は、Flare Network上の主要DEXである BlazeSwap および SparkDEX の流動性プールへ初期アロケーションされています。市場主導型の健全な価格発見プロセス（Price Discovery）を維持し、ユーザーがいつでも公平かつスムーズにトレードを行える取引環境を構築しています。",
+        tok_sec3_h: "III. コミュニティ戦略リザーブ＆デフレメカニズム",
+        tok_sec3_p: "残る 42.86%（18,000,000 $GANJA） は、コミュニティの持続的な拡大と自律的エコノミーの形成のために戦略管理されています。",
+        tok_sec3_li1: "<strong style=\"color: #f8fafc;\">毎月恒久BURN（定期焼却）</strong>: 毎月1回、777,777 $GANJA をブラックホールアドレスへ送付し永久焼却。実質的な流通供給量を段階的に減少させます。",
+        tok_sec3_li2: "<strong style=\"color: #f8fafc;\">インセンティブ＆プロダクト還元</strong>: エコシステムゲーム「GanjaCatRun」の報酬、デイリーロト、コミュニティイベントへの配布により、能動的な貢献者へ循環させます。",
+        accordion_disc_title: "重要なお願い・免責事項 & 法的遵守",
+        disc_sec1_h: "1. 投資助言の厳禁（No Investment Advice）",
+        disc_sec1_p: "$GANJA は Flare Network コミュニティの文化的象徴・情熱を共有するためのミームトークンであり、いかなる意味においても金融商品、有価証券、または投資価値を保証するものではありません。「確実な利益」「価格の急上昇」等の投機的表現はコミュニティルール上固く禁止されています。ご自身の判断と責任のもとでご参加ください。",
+        disc_sec2_h: "2. 違法行為との無関連性（No Illegal Activity）",
+        disc_sec2_p: "本トークンの名称、シンボル、グラフィック、および関連するすべてのクリエイティブ表現は、純粋なWeb3エンターテインメント・文化的表現です。あらゆる違法物質、反社会的行為、ならびに実在する反社会的組織や違法アクティビティとは一切関係がありません。",
+        disc_sec3_h: "3. コンプライアンスと監視体制（Legal Compliance）",
+        disc_sec3_p: "日本の関連法令（資金決済法および金融商品取引法等）ならびに対象地域の法規制を遵守するため、運営チームは常時モニタリング体制を強化・維持しています。Web3の健全なエコシステム構築に向け、ユーザーの皆様のご理解とご協力をお願い申し上げます。",
+        donate_title: "運営寄付のお願い",
+        donate_desc: "GanjaFlare は非営利のコミュニティ主導プロジェクトです。BOTのサーバー維持費やインフラ運用コストは、現在すべてCEO肉人形の自己資金によって賄われております。<br>もし GanjaFlare の活動に共感し、持続的なインフラ維持をご支援いただける方がいらっしゃいましたら、以下のウォレットアドレスより任意の暗号資産（FLR / WFLR 等）でのご寄付をいただけますと幸いでございます。",
+        donate_notice: "⚠️ <strong>重要な注意事項</strong>：本寄付は純粋な運営支援であり、いかなる対価（トークンの配布、特別な権利やサービスの提供、将来の利益分配等）も発生いたしません。ご寄付いただいた資金は、全額インフラ維持費およびBOTの運用コストのみに充当させていただきます。いかなる投資助言も行っておらず、$GANJA は投資商品ではありません。あらかじめご了承の上、ご自身の判断にてお願いいたします。",
+        team_ceo_desc: "GanjaFlareプロジェクトのCEOでありエンジニア、デザイナー、モデレーター等、全てをたった1人でこなす狂人。流星街で生まれし忌み子。GanjaCatの皮を被ってXで活動中。利益に興味はなく、ただ単にFlareNetworkを盛り上げたい精神だけで生きている。"
+      },
+      zh: {
+        nav_home: "主页", nav_nft: "NFT", nav_game: "游戏", nav_dex: "DEX", nav_tokenomics: "代币经济学", nav_team: "团队",
+        home_desc: "GanjaFlare在Flare Network上通过Memecoin $GANJA、游戏和NFT构建社区驱动的文化资产。<br>它由集体的热情与共鸣所定义，而非投机承诺。<br>与项目相关的专有名词绝无认可违禁物质之意；它们体现了猫与大麻所共有的“自由”概念。",
+        nft_v2_launch_btn: "前往 毒猫绘卷 DApp",
+        nft_v2_coll_name: "系列名称 :", nft_v2_coll_val: "毒猫绘卷",
+        nft_v2_supply: "总发行量 :", nft_v2_symbol: "代币符号 :", nft_v2_network: "网络 :",
+        nft_v2_airdrop_rule: "每持有1枚 GanjaFlare NFT v1 可获空投 1 DNE",
+        nft_v2_airdrop_date: "🎁 空投时间：9月3日 12:00 UTC",
+        nft_v2_mint_date: "🪙 公开铸造：9月5日 12:00 UTC",
+        nft_v2_reward_title: "奖励系统（每月1日发放）",
+        rate_leg: "150分 以上", rate_epic: "90〜149分", rate_rare: "60〜89分", rate_com: "59分 以下",
+        nft_v2_reward_expire: "（未领取的奖励将在1个月后失效）",
+        nft_v1_desc: "象征 GanjaFlare 文化的官方 NFT 系列 v1。持有人专属福利和空投活动正在进行中。",
+        nft_v1_billy_desc: "持有 GanjaFlare NFT(v1) 并参与游戏与社区活动即可赚取 $BILLY! 代币！",
+        join_gully_discord: "加入 Gully Discord",
+        lotto_desc: "每天免费参与！每日彩票会场。",
+        lotto_reset: "<i class=\"fa-solid fa-clock\"></i> 每天 12:00 UTC 重置！",
+        lotto_safety: "<i class=\"fa-solid fa-shield-halved\"></i> 仅需Google登录与手动输入钱包地址。完全安全可靠！",
+        gcr_subtitle: "官方跑酷动作游戏“GanjaCatRun”！",
+        gcr_fullscreen: "全屏游玩游戏",
+        gcr_error_notice: "<i class=\"fa-solid fa-triangle-exclamation\"></i> 若游戏画面频繁报错请点击此处",
+        gcr_gas_btn: "在稳定版（GAS备用）游玩",
+        gcr_rules_title: "奖励与销毁规则",
+        gcr_prize_rule: "<strong>奖金🎁</strong>: 每两周向最高分获得者与游玩次数最多者各赠送 500 $GANJA！",
+        gcr_burn_rule: "<strong>定期销毁🔥</strong>: 每两周销毁与所有玩家获得的累计积分等量的 $GANJA！",
+        gcr_controls_title: "操作方法与按键绑定",
+        gcr_controls_desc: "在屏幕上输入X账号名称并选择模式。可通过屏幕A按钮或键盘操作。",
+        ctrl_jump: "跳跃 / 重新开始", ctrl_pause: "暂停 / 继续", ctrl_lb: "显示排行榜", ctrl_page: "切换排行榜页面",
+        ga_desc: "回馈社区！每两周举行赠送活动。",
+        ga_how_title: "参与步骤",
+        ga_step1_lbl: "步骤 1", ga_step1_txt: "关注",
+        ga_step2_txt: "<strong>步骤 2</strong>: 在X上发布带有 <code>@nikuningyou29</code> 的推文，分享你对 GanjaFlare / $GANJA 的热忱与喜爱！🌿🔥",
+        ga_rules_title: "规则与获奖通知",
+        ga_rule1: "大约每2周选出1名获胜者，赠送奖金或NFT！",
+        ga_rule2: "获胜者将通过X私信（Direct Message）直接联系。",
+        dex_swap_desc: "可在 BlazeSwap 及 SparkDEX 进行去中心化交易。",
+        dex_pool_desc: "向 DEX 提供流动性（$GANJA / $WFLR 等）以赚取交易手续费奖励。",
+        blaze_step1: "在 BlazeSwap 的“Pool”页面连接钱包。",
+        blaze_step2: "在“Add Liquidity”中选择交易对（$GANJA / $WFLR 等）。",
+        blaze_step3: "输入数量，授权 Token Approve 后点击“Supply”即可！",
+        go_blazeswap_pool: "前往 BlazeSwap Pool",
+        spark_step1: "在 SparkDEX 的“Earn / Pool”连接钱包。",
+        spark_step2: "选择 $GANJA 代币资金池。",
+        spark_step3: "输入期望的比例并执行 Deposit 即可！",
+        go_sparkdex_pool: "前往 SparkDEX Pool",
+        tok_chain_lbl: "区块链 & 符号", tok_supply_lbl: "固定总供应量",
+        tok_contract_lbl: "$GANJA 合约地址", tok_explorer_btn: "在 Flare Explorer 查看代币信息",
+        tok_burn_title: "每月永久销毁（定期销毁）",
+        tok_burn_desc: "为了提高项目透明度与 $GANJA 的稀缺性，我们<strong>每月销毁 777,777 $GANJA 1次</strong>！<br><span style=\"color: var(--emerald-green); font-weight: 700;\">（相当于总供应量 42,000,000 $GANJA 的1.85%以上）</span>",
+        accordion_tok_title: "代币经济学详细设计文档",
+        tok_sec1_h: "I. 供应结构的确定性永久性（Deterministic Permanence）",
+        tok_sec1_p: "$GANJA 代币的总供应量被严格且永久地固定为 42,000,000 単位。在智能合约层面消除了“增发功能（Mint）”，从原理上杜绝了通胀风险，为持有者提供坚实的防稀释保护与长期价值稳定性。",
+        tok_sec2_h: "II. 去中心化初始流动性（Decentralized Liquidity Infrastructure）",
+        tok_sec2_p: "总供应量中的 57.14%（24,000,000 $GANJA） 初始分配至 Flare Network 上的主要 DEX（BlazeSwap 与 SparkDEX）的流动性池中。保持市场主导的健康价格发现过程，为用户营造公平顺畅的交易环境。",
+        tok_sec3_h: "III. 社区战略储备与通缩机制",
+        tok_sec3_p: "剩余的 42.86%（18,000,000 $GANJA） 经过战略管理，用于社区的可持续扩张与自主经济循环：",
+        tok_sec3_li1: "<strong style=\"color: #f8fafc;\">每月永久销毁</strong>: 每月1次将 777,777 $GANJA 发送至黑洞地址永久销毁，逐步减少实际流通量。",
+        tok_sec3_li2: "<strong style=\"color: #f8fafc;\">激励与产品回馈</strong>: 通过 GanjaCatRun 游戏奖励、每日彩票和社区活动重新循环发放给积极贡献者。",
+        accordion_disc_title: "重要事项・免责声明与法律合规",
+        disc_sec1_h: "1. 严禁投资建议（No Investment Advice）",
+        disc_sec1_p: "$GANJA 是用于分享 Flare Network 社区文化象征与热情的模因代币，在任何意义上均不构成金融商品、有价证券或投资价值保证。社区规则严格禁止“保证获利”“价格飙升”等投机性表述。请在个人完全负责的前提下参与。",
+        disc_sec2_h: "2. 与违法行为无关（No Illegal Activity）",
+        disc_sec2_p: "与本代币相关的名称、符号、图形及所有创意表达均为纯粹的Web3娱乐与文化表达，与任何违法物质、反社会行为或真实存在的违法组织无关。",
+        disc_sec3_h: "3. 法律合规与监管体制（Legal Compliance）",
+        disc_sec3_p: "为了遵守相关法律法规，管理团队持续加强并维护监控体制。",
+        donate_title: "运营捐赠请求",
+        donate_desc: "GanjaFlare 是一个非营利性社区主导项目。机器人服务器维护费和基础设施运营成本目前完全由 CEO Nikuningyou 个人资金承担。如果您认同 GanjaFlare 的活动并希望支持持续的基础设施维护，非常感谢您通过以下钱包地址使用任意加密资产（FLR / WFLR 等）进行捐赠。",
+        donate_notice: "⚠️ <strong>重要注意事项</strong>：本捐赠纯属运营支持，不产生任何回报（代币发放、特殊权利或服务提供、未来利润分配等）。捐赠资金将全额用于基础设施维护与机器人运营成本。不进行任何投资建议，$GANJA 并非投资商品。",
+        team_ceo_desc: "GanjaFlare 项目的 CEO，也是独自承担工程师、设计师、版主等所有工作的人。化身为 GanjaCat 在 X 上活动，纯粹出于推动 FlareNetwork 发展的热情，对个人利益不感兴趣。"
+      }
+    };
 
-    const chartTranslations = {
-      'en': ['DEX Liquidity Pool (57.14%)', 'Community Strategic Reserve (42.86%)'],
-      'ja': ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
-      'zh-CN': ['DEX 流动性池 (57.14%)', '社区战略储备 (42.86%)']
+    /* Chart.js 用ラベル辞書 */
+    const chartLabels = {
+      en: ['DEX Liquidity Pool (57.14%)', 'Community Strategic Reserve (42.86%)'],
+      ja: ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
+      zh: ['DEX 流动性池 (57.14%)', '社区战略储备 (42.86%)']
     };
 
     let tokenomicsChartInstance = null;
 
-    function updateChartLanguage(langCode) {
-      if (!tokenomicsChartInstance) return;
-      const labels = chartTranslations[langCode] || chartTranslations['en'];
-      tokenomicsChartInstance.data.labels = labels;
-      tokenomicsChartInstance.update();
-    }
-
-    function changeLanguage(langCode) {
+    /* 言語切り替えメイン関数 */
+    function setLanguage(lang) {
+      // 1. ボタンのアクティブ状態の更新
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      if (event && event.target) {
-        event.target.classList.add('active');
+      const activeBtn = document.getElementById(`lang-btn-${lang}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // 2. DOM テキストの一括書き換え
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang] && i18n[lang][key]) {
+          el.innerHTML = i18n[lang][key];
+        }
+      });
+
+      // 3. チャートの再描画
+      if (tokenomicsChartInstance) {
+        tokenomicsChartInstance.data.labels = chartLabels[lang] || chartLabels.en;
+        tokenomicsChartInstance.update();
       }
 
-      updateChartLanguage(langCode);
-
-      const select = document.querySelector('.goog-te-combo');
-      if (select) {
-        select.value = langCode;
-        select.dispatchEvent(new Event('change'));
-      }
+      // 4. html lang 属性の更新
+      document.documentElement.lang = lang;
     }
 
+    /* ハンバーガーメニュー制御 */
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
 
@@ -1364,6 +1543,7 @@
       });
     });
 
+    /* タブ切り替え処理 */
     function switchTab(section, tabName) {
       const btn = event ? event.currentTarget : null;
       const sectionElem = document.getElementById(section);
@@ -1382,7 +1562,7 @@
       }
     }
 
-    /* NFT v2 Countdown Timer */
+    /* NFT v2 カウントダウンタイマー */
     const launchTarget = new Date("2026-09-05T12:00:00Z").getTime();
 
     function updateNftV2Countdown() {
@@ -1397,7 +1577,7 @@
 
       if (distance <= 0) {
         btn.classList.remove('locked');
-        btn.innerHTML = '<i class="fa-solid fa-sparkles"></i> <span class="notranslate" translate="no">NFT v2</span>';
+        btn.innerHTML = '<i class="fa-solid fa-sparkles"></i> NFT v2';
         if (lockedView) lockedView.style.display = 'none';
         if (unlockedView) unlockedView.style.display = 'block';
       } else {
@@ -1416,6 +1596,7 @@
     updateNftV2Countdown();
     setInterval(updateNftV2Countdown, 1000);
 
+    /* アコーディオン制御 */
     function toggleAccordion(id) {
       const content = document.getElementById(id);
       const icon = document.getElementById(`${id}Icon`);
@@ -1428,6 +1609,7 @@
       }
     }
 
+    /* アドレスコピー機能 */
     function copyContract(addrText, btnId) {
       const setSuccessUI = () => {
         const copyBtn = document.getElementById(btnId);
@@ -1463,6 +1645,7 @@
       document.body.removeChild(textArea);
     }
 
+    /* コインのスライドショー */
     const coinImgs = document.querySelectorAll('#coinSlideshow img');
     let currentCoinIdx = 0;
 
@@ -1474,19 +1657,18 @@
       }, 1200);
     }
 
+    /* 初期化（DOMContentLoaded） */
     document.addEventListener("DOMContentLoaded", () => {
+      // 1. Chart.js 初期化
       const ctx = document.getElementById('tokenomicsChart').getContext('2d');
       
       tokenomicsChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: chartTranslations['en'],
+          labels: chartLabels.en,
           datasets: [{
             data: [24000000, 18000000],
-            backgroundColor: [
-              '#34d399',
-              '#a855f7'
-            ],
+            backgroundColor: ['#34d399', '#a855f7'],
             borderColor: '#0f172a',
             borderWidth: 4,
             hoverOffset: 12
@@ -1495,9 +1677,7 @@
         options: {
           responsive: true,
           maintainAspectRatio: true,
-          layout: {
-            padding: 0
-          },
+          layout: { padding: 0 },
           plugins: {
             legend: {
               position: 'bottom',
@@ -1521,8 +1701,12 @@
           cutout: '65%'
         }
       });
+
+      // 2. 初期言語を英語にセット
+      setLanguage('en');
     });
 
+    /* 背景パーティクルアニメーション */
     particlesJS("particles-js", {
       "particles": {
         "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
