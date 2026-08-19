@@ -781,7 +781,7 @@
     <img src="images/ganjacat03.png" class="drift-bg-cat cat-bg-3" alt="GanjaCat Gold">
   </div>
 
-  <!-- 上部固定ナビゲーション -->
+  <!-- 上部固定ナビゲーション（HOME -> NFT -> GAME -> DEX -> TOKENOMICS -> TEAM に順番変更） -->
   <header class="notranslate" translate="no">
     <div class="nav-container">
       <a href="#home" class="logo">
@@ -791,9 +791,9 @@
       
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home">HOME</a></li>
-        <li><a href="#dex">DEX</a></li>
         <li><a href="#nft">NFT</a></li>
         <li><a href="#game">GAME</a></li>
+        <li><a href="#dex">DEX</a></li>
         <li><a href="#tokenomics">TOKENOMICS</a></li>
         <li><a href="#team">TEAM</a></li>
       </ul>
@@ -809,7 +809,7 @@
   </header>
 
   <main>
-    <!-- 1. HOME (画面最上部に完全配置) -->
+    <!-- 1. HOME (文章を新しい指定内容に更新) -->
     <section id="home">
       <div class="hub-card">
         <div class="hero-grid">
@@ -821,7 +821,9 @@
               Flare's Freedom Energy
             </p>
             <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;">
-              <span class="notranslate" translate="no">$GANJA</span> は、<span class="notranslate" translate="no">Flare Network</span> 上のネイティブでコミュニティ主導の文化的資産です。投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。
+              GanjaFlareはFlareNetworkのMemecoinの<span class="notranslate" translate="no">$GANJA</span>・ゲーム・NFTを通じ、コミュニティ主導の文化的資産を構築します。<br>
+              投機的な約束はなく、集団的熱意と共鳴によって定義されます。<br>
+              プロジェクトに関する固有名詞は違法薬物を肯定する意味合いはなく、猫と大麻に共通する「自由」の概念を具現化したものです。
             </p>
           </div>
           <div class="ganja-logo-frame">
@@ -831,70 +833,7 @@
       </div>
     </section>
 
-    <!-- 2. DEX -->
-    <section id="dex">
-      <div class="sec-title"><i class="fa-solid fa-right-left"></i> <span class="notranslate" translate="no">DEX</span></div>
-      <div class="hub-card">
-        <div class="tab-container">
-          <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> <span class="notranslate" translate="no">SWAP</span></button>
-          <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> <span class="notranslate" translate="no">POOL</span></button>
-        </div>
-
-        <div id="dex-swap" class="tab-content active">
-          <p style="color: var(--text-sub); margin-bottom: 8px;">
-            <span class="notranslate" translate="no">BlazeSwap</span> および <span class="notranslate" translate="no">SparkDEX</span> にて分散型トレードが可能です。
-          </p>
-
-          <!-- コピーボックス -->
-          <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
-            <div>
-              <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
-            </div>
-            <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
-          </div>
-
-          <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">BlazeSwap</span></a>
-          <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">SparkDEX</span></a>
-          <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7?tab=token_transfers" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
-            <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
-          </a>
-
-          <!-- SparkDEX V3.1 プール（0xe0b9dac33219a84be0b40510198a3e599be383eb）GeckoTerminal Embed -->
-          <div class="dex-chart-container">
-            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <div id="dex-pool" class="tab-content">
-          <p style="color: var(--text-sub); margin-bottom: 16px;">
-            <span class="notranslate" translate="no">DEX</span>へ流動性（<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$WFLR</span> など）を提供することで、取引手数料報酬を獲得できます。
-          </p>
-
-          <div class="info-card" style="margin-bottom: 15px;">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">BlazeSwap</span> ガイド</h4>
-            <ul class="step-list">
-              <li><span class="notranslate" translate="no">BlazeSwap</span>の「<span class="notranslate" translate="no">Pool</span>」ページでウォレットを接続します。</li>
-              <li>「Add Liquidity」でペア（<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$WFLR</span> 等）を指定します。</li>
-              <li>数量を入力し、Token Approve承認後に「Supply」で完了！</li>
-            </ul>
-            <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 8px;"><span class="notranslate" translate="no">BlazeSwap Pool</span>へ</a>
-          </div>
-
-          <div class="info-card">
-            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">SparkDEX</span> ガイド</h4>
-            <ul class="step-list">
-              <li><span class="notranslate" translate="no">SparkDEX</span>の「Earn / <span class="notranslate" translate="no">Pool</span>」でウォレットを接続します。</li>
-              <li><span class="notranslate" translate="no">$GANJA</span> トークンのプールを選択します。</li>
-              <li>希望の割合でDeposit（預け入れ）を実行すれば完了！</li>
-            </ul>
-            <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 8px;"><span class="notranslate" translate="no">SparkDEX Pool</span>へ</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 3. NFT (左：NFT v2 / 右：NFT v1 - タイマー制御パターンB実装) -->
+    <!-- 2. NFT (順序を HOME の直後に変更) -->
     <section id="nft">
       <div class="sec-title"><i class="fa-solid fa-gem"></i> <span class="notranslate" translate="no">NFT</span></div>
       <div class="hub-card">
@@ -913,19 +852,13 @@
         <!-- NFT v2 (左・初期アクティブ) -->
         <div id="nft-v2" class="tab-content active">
           
-          <!-- カウントダウン中（ロック状態）の専用表示エリア -->
-          <div id="nftv2-locked-view" style="text-align: center; padding: 50px 20px; background: rgba(0, 0, 0, 0.4); border: 1px dashed var(--border-emerald); border-radius: 18px; margin: 10px 0;">
-            <div style="font-size: 2.8rem; color: #f472b6; margin-bottom: 12px; filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.5));">
+          <!-- カウントダウン中（ロック状態）の専用表示エリア（SOONのみのシンプル表示に変更） -->
+          <div id="nftv2-locked-view" style="text-align: center; padding: 60px 20px; background: rgba(0, 0, 0, 0.4); border: 1px dashed var(--border-emerald); border-radius: 18px; margin: 10px 0;">
+            <div style="font-size: 3rem; color: #f472b6; margin-bottom: 16px; filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.6));">
               <i class="fa-solid fa-lock"></i>
             </div>
-            <h3 style="color: var(--emerald-green); font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;" class="notranslate" translate="no">
-              GanjaFlare NFT v2
-            </h3>
-            <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 22px;">
-              毒猫絵巻 DApp ＆ 公開ミント 解禁までカウントダウン中...
-            </p>
-            <div id="nftv2-big-timer" class="notranslate" translate="no" style="font-size: 1.8rem; font-weight: 800; color: #ffffff; text-shadow: 0 0 15px rgba(244, 114, 182, 0.6); background: rgba(15, 23, 42, 0.85); display: inline-block; padding: 12px 28px; border-radius: 16px; border: 1px solid rgba(244, 114, 182, 0.4); box-shadow: 0 0 20px rgba(0,0,0,0.5);">
-              --d --h --m --s
+            <div class="notranslate" translate="no" style="font-size: 2.2rem; font-weight: 800; color: #ffffff; letter-spacing: 4px; text-shadow: 0 0 20px rgba(244, 114, 182, 0.8);">
+              SOON
             </div>
           </div>
 
@@ -1045,7 +978,7 @@
       </div>
     </section>
 
-    <!-- 4. GAME -->
+    <!-- 3. GAME (順序を NFT の直後に変更) -->
     <section id="game">
       <div class="sec-title"><i class="fa-solid fa-gamepad"></i> <span class="notranslate" translate="no">GAME</span></div>
       <div class="hub-card">
@@ -1155,6 +1088,69 @@
               <li>約2週間に1度、勝者（1名）を決定し賞金や<span class="notranslate" translate="no">NFT</span>をプレゼント！</li>
               <li>勝者にはXのDM（ダイレクトメッセージ）にて直接ご連絡します。</li>
             </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. DEX (順序を GAME の直後に変更) -->
+    <section id="dex">
+      <div class="sec-title"><i class="fa-solid fa-right-left"></i> <span class="notranslate" translate="no">DEX</span></div>
+      <div class="hub-card">
+        <div class="tab-container">
+          <button class="tab-btn active" onclick="switchTab('dex', 'swap')"><i class="fa-solid fa-repeat"></i> <span class="notranslate" translate="no">SWAP</span></button>
+          <button class="tab-btn" onclick="switchTab('dex', 'pool')"><i class="fa-solid fa-droplet"></i> <span class="notranslate" translate="no">POOL</span></button>
+        </div>
+
+        <div id="dex-swap" class="tab-content active">
+          <p style="color: var(--text-sub); margin-bottom: 8px;">
+            <span class="notranslate" translate="no">BlazeSwap</span> および <span class="notranslate" translate="no">SparkDEX</span> にて分散型トレードが可能です。
+          </p>
+
+          <!-- コピーボックス -->
+          <div class="copy-box" onclick="copyContract('0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7', 'copyBtn')">
+            <div>
+              <div class="copy-text notranslate" translate="no">0x9aa42de5ec6f3b3bbf252bf8ac81acb338d888b7</div>
+            </div>
+            <div class="copy-btn" id="copyBtn"><i class="fa-solid fa-copy"></i> COPY</div>
+          </div>
+
+          <a href="https://app.blazeswap.xyz/swap/" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">BlazeSwap</span></a>
+          <a href="https://sparkdex.ai/swap" target="_blank" class="btn-mint-style"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="notranslate" translate="no">SparkDEX</span></a>
+          <a href="https://flare-explorer.flare.network/token/0x9aA42de5eC6f3B3BbF252bf8ac81ACB338D888b7?tab=token_transfers" target="_blank" class="btn-mint-style" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
+            <i class="fa-solid fa-compass"></i> <span class="notranslate" translate="no">Flare Explorer</span>
+          </a>
+
+          <!-- SparkDEX V3.1 プール（0xe0b9dac33219a84be0b40510198a3e599be383eb）GeckoTerminal Embed -->
+          <div class="dex-chart-container">
+            <iframe id="geckoterminal-embed" title="GeckoTerminal Embed" src="https://www.geckoterminal.com/flare/pools/0xe0b9dac33219a84be0b40510198a3e599be383eb?embed=1&info=0&swaps=1" allow="clipboard-write" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div id="dex-pool" class="tab-content">
+          <p style="color: var(--text-sub); margin-bottom: 16px;">
+            <span class="notranslate" translate="no">DEX</span>へ流動性（<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$WFLR</span> など）を提供することで、取引手数料報酬を獲得できます。
+          </p>
+
+          <div class="info-card" style="margin-bottom: 15px;">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">BlazeSwap</span> ガイド</h4>
+            <ul class="step-list">
+              <li><span class="notranslate" translate="no">BlazeSwap</span>の「<span class="notranslate" translate="no">Pool</span>」ページでウォレットを接続します。</li>
+              <li>「Add Liquidity」でペア（<span class="notranslate" translate="no">$GANJA</span> / <span class="notranslate" translate="no">$WFLR</span> 等）を指定します。</li>
+              <li>数量を入力し、Token Approve承認後に「Supply」で完了！</li>
+            </ul>
+            <a href="https://app.blazeswap.xyz/pool/" target="_blank" class="btn-mint-style" style="margin-top: 8px;"><span class="notranslate" translate="no">BlazeSwap Pool</span>へ</a>
+          </div>
+
+          <div class="info-card">
+            <h4 style="color: var(--emerald-green); margin-bottom: 10px;"><i class="fa-solid fa-book"></i> <span class="notranslate" translate="no">SparkDEX</span> ガイド</h4>
+            <ul class="step-list">
+              <li><span class="notranslate" translate="no">SparkDEX</span>の「Earn / <span class="notranslate" translate="no">Pool</span>」でウォレットを接続します。</li>
+              <li><span class="notranslate" translate="no">$GANJA</span> トークンのプールを選択します。</li>
+              <li>希望の割合でDeposit（預け入れ）を実行すれば完了！</li>
+            </ul>
+            <a href="https://sparkdex.ai/pools" target="_blank" class="btn-mint-style" style="margin-top: 8px;"><span class="notranslate" translate="no">SparkDEX Pool</span>へ</a>
           </div>
         </div>
 
@@ -1377,7 +1373,7 @@
       }
     }
 
-    /* NFT v2 カウントダウンタイマー処理 (パターンB制御) */
+    /* NFT v2 カウントダウンタイマー処理 */
     const launchTarget = new Date("2026-09-05T12:00:00Z").getTime(); // 9月5日 12:00 UTC (JST 21:00)
 
     function updateNftV2Countdown() {
@@ -1385,7 +1381,6 @@
       const distance = launchTarget - now;
       const btn = document.getElementById('nftv2-tab-btn');
       const timerText = document.getElementById('nftv2-timer-text');
-      const bigTimer = document.getElementById('nftv2-big-timer');
       const lockedView = document.getElementById('nftv2-locked-view');
       const unlockedView = document.getElementById('nftv2-unlocked-view');
 
@@ -1398,15 +1393,13 @@
         if (lockedView) lockedView.style.display = 'none';
         if (unlockedView) unlockedView.style.display = 'block';
       } else {
-        // カウントダウン中：ロック画面を表示＆中身を隠す
+        // カウントダウン中：ロック画面を表示（SOONのみ）
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        const timeStr = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        timerText.textContent = timeStr;
-        if (bigTimer) bigTimer.textContent = timeStr;
+        timerText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
         if (lockedView) lockedView.style.display = 'block';
         if (unlockedView) unlockedView.style.display = 'none';
