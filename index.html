@@ -297,35 +297,24 @@
       position: relative;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      align-items: center;
-    }
-
-    .ganja-logo-frame {
-      position: relative;
-      border: 2px solid var(--border-emerald);
-      border-radius: 18px;
+    .hero-card {
+      padding: 0;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px;
-      max-width: 190px;
-      margin: 0 auto;
-      animation: floatAnim 4s ease-in-out infinite;
     }
 
-    .ganja-logo-frame img {
+    .hero-banner {
+      width: 100%;
+      line-height: 0;
+    }
+
+    .hero-banner img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    @keyframes floatAnim {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    .hero-text {
+      padding: 24px;
     }
 
     .btn-mint-style {
@@ -749,7 +738,6 @@
     }
 
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
       .hamburger { display: block; }
       .nav-menu {
         display: none;
@@ -769,7 +757,7 @@
       .coin-slideshow { width: 220px; height: 220px; }
       .hub-card { padding: 20px 14px; }
       .tab-btn { font-size: 0.76rem; padding: 6px 8px; }
-      .ganja-logo-frame { max-width: 150px; }
+      .hero-text { padding: 18px; }
     }
   </style>
 </head>
@@ -822,24 +810,19 @@
   <main>
     <!-- 1. HOME -->
     <section id="home">
-      <div class="hub-card">
-        <div class="hero-grid">
-          <div>
-            <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
-              GanjaFlare
-            </h1>
-            <p style="margin: 8px 0 16px; color: #f472b6; font-weight: 700; font-size: 1rem;">
-              Flare's Freedom Energy
-            </p>
-            <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;" data-i18n="home_desc">
-              GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin $GANJA, games, and NFTs.<br>
-              It is defined by collective enthusiasm and resonance, rather than speculative promises.<br>
-              The proper nouns associated with the project carry no endorsement of illegal substances; they embody the shared concept of "freedom" inherent to cats and cannabis.
-            </p>
-          </div>
-          <div class="ganja-logo-frame">
-            <img src="images/Ganjalogo.svg" alt="GanjaFlare Official Logo">
-          </div>
+      <div class="hub-card hero-card">
+        <div class="hero-banner">
+          <picture>
+            <source media="(max-width: 900px)" srcset="images/TOP_Phone.webp">
+            <img src="images/TOP_PC.webp" alt="GanjaFlare - Flare's Freedom Energy">
+          </picture>
+        </div>
+        <div class="hero-text">
+          <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;" data-i18n="home_desc">
+            GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin $GANJA, games, and NFTs.<br>
+            It is defined by collective enthusiasm and resonance, rather than speculative promises.<br>
+            The proper nouns associated with the project carry no endorsement of illegal substances; they embody the shared concept of "freedom" inherent to cats and cannabis.
+          </p>
         </div>
       </div>
     </section>
