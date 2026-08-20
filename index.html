@@ -297,11 +297,12 @@
       position: relative;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
+    .hero-container {
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      gap: 20px;
     }
 
     .ganja-logo-frame {
@@ -312,7 +313,7 @@
       box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
       background: rgba(0, 0, 0, 0.4);
       padding: 10px;
-      max-width: 190px;
+      max-width: 220px;
       margin: 0 auto;
       animation: floatAnim 4s ease-in-out infinite;
     }
@@ -749,7 +750,6 @@
     }
 
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
       .hamburger { display: block; }
       .nav-menu {
         display: none;
@@ -823,22 +823,16 @@
     <!-- 1. HOME -->
     <section id="home">
       <div class="hub-card">
-        <div class="hero-grid">
+        <div class="hero-container">
+          <div class="ganja-logo-frame">
+            <img src="images/Ganjalogo.svg" alt="GanjaFlare Official Logo">
+          </div>
           <div>
-            <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--emerald-green); text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);">
-              GanjaFlare
-            </h1>
-            <p style="margin: 8px 0 16px; color: #f472b6; font-weight: 700; font-size: 1rem;">
-              Flare's Freedom Energy
-            </p>
-            <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;" data-i18n="home_desc">
+            <p style="font-size: 0.95rem; color: var(--text-sub); line-height: 1.8;" data-i18n="home_desc">
               GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin $GANJA, games, and NFTs.<br>
               It is defined by collective enthusiasm and resonance, rather than speculative promises.<br>
               The proper nouns associated with the project carry no endorsement of illegal substances; they embody the shared concept of "freedom" inherent to cats and cannabis.
             </p>
-          </div>
-          <div class="ganja-logo-frame">
-            <img src="images/Ganjalogo.svg" alt="GanjaFlare Official Logo">
           </div>
         </div>
       </div>
@@ -1282,10 +1276,9 @@
     <section id="team">
       <div class="sec-title"><i class="fa-solid fa-users"></i> TEAM</div>
       <div class="hub-card">
-        <!-- CEO Nikuningyou (Mystery Question Avatar) -->
+        <!-- CEO Nikuningyou -->
         <div class="team-card">
-<!-- 修正後（画像を表示する場合） -->
-<img src="images/CEO.gif" class="team-img" alt="Nikuningyou CEO">
+          <img src="images/CEO.gif" class="team-img" alt="Nikuningyou CEO">
           <div>
             <h3 style="color: var(--emerald-green); font-size: 1.2rem; font-weight: 800; margin-bottom: 4px;">
               Nikuningyou <span style="font-size: 0.85rem; color: #f472b6; font-weight: 700;">(CEO)</span>
@@ -1409,7 +1402,7 @@
       },
       ja: {
         nav_home: "ホーム", nav_nft: "NFT", nav_game: "ゲーム", nav_dex: "DEX", nav_tokenomics: "トークノミクス", nav_team: "チーム",
-        home_desc: "GanjaFlareはFlareNetworkのMemecoinの$GANJA・ゲーム・NFTを通じ、コミュニティ主導の文化的資産を構築します。<br>投機的な約束はなく、集団的熱意と共鳴によって定義されます。<br>プロジェクトに関する固有名詞は違法薬物を肯定する意味合いはなく、猫と大麻に共通する「自由」の概念を具現化したものです。",
+        home_desc: "GanjaFlareはFlare Network上のミームコイン $GANJA、ゲーム、NFTを通じてコミュニティ主導の文化的資産を構築します。<br>投機的な約束ではなく、集団的な熱意と共鳴によって定義されます。<br>プロジェクトに関連する固有名詞は違法薬物を支持・推奨するものではなく、猫や大麻に固有の「自由」の共有概念を具現化したものです。",
         nft_v2_launch_btn: "毒猫絵巻 DApp へ移動する",
         nft_v2_coll_name: "コレクション名 :", nft_v2_coll_val: "毒猫絵巻",
         nft_v2_supply: "総発行枚数 :", nft_v2_symbol: "シンボル :", nft_v2_network: "ネットワーク :",
@@ -1485,321 +1478,245 @@
         home_desc: "GanjaFlare在Flare Network上通过Memecoin $GANJA、游戏和NFT构建社区驱动的文化资产。<br>它由集体的热情与共鸣所定义，而非投机承诺。<br>与项目相关的专有名词绝无认可违禁物质之意；它们体现了猫与大麻所共有的“自由”概念。",
         nft_v2_launch_btn: "前往 毒猫绘卷 DApp",
         nft_v2_coll_name: "系列名称 :", nft_v2_coll_val: "毒猫绘卷",
-        nft_v2_supply: "总发行量 :", nft_v2_symbol: "代币符号 :", nft_v2_network: "网络 :",
-        nft_v2_airdrop_rule: "每持有1枚 GanjaFlare NFT v1 可获空投 1 DNE",
-        nft_v2_airdrop_date: "🎁 空投时间：9月3日 12:00 UTC",
-        nft_v2_mint_date: "🪙 公开铸造：9月5日 12:00 UTC",
-        nft_v2_reward_title: "奖励系统（每月1日发放）",
-        rate_leg: "150分 以上", rate_epic: "90〜149分", rate_rare: "60〜89分", rate_com: "59分 以下",
-        nft_v2_reward_expire: "（未领取的奖励将在1个月后失效）",
-        nft_v1_desc: "象征 GanjaFlare 文化的官方 NFT 系列 v1。持有人专属福利和空投活动正在进行中。",
-        nft_v1_billy_desc: "持有 GanjaFlare NFT(v1) 并参与游戏与社区活动即可赚取 $BILLY! 代币！",
+        nft_v2_supply: "总发行量 :", nft_v2_symbol: "符号 :", nft_v2_network: "网络 :",
+        nft_v2_airdrop_rule: "每持有 1 个 GanjaFlare NFT v1 即可获得 1 个 DNE 空投",
+        nft_v2_airdrop_date: "🎁 空投: 9月3日 12:00 UTC",
+        nft_v2_mint_date: "🪙 公共铸造: 9月5日 12:00 UTC",
+        nft_v2_reward_title: "奖励系统（每月1日）",
+        rate_leg: "150分 以上", rate_epic: "90-149分", rate_rare: "60-89分", rate_com: "59分 以下",
+        nft_v2_reward_expire: "（未领取的奖励将在1个月后过期）",
+        nft_v1_desc: "象征GanjaFlare文化的官方NFT系列 v1。持有者专属福利和空投活动正在进行中。",
+        nft_v1_billy_desc: "持有GanjaFlare NFT(v1)并参与游戏/社区以获得 $BILLY! 代币！",
         join_gully_discord: "加入 Gully Discord",
-        lotto_desc: "每天免费参与！每日彩票会场。",
-        lotto_reset: "<i class=\"fa-solid fa-clock\"></i> 每天 12:00 UTC 重置！",
-        lotto_safety: "<i class=\"fa-solid fa-shield-halved\"></i> 仅需Google登录与手动输入钱包地址。完全安全可靠！",
-        gcr_subtitle: "官方跑酷动作游戏“GanjaCatRun”！",
-        gcr_fullscreen: "全屏游玩游戏",
-        gcr_error_notice: "<i class=\"fa-solid fa-triangle-exclamation\"></i> 若游戏画面频繁报错请点击此处",
-        gcr_gas_btn: "在稳定版（GAS备用）游玩",
-        gcr_rules_title: "奖励与销毁规则",
-        gcr_prize_rule: "<strong>奖金🎁</strong>: 每两周向最高分获得者与游玩次数最多者各赠送 500 $GANJA！",
-        gcr_burn_rule: "<strong>定期销毁🔥</strong>: 每两周销毁与所有玩家获得的累计积分等量的 $GANJA！",
-        gcr_controls_title: "操作方法与按键绑定",
-        gcr_controls_desc: "在屏幕上输入X账号名称并选择模式。可通过屏幕A按钮或键盘操作。",
+        lotto_desc: "每天免费试试运气！每日抽奖竞技场。",
+        lotto_reset: "<i class=\"fa-solid fa-clock\"></i> 每天 12:00 UTC（北京时间 20:00）重置！",
+        lotto_safety: "<i class=\"fa-solid fa-shield-halved\"></i> 仅需要Google登录和手动输入钱包地址。完全安全！",
+        gcr_subtitle: "官方跑酷动作游戏 \"GanjaCatRun\"！",
+        gcr_fullscreen: "全屏游玩",
+        gcr_error_notice: "<i class=\"fa-solid fa-triangle-exclamation\"></i> 如果在游戏画面中频繁出现错误，请点击此处",
+        gcr_gas_btn: "游玩稳定版（GAS 备用）",
+        gcr_rules_title: "奖励 & 销毁规则",
+        gcr_prize_rule: "<strong>奖金 🎁</strong>: 每两周向最高得分者和最活跃玩家各奖励 500 $GANJA！",
+        gcr_burn_rule: "<strong>定期销毁 🔥</strong>: 每两周销毁与所有玩家获得的累积积分等量的 $GANJA！",
+        gcr_controls_title: "操作说明 & 键位映射",
+        gcr_controls_desc: "在屏幕上输入您的X账号以选择模式。通过屏幕上的A按钮或键盘控制。",
         ctrl_jump: "跳跃 / 重新开始", ctrl_pause: "暂停 / 继续", ctrl_lb: "显示排行榜", ctrl_page: "切换排行榜页面",
-        ga_desc: "回馈社区！每两周举行赠送活动。",
-        ga_how_title: "参与步骤",
+        ga_desc: "回馈社区！每两周举行 Giveaway 活动。",
+        ga_how_title: "如何参与",
         ga_step1_lbl: "步骤 1", ga_step1_txt: "关注",
-        ga_step2_txt: "<strong>步骤 2</strong>: 在X上发布带有 <code>@nikuningyou29</code> 的推文，分享你对 GanjaFlare / $GANJA 的热忱与喜爱！🌿🔥",
-        ga_rules_title: "规则与获奖通知",
-        ga_rule1: "大约每2周选出1名获胜者，赠送奖金或NFT！",
-        ga_rule2: "获胜者将通过X私信（Direct Message）直接联系。",
-        dex_swap_desc: "可在 BlazeSwap 及 SparkDEX 进行去中心化交易。",
-        dex_pool_desc: "向 DEX 提供流动性（$GANJA / $WFLR 等）以赚取交易手续费奖励。",
-        blaze_step1: "在 BlazeSwap 的“Pool”页面连接钱包。",
-        blaze_step2: "在“Add Liquidity”中选择交易对（$GANJA / $WFLR 等）。",
-        blaze_step3: "输入数量，授权 Token Approve 后点击“Supply”即可！",
+        ga_step2_txt: "<strong>步骤 2</strong>: 在X上发布包含 <code>@nikuningyou29</code> 的帖子，分享您对 GanjaFlare / $GANJA 的热忱想法或喜爱的方面！🌿🔥",
+        ga_rules_title: "规则 & 获奖公布",
+        ga_rule1: "大约每2周选择一名获奖者获得奖品或NFT！",
+        ga_rule2: "获奖者将通过X上的私信（DM）直接联系。",
+        dex_swap_desc: "可在 BlazeSwap 和 SparkDEX 上进行去中心化交易。",
+        dex_pool_desc: "向 DEX 提供流动性（$GANJA / $WFLR）以赚取交易手续费奖励。",
+        blaze_step1: "在 BlazeSwap \"Pool\" 页面连接钱包。",
+        blaze_step2: "在 \"Add Liquidity\" 下选择交易对 ($GANJA / $WFLR)。",
+        blaze_step3: "输入数量，授权代币，然后点击 \"Supply\"！",
         go_blazeswap_pool: "前往 BlazeSwap Pool",
-        spark_step1: "在 SparkDEX 的“Earn / Pool”连接钱包。",
-        spark_step2: "选择 $GANJA 代币资金池。",
-        spark_step3: "输入期望的比例并执行 Deposit 即可！",
+        spark_step1: "在 SparkDEX 的 \"Earn / Pool\" 下连接钱包。",
+        spark_step2: "选择 $GANJA 代币池。",
+        spark_step3: "输入期望的比例并执行 Deposit！",
         go_sparkdex_pool: "前往 SparkDEX Pool",
         tok_chain_lbl: "区块链 & 符号", tok_supply_lbl: "固定总供应量",
-        tok_contract_lbl: "$GANJA 合约地址", tok_explorer_btn: "在 Flare Explorer 查看代币信息",
-        tok_burn_title: "每月永久销毁（定期销毁）",
-        tok_burn_desc: "为了提高项目透明度与 $GANJA 的稀缺性，我们<strong>每月销毁 777,777 $GANJA 1次</strong>！<br><span style=\"color: var(--emerald-green); font-weight: 700;\">（相当于总供应量 42,000,000 $GANJA 的1.85%以上）</span>",
-        tok_burn_history_btn: "销毁历史（Flare Explorer）",
-        accordion_tok_title: "代币经济学详细设计文档",
-        tok_sec1_h: "I. 供应结构的确定性永久性（Deterministic Permanence）",
-        tok_sec1_p: "$GANJA 代币的总供应量被严格且永久地固定为 42,000,000 単位。在智能合约层面消除了“增发功能（Mint）”，从原理上杜绝了通胀风险，为持有者提供坚实的防稀释保护与长期价值稳定性。",
-        tok_sec2_h: "II. 去中心化初始流动性（Decentralized Liquidity Infrastructure）",
-        tok_sec2_p: "总供应量中的 57.14%（24,000,000 $GANJA） 初始分配至 Flare Network 上的主要 DEX（BlazeSwap 与 SparkDEX）的流动性池中。保持市场主导的健康价格发现过程，为用户营造公平顺畅的交易环境。",
-        tok_sec3_h: "III. 社区战略储备与通缩机制",
-        tok_sec3_p: "剩余的 42.86%（18,000,000 $GANJA） 经过战略管理，用于社区的可持续扩张与自主经济循环：",
-        tok_sec3_li1: "<strong style=\"color: #f8fafc;\">每月永久销毁</strong>: 每月1次将 777,777 $GANJA 发送至黑洞地址永久销毁，逐步减少实际流通量。",
-        tok_sec3_li2: "<strong style=\"color: #f8fafc;\">激励与产品回馈</strong>: 通过 GanjaCatRun 游戏奖励、每日彩票和社区活动重新循环发放给积极贡献者。",
-        accordion_disc_title: "重要事项・免责声明与法律合规",
-        disc_sec1_h: "1. 严禁投资建议（No Investment Advice）",
-        disc_sec1_p: "$GANJA 是用于分享 Flare Network 社区文化象征与热情的模因代币，在任何意义上均不构成金融商品、有价证券或投资价值保证。社区规则严格禁止“保证获利”“价格飙升”等投机性表述。请在个人完全负责的前提下参与。",
-        disc_sec2_h: "2. 与违法行为无关（No Illegal Activity）",
-        disc_sec2_p: "与本代币相关的名称、符号、图形及所有创意表达均为纯粹的Web3娱乐与文化表达，与任何违法物质、反社会行为或真实存在的违法组织无关。",
-        disc_sec3_h: "3. 法律合规与监管体制（Legal Compliance）",
-        disc_sec3_p: "为了遵守相关法律法规，管理团队持续加强并维护监控体制。",
-        donate_title: "运营捐赠请求",
-        donate_desc: "GanjaFlare 是一个非营利性社区主导项目。机器人服务器维护费和基础设施运营成本目前完全由 CEO Nikuningyou 个人资金承担。如果您认同 GanjaFlare 的活动并希望支持持续的基础设施维护，非常感谢您通过以下钱包地址使用任意加密资产（FLR / WFLR 等）进行捐赠。",
-        donate_notice: "⚠️ <strong>重要注意事项</strong>：本捐赠纯属运营支持，不产生任何回报（代币发放、特殊权利或服务提供、未来利润分配等）。捐赠资金将全额用于基础设施维护与机器人运营成本。不进行任何投资建议，$GANJA 并非投资商品。",
-        team_ceo_desc: "GanjaFlare 项目的 CEO，也是独自承担工程师、设计师、版主等所有工作的人。化身为 GanjaCat 在 X 上活动，纯粹出于推动 FlareNetwork 发展的热情，对个人利益不感兴趣。",
+        tok_contract_lbl: "$GANJA 合约地址", tok_explorer_btn: "在 Flare Explorer 上查看代币",
+        tok_burn_title: "每月永久销毁",
+        tok_burn_desc: "为了提高项目的透明度和 $GANJA 的稀缺性，我们<strong>每月销毁 777,777 $GANJA 1次</strong>！<br><span style=\"color: var(--emerald-green); font-weight: 700;\">（相当于 42,000,000 $GANJA 总供应量的 1.85% 以上）</span>",
+        tok_burn_history_btn: "销毁历史",
+        accordion_tok_title: "代币经济学详细规格说明书",
+        tok_sec1_h: "I. 供应结构的确定性永久性",
+        tok_sec1_p: "$GANJA 代币供应量被严格且永久地限制为 42,000,000 单位。在智能合约层面消除了铸造功能，从根本上排除了通胀风险，为持有者提供坚实的防稀释保护和长期稳定性。",
+        tok_sec2_h: "II. 去中心化初始流动性",
+        tok_sec2_p: "总供应量的 57.14%（24,000,000 $GANJA）初始分配给 Flare Network 上的主要 DEX（BlazeSwap 和 SparkDEX）的流动性池，以确保公平的市场价格发现和顺畅的交易执行。",
+        tok_sec3_h: "III. 社区战略储备 & 紧缩机制",
+        tok_sec3_p: "其余的 42.86%（18,000,000 $GANJA）针对可持续的社区扩张和自主经济闭环进行了战略管理：",
+        tok_sec3_li1: "<strong style=\"color: #f8fafc;\">每月永久销毁</strong>: 每月向黑洞地址发送 777,777 $GANJA 以减少流通供应量。",
+        tok_sec3_li2: "<strong style=\"color: #f8fafc;\">激励 & 产品回馈</strong>: 通过 GanjaCatRun 游戏奖励、每日抽奖和社区活动重新循环给积极的贡献者。",
+        accordion_disc_title: "免责声明 & 法律合规",
+        disc_sec1_h: "1. 非投资建议",
+        disc_sec1_p: "$GANJA 是 Flare Network 上的文化社区 Memecoin，不构成金融产品或投资资产。社区规则严厉禁止承诺“保证利润”或“价格飙升”的言论。请在完全承担个人责任的前提下参与。",
+        disc_sec2_h: "2. 无违法活动",
+        disc_sec2_p: "与此代币相关的所有名称、符号和图形纯粹是 Web3 娱乐的文化表达，与违禁物质或非法活动没有任何联系。",
+        disc_sec3_h: "3. 法律合规",
+        disc_sec3_p: "管理团队根据日本和国际法律法规持续维护合规和监控系统。",
+        donate_title: "运营捐赠",
+        donate_desc: "GanjaFlare 是一个非营利性社区项目。服务器和基础设施费用目前由 CEO Nikuningyou 个人资助。如果您希望支持持续的基础设施运营，非常感谢通过加密资产（FLR / WFLR 等）进行自愿捐赠。",
+        donate_notice: "⚠️ <strong>注意</strong>: 捐赠纯粹是对基础设施的自愿支持，不表达任何代币分配、权利或财务回报。",
+        team_ceo_desc: "GanjaFlare 幕后的 CEO、开发者、设计师和版主。在 X 上以 GanjaCat 的身份活动，纯粹出于推动 Flare Network 生态系统的热情，对个人利益不感兴趣。",
         team_cat_role: "（官方角色）",
-        team_cat_desc: "出生于流星街的猫。在大麻收割过程中遭受雷击身亡，后被黑暗组织回收并改造为赛博机器人。动力源为比萨、大麻、甘茄与硝基。爱好是通过挖矿收集矿石。机缘巧合下迷失在 Flare Network 中，一时兴起随手制作了 42,000,000 枚 $GANJA 代币。看到社区蓬勃发展是他唯一的生存意义——不多，也不少。"
+        team_cat_desc: "一只出生在流星街的猫。在采摘大麻时遭到雷击身亡，被黑暗财团回收并改造为赛博朋克猫。由比萨、大麻、甘佳和硝基提供动力。采矿是他的业余爱好。偶然迷路来到 Flare Network 后，他心血来潮亲手制作了 42,000,000 个 $GANJA 代币。看到社区蓬勃发展是他存在的唯一原因——不多也不少。"
       }
     };
 
-    /* Chart.js 用ラベル辞書 */
-    const chartLabels = {
-      en: ['DEX Liquidity Pool (57.14%)', 'Community Strategic Reserve (42.86%)'],
-      ja: ['DEX流動性プール (57.14%)', 'コミュニティ戦略リザーブ (42.86%)'],
-      zh: ['DEX 流动性池 (57.14%)', '社区战略储备 (42.86%)']
-    };
-
-    let tokenomicsChartInstance = null;
-
-    /* 言語切り替えメイン関数 */
     function setLanguage(lang) {
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`lang-btn-${lang}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (i18n[lang] && i18n[lang][key]) {
-          el.innerHTML = i18n[lang][key];
+      const texts = i18n[lang] || i18n.en;
+      document.querySelectorAll('[data-i18n]').forEach(elem => {
+        const key = elem.getAttribute('data-i18n');
+        if (texts[key]) {
+          elem.innerHTML = texts[key];
         }
       });
-
-      if (tokenomicsChartInstance) {
-        tokenomicsChartInstance.data.labels = chartLabels[lang] || chartLabels.en;
-        tokenomicsChartInstance.update();
-      }
-
-      document.documentElement.lang = lang;
+      localStorage.setItem('ganja_lang', lang);
     }
 
-    /* ハンバーガーメニュー制御 */
+    /* ハンバーガーメニュー切り替え */
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('active');
     });
 
     document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', () => {
         navMenu.classList.remove('active');
-        if (link.getAttribute('href') === '#home') {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
       });
     });
 
-    /* タブ切り替え処理 */
-    function switchTab(section, tabName) {
-      const btn = event ? event.currentTarget : null;
-      const sectionElem = document.getElementById(section);
-      if (!sectionElem) return;
-
-      const buttons = sectionElem.querySelectorAll('.tab-btn');
-      const contents = sectionElem.querySelectorAll('.tab-content');
+    /* タブ切り替え関数 */
+    function switchTab(section, tab) {
+      const container = document.getElementById(section);
+      if(!container) return;
+      const buttons = container.querySelectorAll('.tab-btn');
+      const contents = container.querySelectorAll('.tab-content');
 
       buttons.forEach(b => b.classList.remove('active'));
-      contents.forEach(content => content.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
 
-      if (btn) btn.classList.add('active');
-      const targetContent = document.getElementById(`${section}-${tabName}`);
-      if (targetContent) {
-        targetContent.classList.add('active');
+      event.currentTarget.classList.add('active');
+      const targetContent = document.getElementById(`${section}-${tab}`);
+      if(targetContent) targetContent.classList.add('active');
+    }
+
+    /* アコーディオン切り替え関数 */
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(`${id}Icon`);
+      if (content.style.display === 'block') {
+        content.style.display = 'none';
+        if(icon) icon.className = 'fa-solid fa-chevron-down';
+      } else {
+        content.style.display = 'block';
+        if(icon) icon.className = 'fa-solid fa-chevron-up';
       }
     }
 
-    /* NFT v2 カウントダウンタイマー */
-    const launchTarget = new Date("2026-09-05T12:00:00Z").getTime();
+    /* クリップボードコピー */
+    function copyContract(text, btnId) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById(btnId);
+        if(btn) {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+          }, 2000);
+        }
+      });
+    }
 
-    function updateNftV2Countdown() {
+    /* アニメーション用スライドショー */
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('#coinSlideshow img');
+    if (slides.length > 0) {
+      setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }, 2500);
+    }
+
+    /* NFT v2 ロックカウントダウンタイマー */
+    function updateNFTv2Timer() {
+      const unlockDate = new Date('2026-09-03T12:00:00Z').getTime();
       const now = new Date().getTime();
-      const distance = launchTarget - now;
-      const btn = document.getElementById('nftv2-tab-btn');
+      const distance = unlockDate - now;
+
       const timerText = document.getElementById('nftv2-timer-text');
       const lockedView = document.getElementById('nftv2-locked-view');
       const unlockedView = document.getElementById('nftv2-unlocked-view');
-
-      if (!btn || !timerText) return;
+      const tabBtn = document.getElementById('nftv2-tab-btn');
 
       if (distance <= 0) {
-        btn.classList.remove('locked');
-        btn.innerHTML = '<i class="fa-solid fa-sparkles"></i> NFT v2';
+        if (timerText) timerText.innerText = 'NFT v2';
+        if (tabBtn) tabBtn.classList.remove('locked');
         if (lockedView) lockedView.style.display = 'none';
         if (unlockedView) unlockedView.style.display = 'block';
       } else {
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        timerText.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
+        if (timerText) timerText.innerText = `NFT v2 (SOON: ${days}d ${hours}h ${minutes}m)`;
         if (lockedView) lockedView.style.display = 'block';
         if (unlockedView) unlockedView.style.display = 'none';
       }
     }
 
-    updateNftV2Countdown();
-    setInterval(updateNftV2Countdown, 1000);
-
-    /* アコーディオン制御 */
-    function toggleAccordion(id) {
-      const content = document.getElementById(id);
-      const icon = document.getElementById(`${id}Icon`);
-      if (content.style.display === 'block') {
-        content.style.display = 'none';
-        if (icon) icon.className = 'fa-solid fa-chevron-down';
-      } else {
-        content.style.display = 'block';
-        if (icon) icon.className = 'fa-solid fa-chevron-up';
-      }
-    }
-
-    /* アドレスコピー機能 */
-    function copyContract(addrText, btnId) {
-      const setSuccessUI = () => {
-        const copyBtn = document.getElementById(btnId);
-        if (!copyBtn) return;
-        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> COPIED!';
-        copyBtn.style.background = '#059669';
-        copyBtn.style.color = '#ffffff';
-        setTimeout(() => {
-          copyBtn.innerHTML = '<i class="fa-solid fa-copy"></i> COPY';
-          copyBtn.style.background = 'rgba(52, 211, 153, 0.2)';
-          copyBtn.style.color = 'var(--emerald-green)';
-        }, 2000);
-      };
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(addrText).then(setSuccessUI).catch(() => fallbackCopy(addrText, setSuccessUI));
-      } else {
-        fallbackCopy(addrText, setSuccessUI);
-      }
-    }
-
-    function fallbackCopy(text, callback) {
-      const textArea = document.createElement("textarea");
-      textArea.value = text;
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand('copy');
-        callback();
-      } catch (err) {
-        alert("Copy failed. Please copy manually.");
-      }
-      document.body.removeChild(textArea);
-    }
-
-    /* コインのスライドショー */
-    const coinImgs = document.querySelectorAll('#coinSlideshow img');
-    let currentCoinIdx = 0;
-
-    if (coinImgs.length > 0) {
-      setInterval(() => {
-        coinImgs[currentCoinIdx].classList.remove('active');
-        currentCoinIdx = (currentCoinIdx + 1) % coinImgs.length;
-        coinImgs[currentCoinIdx].classList.add('active');
-      }, 1200);
-    }
-
-    /* 初期化（DOMContentLoaded） */
-    document.addEventListener("DOMContentLoaded", () => {
-      const ctx = document.getElementById('tokenomicsChart').getContext('2d');
-      
-      tokenomicsChartInstance = new Chart(ctx, {
+    /* Tokenomics Chart.js */
+    function initChart() {
+      const ctx = document.getElementById('tokenomicsChart');
+      if (!ctx) return;
+      new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: chartLabels.en,
+          labels: ['DEX Liquidity Pool (57.14%)', 'Community Strategic Reserve (42.86%)'],
           datasets: [{
-            data: [24000000, 18000000],
+            data: [57.14, 42.86],
             backgroundColor: ['#34d399', '#a855f7'],
             borderColor: '#0f172a',
-            borderWidth: 4,
-            hoverOffset: 12
+            borderWidth: 3
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: true,
-          layout: { padding: 0 },
           plugins: {
             legend: {
               position: 'bottom',
-              align: 'center',
               labels: {
-                color: '#f8fafc',
-                font: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
-                padding: 12,
-                boxWidth: 14
-              }
-            },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const value = context.raw.toLocaleString();
-                  return ` ${context.label}: ${value} $GANJA`;
-                }
+                color: '#cbd5e1',
+                font: { family: 'Plus Jakarta Sans', size: 11, weight: '700' },
+                padding: 15
               }
             }
-          },
-          cutout: '65%'
+          }
         }
       });
+    }
 
-      setLanguage('en');
-    });
+    /* 初期化処理 */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Particles.js 初期化
+      if (window.particlesJS) {
+        particlesJS('particles-js', {
+          particles: {
+            number: { value: 35, density: { enable: true, value_area: 800 } },
+            color: { value: '#34d399' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.3, random: true },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: '#34d399', opacity: 0.15, width: 1 },
+            move: { enable: true, speed: 1.5, direction: 'none', random: true, straight: false, out_mode: 'out' }
+          },
+          interactivity: {
+            detect_on: 'canvas',
+            events: { onhover: { enable: false }, onclick: { enable: false } }
+          },
+          retina_detect: true
+        });
+      }
 
-    /* 背景パーティクルアニメーション */
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": ["#34d399", "#10b981", "#3b82f6", "#a855f7"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": true },
-        "size": { "value": 4, "random": true },
-        "line_linked": {
-          "enable": true,
-          "distance": 130,
-          "color": "#34d399",
-          "opacity": 0.25,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 1.8,
-          "direction": "none",
-          "random": true,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "grab": { "distance": 150, "line_linked": { "opacity": 0.7 } }
-        }
-      },
-      "retina_detect": true
+      // 言語初期設定
+      const savedLang = localStorage.getItem('ganja_lang') || 'en';
+      setLanguage(savedLang);
+
+      // チャート＆タイマー起動
+      initChart();
+      updateNFTv2Timer();
+      setInterval(updateNFTv2Timer, 60000);
     });
   </script>
 </body>
