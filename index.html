@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title class="notranslate" translate="no">GanjaFlare - Flare's Freedom Energy</title>
   
-<!-- Favicon & Apple Touch Icon -->
-<link rel="icon" type="image/png" href="https://ganjaflare.github.io/images/Ganjalogo.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://ganjaflare.github.io/images/Ganjalogo.png">
+  <!-- Favicon & Apple Touch Icon -->
+  <link rel="icon" type="image/png" href="https://ganjaflare.github.io/images/Ganjalogo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://ganjaflare.github.io/images/Ganjalogo.png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,18 +19,18 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- OGP / Open Graph (SNS Preview) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="GanjaFlare - Flare's Freedom Energy">
-<meta property="og:description" content="GanjaFlare builds community-driven cultural assets on Flare Network through $GANJA, games, and NFTs.">
-<meta property="og:url" content="https://ganjaflare.github.io/">
-<meta property="og:image" content="https://ganjaflare.github.io/images/ogp-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GanjaFlare - Flare's Freedom Energy">
+  <meta property="og:description" content="GanjaFlare builds community-driven cultural assets on Flare Network through $GANJA, games, and NFTs.">
+  <meta property="og:url" content="https://ganjaflare.github.io/">
+  <meta property="og:image" content="https://ganjaflare.github.io/images/ogp-image.png">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@nikuningyou29">
-<meta name="twitter:title" content="GanjaFlare - Flare's Freedom Energy">
-<meta name="twitter:description" content="GanjaFlare builds community-driven cultural assets on Flare Network through $GANJA, games, and NFTs.">
-<meta name="twitter:image" content="https://ganjaflare.github.io/images/ogp-image.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nikuningyou29">
+  <meta name="twitter:title" content="GanjaFlare - Flare's Freedom Energy">
+  <meta name="twitter:description" content="GanjaFlare builds community-driven cultural assets on Flare Network through $GANJA, games, and NFTs.">
+  <meta name="twitter:image" content="https://ganjaflare.github.io/images/ogp-image.png">
 
   <style>
     :root {
@@ -305,29 +305,23 @@
       gap: 20px;
     }
 
-    .ganja-logo-frame {
-      position: relative;
-      border: 2px solid var(--border-emerald);
+    /* TOP 扉絵スタイル */
+    .top-banner-frame {
+      width: 100%;
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(52, 211, 153, 0.2);
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px;
-      max-width: 220px;
-      margin: 0 auto;
-      animation: floatAnim 4s ease-in-out infinite;
+      border: 1px solid var(--border-emerald);
+      box-shadow: 0 0 25px rgba(52, 211, 153, 0.25);
     }
 
-    .ganja-logo-frame img {
+    .top-banner-frame img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    @keyframes floatAnim {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
+    .top-pc-img { display: block; }
+    .top-phone-img { display: none; }
 
     .btn-mint-style {
       background: linear-gradient(135deg, #059669 0%, #10b981 100%);
@@ -613,21 +607,6 @@
       flex-shrink: 0;
     }
 
-    .team-mystery-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: rgba(15, 23, 42, 0.8);
-      border: 2px solid var(--emerald-green);
-      box-shadow: 0 0 18px rgba(52, 211, 153, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--emerald-green);
-      font-size: 2.8rem;
-      flex-shrink: 0;
-    }
-
     .accordion-btn {
       width: 100%;
       padding: 12px 16px;
@@ -769,7 +748,10 @@
       .coin-slideshow { width: 220px; height: 220px; }
       .hub-card { padding: 20px 14px; }
       .tab-btn { font-size: 0.76rem; padding: 6px 8px; }
-      .ganja-logo-frame { max-width: 150px; }
+
+      /* モバイル時はスマホ用画像に切替 */
+      .top-pc-img { display: none; }
+      .top-phone-img { display: block; }
     }
   </style>
 </head>
@@ -824,8 +806,10 @@
     <section id="home">
       <div class="hub-card">
         <div class="hero-container">
-          <div class="ganja-logo-frame">
-            <img src="images/Ganjalogo.svg" alt="GanjaFlare Official Logo">
+          <!-- 扉絵（TOP_PC.webp / TOP_Phone.webp）を大きく掲載 -->
+          <div class="top-banner-frame">
+            <img src="images/TOP_PC.webp" class="top-pc-img" alt="GanjaFlare Main Banner PC">
+            <img src="images/TOP_Phone.webp" class="top-phone-img" alt="GanjaFlare Main Banner Phone">
           </div>
           <div>
             <p style="font-size: 0.95rem; color: var(--text-sub); line-height: 1.8;" data-i18n="home_desc">
@@ -1618,10 +1602,35 @@
       });
     }
 
-    /* アニメーション用スライドショー */
+    /* NFT v2 タイマー＆アンロック処理 */
+    const targetDate = new Date(Date.UTC(2025, 8, 5, 12, 0, 0)).getTime(); // Sep 5, 12:00 UTC
+    function updateNFTv2Timer() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById('nftv2-locked-view').style.display = 'none';
+        document.getElementById('nftv2-unlocked-view').style.display = 'block';
+        const tabBtn = document.getElementById('nftv2-tab-btn');
+        tabBtn.classList.remove('locked');
+        tabBtn.innerHTML = '<i class="fa-solid fa-layer-group"></i> NFT v2';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('nftv2-timer-text').innerText = `v2 Launch in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateNFTv2Timer, 1000);
+    updateNFTv2Timer();
+
+    /* NFT v1 コインスライドショー */
     let currentSlide = 0;
     const slides = document.querySelectorAll('#coinSlideshow img');
-    if (slides.length > 0) {
+    if(slides.length > 0) {
       setInterval(() => {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
@@ -1629,94 +1638,76 @@
       }, 2500);
     }
 
-    /* NFT v2 ロックカウントダウンタイマー */
-    function updateNFTv2Timer() {
-      const unlockDate = new Date('2026-09-03T12:00:00Z').getTime();
-      const now = new Date().getTime();
-      const distance = unlockDate - now;
-
-      const timerText = document.getElementById('nftv2-timer-text');
-      const lockedView = document.getElementById('nftv2-locked-view');
-      const unlockedView = document.getElementById('nftv2-unlocked-view');
-      const tabBtn = document.getElementById('nftv2-tab-btn');
-
-      if (distance <= 0) {
-        if (timerText) timerText.innerText = 'NFT v2';
-        if (tabBtn) tabBtn.classList.remove('locked');
-        if (lockedView) lockedView.style.display = 'none';
-        if (unlockedView) unlockedView.style.display = 'block';
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        if (timerText) timerText.innerText = `NFT v2 (SOON: ${days}d ${hours}h ${minutes}m)`;
-        if (lockedView) lockedView.style.display = 'block';
-        if (unlockedView) unlockedView.style.display = 'none';
-      }
-    }
-
-    /* Tokenomics Chart.js */
-    function initChart() {
-      const ctx = document.getElementById('tokenomicsChart');
-      if (!ctx) return;
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['DEX Liquidity Pool (57.14%)', 'Community Strategic Reserve (42.86%)'],
-          datasets: [{
-            data: [57.14, 42.86],
-            backgroundColor: ['#34d399', '#a855f7'],
-            borderColor: '#0f172a',
-            borderWidth: 3
-          }]
+    /* Particles.js 設定 */
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 35, density: { enable: true, value_area: 800 } },
+        color: { value: '#34d399' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.3, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#34d399',
+          opacity: 0.15,
+          width: 1
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                color: '#cbd5e1',
-                font: { family: 'Plus Jakarta Sans', size: 11, weight: '700' },
-                padding: 15
-              }
-            }
-          }
+        move: {
+          enable: true,
+          speed: 1.5,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out'
         }
-      });
-    }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'bubble' },
+          onclick: { enable: false }
+        },
+        modes: {
+          bubble: { distance: 200, size: 5, duration: 2, opacity: 0.8 }
+        }
+      },
+      retina_detect: true
+    });
 
-    /* 初期化処理 */
+    /* Tokenomics チャート */
     window.addEventListener('DOMContentLoaded', () => {
-      // Particles.js 初期化
-      if (window.particlesJS) {
-        particlesJS('particles-js', {
-          particles: {
-            number: { value: 35, density: { enable: true, value_area: 800 } },
-            color: { value: '#34d399' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.3, random: true },
-            size: { value: 3, random: true },
-            line_linked: { enable: true, distance: 150, color: '#34d399', opacity: 0.15, width: 1 },
-            move: { enable: true, speed: 1.5, direction: 'none', random: true, straight: false, out_mode: 'out' }
-          },
-          interactivity: {
-            detect_on: 'canvas',
-            events: { onhover: { enable: false }, onclick: { enable: false } }
-          },
-          retina_detect: true
-        });
-      }
-
-      // 言語初期設定
       const savedLang = localStorage.getItem('ganja_lang') || 'en';
       setLanguage(savedLang);
 
-      // チャート＆タイマー起動
-      initChart();
-      updateNFTv2Timer();
-      setInterval(updateNFTv2Timer, 60000);
+      const ctx = document.getElementById('tokenomicsChart');
+      if(ctx) {
+        new Chart(ctx.getContext('2d'), {
+          type: 'doughnut',
+          data: {
+            labels: ['DEX Liquidity Pool (57.14%)', 'Community Reserve (42.86%)'],
+            datasets: [{
+              data: [24000000, 18000000],
+              backgroundColor: ['#34d399', '#a855f7'],
+              borderColor: '#0f172a',
+              borderWidth: 3
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: '#cbd5e1',
+                  font: { family: 'Plus Jakarta Sans', size: 12, weight: '700' }
+                }
+              }
+            }
+          }
+        });
+      }
     });
   </script>
 </body>
