@@ -561,6 +561,12 @@
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
       filter: drop-shadow(0 0 25px rgba(52, 211, 153, 0.6));
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      border: none;
+      outline: none;
     }
 
     .coin-slideshow img.active {
