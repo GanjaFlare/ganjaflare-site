@@ -332,8 +332,20 @@
       pointer-events: none;
     }
 
-    .hs-leaf-left { left: -6%; }
+    .hs-leaf-left { left: -10%; }
     .hs-leaf-right { right: -6%; }
+
+    .hs-text-glow {
+      position: absolute;
+      z-index: 3;
+      left: -2%;
+      top: 2%;
+      width: 55%;
+      height: 96%;
+      background: radial-gradient(ellipse 80% 75% at 30% 40%, rgba(4, 6, 14, 0.82) 0%, rgba(4, 6, 14, 0.5) 50%, rgba(4, 6, 14, 0) 78%);
+      pointer-events: none;
+      z-index: 3;
+    }
 
     .hs-text {
       position: absolute;
@@ -835,6 +847,15 @@
         opacity: 0.75;
       }
 
+      .hs-text-glow {
+        left: 50%;
+        top: 1%;
+        width: 92%;
+        height: 46%;
+        transform: translateX(-50%);
+        background: radial-gradient(ellipse 85% 80% at 50% 35%, rgba(4, 6, 14, 0.85) 0%, rgba(4, 6, 14, 0.5) 50%, rgba(4, 6, 14, 0) 78%);
+      }
+
       .hs-leaf-left {
         left: -18%;
         top: auto;
@@ -904,6 +925,7 @@
           <img class="hs-bg" src="images/TOP_BACK.webp" alt="">
           <img class="hs-leaf hs-leaf-left" src="images/TOP_LEFT.webp" alt="">
           <img class="hs-leaf hs-leaf-right" src="images/TOP_RIGHT.webp" alt="">
+          <div class="hs-text-glow"></div>
           <div class="hs-text">
             <img class="hs-title" src="images/TOP_TITLE.webp" alt="GanjaFlare - $GANJA on Flare">
             <img class="hs-utility" src="images/TOP_UTILITY.webp" alt="Community / Games / NFTs">
