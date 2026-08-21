@@ -302,18 +302,68 @@
       overflow: hidden;
     }
 
-    .hero-banner {
+    .hero-scene {
+      position: relative;
       width: 100%;
-      line-height: 0;
+      aspect-ratio: 16 / 7;
+      overflow: hidden;
+      background: #05060f;
     }
 
-    .hero-banner img {
+    .hs-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      z-index: 1;
+    }
+
+    .hs-leaf {
+      position: absolute;
+      top: 50%;
+      height: 145%;
+      width: auto;
+      max-width: none;
+      transform: translateY(-50%);
+      z-index: 2;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hs-leaf-left { left: -6%; }
+    .hs-leaf-right { right: -6%; }
+
+    .hs-text {
+      position: absolute;
+      left: 4%;
+      top: 10%;
+      width: 42%;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      gap: 4%;
+    }
+
+    .hs-title, .hs-utility {
       width: 100%;
       height: auto;
       display: block;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
     }
 
-    .hero-text {
+    .hs-cat {
+      position: absolute;
+      right: 2%;
+      bottom: 0;
+      height: 92%;
+      width: auto;
+      z-index: 3;
+      filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.55));
+    }
+
+    .hero-text-body {
       padding: 24px;
     }
 
@@ -757,7 +807,45 @@
       .coin-slideshow { width: 220px; height: 220px; }
       .hub-card { padding: 20px 14px; }
       .tab-btn { font-size: 0.76rem; padding: 6px 8px; }
-      .hero-text { padding: 18px; }
+      .hero-text-body { padding: 18px; }
+
+      .hero-scene {
+        aspect-ratio: 3 / 4;
+      }
+
+      .hs-text {
+        left: 50%;
+        top: 5%;
+        width: 84%;
+        transform: translateX(-50%);
+        align-items: center;
+      }
+
+      .hs-cat {
+        right: 50%;
+        left: auto;
+        transform: translateX(50%);
+        height: 52%;
+        z-index: 3;
+      }
+
+      .hs-leaf {
+        height: 62%;
+        opacity: 0.75;
+      }
+
+      .hs-leaf-left {
+        left: -18%;
+        top: auto;
+        bottom: -4%;
+        transform: none;
+      }
+
+      .hs-leaf-right {
+        right: -18%;
+        top: -4%;
+        transform: none;
+      }
     }
   </style>
 </head>
@@ -811,10 +899,17 @@
     <!-- 1. HOME -->
     <section id="home">
       <div class="hub-card hero-card">
-        <div class="hero-banner">
-          <img src="images/TOP_Phone.webp" alt="GanjaFlare - Flare's Freedom Energy">
+        <div class="hero-scene">
+          <img class="hs-bg" src="images/TOP_BACK.webp" alt="">
+          <img class="hs-leaf hs-leaf-left" src="images/TOP_LEFT.webp" alt="">
+          <img class="hs-leaf hs-leaf-right" src="images/TOP_RIGHT.webp" alt="">
+          <div class="hs-text">
+            <img class="hs-title" src="images/TOP_TITLE.webp" alt="GanjaFlare - $GANJA on Flare">
+            <img class="hs-utility" src="images/TOP_UTILITY.webp" alt="Community / Games / NFTs">
+          </div>
+          <img class="hs-cat" src="images/TOP_CAT.webp" alt="GanjaFlare Official Character">
         </div>
-        <div class="hero-text">
+        <div class="hero-text-body">
           <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7;" data-i18n="home_desc">
             GanjaFlare builds community-driven cultural assets on Flare Network through the Memecoin $GANJA, games, and NFTs.<br>
             It is defined by collective enthusiasm and resonance, rather than speculative promises.<br>
